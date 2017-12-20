@@ -6,6 +6,7 @@
  */
 
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 // Our custom reducers
 // We need to import each one here and add them to the combiner at the bottom
@@ -20,6 +21,7 @@ const appReducer = combineReducers({
   sideMenu,
   user,
   recipe,
+  form: formReducer
 });
 
 // Setup root reducer

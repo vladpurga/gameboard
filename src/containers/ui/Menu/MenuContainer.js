@@ -23,6 +23,7 @@ const authMenu = [
 const unauthMenu = [
   { title: 'Login', onPress: () => { Actions.login(); } },
   { title: 'Sign Up', onPress: () => { Actions.signUp(); } },
+  { title: 'Track Score', onPress: () => { Actions.trackScore(); } },
 ];
 
 // What data from the store shall we send to the component?
