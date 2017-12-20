@@ -4,9 +4,6 @@
 import { connect } from 'react-redux';
 import { formValueSelector } from 'redux-form';
 
-// Actions
-import * as UserActions from '@redux/user/actions';
-
 // The component we're mapping to
 import WhoPlayed from './WhoPlayedView';
 
@@ -14,7 +11,7 @@ import WhoPlayed from './WhoPlayedView';
 const selector = formValueSelector('trackScore');
 const mapStateToProps = state => ({
   user: state.user,
-  game: selector(state, 'game')
+  game: selector(state, 'game'),
 });
 
 // Any actions to map to the component?

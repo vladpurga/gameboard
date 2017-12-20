@@ -281,7 +281,7 @@ class StyleGuide extends Component {
                   error={'Error hey'}
                 />
               </Card>
-           </ScrollView>
+            </ScrollView>
           </View>
         );
       case '3' :

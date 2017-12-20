@@ -21,7 +21,7 @@ const appReducer = combineReducers({
   sideMenu,
   user,
   recipe,
-  form: formReducer
+  form: formReducer,
 });
 
 // Setup root reducer
