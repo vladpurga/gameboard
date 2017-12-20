@@ -56,9 +56,9 @@ class WhatGame extends Component {
     return (
       <View>
         <Text h1>What Game?</Text>
-        <Field name="game" component={renderInput} />
+        <Field name="game" component={renderInput} autoFocus />
         <TouchableOpacity onPress={handleSubmit}>
-          <Text style={styles.button}>Next</Text>
+          <Text autoFocus style={[styles.button]}>Next</Text>
         </TouchableOpacity>
       </View>
     );

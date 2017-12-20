@@ -61,7 +61,7 @@ class WhoPlayed extends Component {
     return (
       <View>
         <TouchableOpacity onPress={() => fields.push(newPlayer)}>
-          <Text style={styles.button}>Add Player</Text>
+          <Text style={[styles.button]}>Add Player</Text>
         </TouchableOpacity>
         {fields.map(player =>
           (<Card title={player.name}>
@@ -83,10 +83,10 @@ class WhoPlayed extends Component {
         <Text h1>Who Played {game}?</Text>
         <FieldArray name="players" component={this.renderPlayers} />
         <TouchableOpacity onPress={handleSubmit}>
-          <Text style={styles.button}>Next</Text>
+          <Text style={[styles.button]}>Next</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={previousPage}>
-          <Text style={styles.button}>Back</Text>
+          <Text style={[styles.button]}>Back</Text>
         </TouchableOpacity>
       </View>
     );

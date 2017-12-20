@@ -79,6 +79,7 @@ class TrackScore extends Component {
     return (
       <View style={styles.tabContainer}>
         <ScrollView
+          keyboardShouldPersistTaps="always"
           automaticallyAdjustContentInsets={false}
           style={[AppStyles.container]}
         >
