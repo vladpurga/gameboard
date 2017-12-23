@@ -15,12 +15,12 @@ import { AppStyles } from '@theme/';
 // Containers
 import WhatGame from './WhatGameContainer';
 import WhoPlayed from './WhoPlayedContainer';
+import WhoWon from './WhoWonContainer';
 
 const styles = StyleSheet.create({
   // Tab Styles
   tabContainer: {
     flex: 1,
-    marginLeft: 30,
     marginTop: 30,
   },
   button: {
@@ -78,22 +78,21 @@ class TrackScore extends Component {
 
     return (
       <View style={styles.tabContainer}>
-        <ScrollView
-          keyboardShouldPersistTaps="always"
-          automaticallyAdjustContentInsets={false}
-          style={[AppStyles.container]}
-        >
-          { page === 1 &&
-          <WhatGame onSubmit={this.nextPage} />
-          }
-          { page === 2 &&
-          <WhoPlayed
-            onSubmit={this.nextPage}
-            previousPage={this.previousPage}
-          />
-          }
-
-        </ScrollView>
+        { page === 1 &&
+        <WhatGame onSubmit={this.nextPage} />
+        }
+        { page === 2 &&
+        <WhoPlayed
+          onSubmit={this.nextPage}
+          previousPage={this.previousPage}
+        />
+        }
+        { page === 3 &&
+        <WhoWon
+          onSubmit={this.nextPage}
+          previousPage={this.previousPage}
+        />
+        }
       </View>
     );
   }

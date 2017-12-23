@@ -1,25 +1,14 @@
 import React from 'react';
-import {
-  PropTypes,
-  StyleSheet,
-  TextInput,
-} from 'react-native';
+import { Item, Label, Input, Text } from 'native-base';
 
-const styles = StyleSheet.create({
-  input: {
-    borderColor: 'black',
-    borderWidth: 1,
-    height: 37,
-    width: 250,
-  },
-});
+export default function renderInput({ input, autoFocus, placeHolder, label, type, meta: { touched, error, warning } }) {
+  const showError = touched && !!error;
 
-const renderInput = ({ input: { onChange, ...restInput } }) => {
-  return <TextInput style={styles.input} onChangeText={onChange} {...restInput} />;
-};
-
-renderInput.propTypes = {
-  // input: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-};
-
-export default renderInput;
+  return (
+    <Item error={showError} regular>
+      {label ? <Label>{label}</Label> : null}
+      <Input {...input} placeHolder={placeHolder} autoFocus={autoFocus} />
+      {showError ? <Text>{error}</Text> : <Text />}
+    </Item>
+  );
+}
