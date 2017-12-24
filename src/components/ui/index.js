@@ -17,6 +17,7 @@ import ListItem from './ListItem';
 import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 import FormValidationMessage from './FormValidationMessage';
+import RankedPlayer from './RankedPlayer';
 
 export {
   Alerts,
@@ -31,4 +32,5 @@ export {
   FormInput,
   FormLabel,
   FormValidationMessage,
+  RankedPlayer,
 };

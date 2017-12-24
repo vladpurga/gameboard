@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /**
  * React Native Starter Kit - Firebase Cloud Functions
  * - A collection of example cloud functions to use with this project

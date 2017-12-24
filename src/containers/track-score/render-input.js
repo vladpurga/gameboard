@@ -1,7 +1,8 @@
 import React from 'react';
 import { Item, Label, Input, Text } from 'native-base';
 
-export default function renderInput({ input, autoFocus, placeHolder, label, type, meta: { touched, error, warning } }) {
+// eslint-disable-next-line react/prop-types
+export default function renderInput({ input, autoFocus, placeHolder, label, meta: { touched, error } }) { // eslint-disable-line max-len
   const showError = touched && !!error;
 
   return (

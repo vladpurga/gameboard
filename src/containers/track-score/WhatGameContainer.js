@@ -17,9 +17,11 @@ const mapStateToProps = state => ({
     players: [{
       id: 1,
       name: 'Dave',
+      rank: null,
     }, {
       id: 2,
       name: 'Sarah',
+      rank: null,
     }],
   },
 });

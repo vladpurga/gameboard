@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import { Button, Content, H1, Icon, Text } from 'native-base';
+import { Button, H1, Icon, Text } from 'native-base';
 import PropTypes from 'prop-types';
 
 import { Spacer } from '@components/ui/';
@@ -61,6 +61,7 @@ class WhoPlayed extends Component {
     const newPlayer = {
       id: Math.random(),
       name: `Player ${fields.length + 1}`,
+      rank: null,
     };
 
     return (
@@ -114,14 +115,14 @@ class WhoPlayed extends Component {
         </View>
         <View style={styles.bottom}>
           <View style={styles.buttonContainer}>
-          <Button block light onPress={previousPage}>
-            <Text style={{ color: 'black' }}>Back</Text>
-          </Button>
+            <Button block light onPress={previousPage}>
+              <Text style={{ color: 'black' }}>Back</Text>
+            </Button>
           </View>
           <View style={styles.buttonContainer}>
-          <Button block primary onPress={handleSubmit}>
-            <Text>Next</Text>
-          </Button>
+            <Button block primary onPress={handleSubmit}>
+              <Text>Next</Text>
+            </Button>
           </View>
         </View>
       </View>

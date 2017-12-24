@@ -6,11 +6,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  ScrollView,
 } from 'react-native';
-
-// Consts and Libs
-import { AppStyles } from '@theme/';
 
 // Containers
 import WhatGame from './WhatGameContainer';

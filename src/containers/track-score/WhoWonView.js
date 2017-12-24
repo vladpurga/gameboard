@@ -4,14 +4,14 @@
  */
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Field, reduxForm } from 'redux-form';
-import { Button, H1, Icon, Text } from 'native-base';
+import { reduxForm } from 'redux-form';
+import { Button, H1, Text } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { GameRankZone, Spacer } from '@components/ui/';
+import { GameRankZone, RankedPlayer, Spacer } from '@components/ui/';
+import rankings from '@lib/rankings';
 
 import validate from './validate';
-import renderInput from './render-input';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,10 +49,13 @@ class WhoWon extends Component {
   static componentName = 'WhoWon';
 
   static propTypes = {
+    //  Props from redux-form...
     handleSubmit: PropTypes.func.isRequired,
     previousPage: PropTypes.func.isRequired,
+    change: PropTypes.func.isRequired,
+    //  Props from our form...
     game: PropTypes.string.isRequired,
-    players: PropTypes.array.isRequired,
+    players: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
   static defaultProps = {
@@ -61,59 +64,59 @@ class WhoWon extends Component {
   componentWillReceiveProps() {
   }
 
-  renderPlayers = (players) => {
-    return (
-      <View>
-        {players.map((player, index) =>
-          (
-            <View style={styles.playerContainer} key={player.id}>
-              <View style={{ flexDirection: 'row' }}>
-                <View style={{ flex: 1 }}>
-                  <Text>{player.name}</Text>
-                </View>
-                <View style={{ flex: 0 }}>
-                  <Button
-                    transparent
-                    light
-                    onPress={() => players.remove(index)}
-                  >
-                    <Icon name="arrow-dropdown" style={{ fontSize: 32, color: 'black' }} />
-                  </Button>
-                </View>
-                <View style={{ flex: 0 }}>
-                  <Button
-                    transparent
-                    light
-                    onPress={() => players.remove(index)}
-                  >
-                    <Icon name="arrow-dropup" style={{ fontSize: 32, color: 'black' }} />
-                  </Button>
-                </View>
-              </View>
-            </View>
-          ),
-        )}
-      </View>
-    );
-  }
+  renderPlayers = players => (
+    <View>
+      {players.map(player => (
+        <RankedPlayer
+          player={player}
+          moveDown={player.moveDown}
+          moveUp={player.moveUp}
+        />
+      ),
+      )}
+    </View>
+  );
 
   render = () => {
-    const { handleSubmit, previousPage, game, players } = this.props;
+    const { handleSubmit, previousPage, change, game, players } = this.props;
 
-    const winners = players.filter(p => p.rank === 1);
-    const losers = players.filter(p => !p.rank);
+    //  Get the next available rank from the set of players.
+    const nextAvailableRank = rankings.nextFreeRank(players);
+
+    //  Create the moveUp/moveDown functions for each player.
+    players.forEach((player, index) => {
+      const moveUp = () => {
+        const newRank = Number.isInteger(player.rank) ? player.rank - 1 : nextAvailableRank;
+        change(`players[${index}].rank`, newRank);
+      };
+      const moveDown = () => {
+        const newRank = player.rank === (nextAvailableRank - 1) ? null : nextAvailableRank;
+        change(`players[${index}].rank`, newRank);
+      };
+      Object.assign(player, {
+        moveUp: player.rank !== 1 ? moveUp : null,
+        moveDown: player.rank !== null ? moveDown : null,
+      });
+    });
+
+    const rankedPlayers = players.reduce((acc, player) => {
+      acc[player.rank] = acc[player.rank] || [];
+      acc[player.rank].push(player);
+      return acc;
+    }, { [nextAvailableRank]: [] }); // the next avaiable rank is shown
 
     return (
       <View style={styles.container}>
         <View style={styles.top}>
           <H1>Who Won {game}?</H1>
           <Spacer size={20} />
-          <GameRankZone rank="Winner">
-            {this.renderPlayers(winners)}
-          </GameRankZone>
-          <GameRankZone rank="Losers">
-            {this.renderPlayers(losers)}
-          </GameRankZone>
+          {
+            Object.keys(rankedPlayers).map(key => (
+              <GameRankZone rank={rankings.rankName(key)}>
+                {this.renderPlayers(rankedPlayers[key])}
+              </GameRankZone>
+            ))
+          }
         </View>
         <View style={styles.bottom}>
           <View style={styles.buttonContainer}>

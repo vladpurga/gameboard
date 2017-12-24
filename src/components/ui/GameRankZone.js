@@ -4,7 +4,7 @@
  *
      <GameRankZone rank="Winner"></GameRankZone>
  */
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'native-base';
 import PropTypes from 'prop-types';
@@ -24,34 +24,32 @@ const styles = StyleSheet.create({
   },
 });
 
-class GameRankZone extends Component {
-  static propTypes = {
-    rank: PropTypes.string.isRequired,
-    children: PropTypes.node,
-  }
+const GameRankZone = ({ rank, children }) => {
+  const count = React.Children.count(children);
+  const showHint = count === 0;
 
-  static defaultProps = {
-    children: null,
-  }
+  const contents = showHint ?
+    (<View style={styles.hintContainer}><Text style={{ textAlign: 'center' }}>Drag the winner here!</Text></View>) :
+    children;
 
-  render = () => {
-    const { rank, children } = this.props;
-
-    const hideHint = children && children.length > 0;
-
-    const contents = !hideHint ?
-      (<View style={styles.hintContainer}><Text style={{ textAlign: 'center' }}>Drag the winner here!</Text></View>) :
-      children;
-
-    return (
-      <View>
-        <Text style={{ textAlign: 'right', fontWeight: 'bold' }}>{rank}</Text>
-        <View style={styles.zoneContainer}>
-          {contents}
-        </View>
+  return (
+    <View>
+      <Text style={{ textAlign: 'right', fontWeight: 'bold' }}>{rank}</Text>
+      <View style={styles.zoneContainer}>
+        {contents}
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
+
+
+GameRankZone.propTypes = {
+  rank: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
+
+GameRankZone.defaultProps = {
+  children: null,
+};
 
 export default GameRankZone;
