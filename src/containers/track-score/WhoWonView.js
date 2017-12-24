@@ -90,6 +90,7 @@ class WhoWon extends Component {
         change(`players[${index}].rank`, newRank);
       };
       const moveDown = () => {
+        //  BUG: https://github.com/dwmkerr/gameboard/issues/1
         const newRank = player.rank === (nextAvailableRank - 1) ? null : nextAvailableRank;
         change(`players[${index}].rank`, newRank);
       };
