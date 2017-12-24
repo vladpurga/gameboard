@@ -68,6 +68,7 @@ class WhoWon extends Component {
     <View>
       {players.map(player => (
         <RankedPlayer
+          key={player.key}
           player={player}
           moveDown={player.moveDown}
           moveUp={player.moveUp}
@@ -113,7 +114,7 @@ class WhoWon extends Component {
           <Spacer size={20} />
           {
             Object.keys(rankedPlayers).map(key => (
-              <GameRankZone rank={rankings.rankName(key)}>
+              <GameRankZone key={key} rank={rankings.rankName(key)}>
                 {this.renderPlayers(rankedPlayers[key])}
               </GameRankZone>
             ))
