@@ -12,6 +12,7 @@ import {
 import WhatGame from './WhatGameContainer';
 import WhoPlayed from './WhoPlayedContainer';
 import WhoWon from './WhoWonContainer';
+import AddScores from './AddScoresContainer';
 
 const styles = StyleSheet.create({
   // Tab Styles
@@ -48,9 +49,6 @@ class TrackScore extends Component {
   constructor() {
     super();
 
-    this.nextPage = this.nextPage.bind(this);
-    this.previousPage = this.previousPage.bind(this);
-
     this.state = {
       page: 1,
     };
@@ -59,14 +57,18 @@ class TrackScore extends Component {
   componentWillReceiveProps() {
   }
 
-  nextPage(values) {
+  nextPage = (values) => {
     console.log('next page', values);
     this.setState({ page: this.state.page + 1 });
   }
 
-  previousPage(values) {
+  previousPage = (values) => {
     console.log('previous page', values);
     this.setState({ page: this.state.page - 1 });
+  }
+
+  handleSubmit = (values) => {
+    console.log('submit', values);
   }
 
   render = () => {
@@ -86,6 +88,12 @@ class TrackScore extends Component {
         { page === 3 &&
         <WhoWon
           onSubmit={this.nextPage}
+          previousPage={this.previousPage}
+        />
+        }
+        { page === 4 &&
+        <AddScores
+          onSubmit={this.handleSubmit}
           previousPage={this.previousPage}
         />
         }

@@ -68,7 +68,7 @@ class WhoWon extends Component {
     <View>
       {players.map(player => (
         <RankedPlayer
-          key={player.key}
+          key={player.id}
           player={player}
           moveDown={player.moveDown}
           moveUp={player.moveUp}

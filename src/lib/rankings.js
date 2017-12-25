@@ -44,8 +44,29 @@ function rankName(rank) {
   }
 }
 
+/**
+ * rankPlayers - return the given players ordered by rank and name.
+ *
+ * @param players - any array of objects with a rank and name field.
+ * @returns - a new collection of the players ranked by name and field.
+ */
+function rankPlayers(players) {
+  const newArray = players.slice(0); // i.e. clone - as 'sort' is in-place
+  return newArray.sort((a, b) => {
+    if (a.rank === b.rank) {
+      const aName = (a.name || '').toLowerCase();
+      const bName = (b.name || '').toLowerCase();
+      return bName - aName;
+    }
+    if (a.rank === null) return 1;
+    if (b.rank === null) return -1;
+    return b.rank < a.rank ? 1 : -1;
+  });
+}
+
 module.exports = {
   rankedPlayers,
   nextFreeRank,
   rankName,
+  rankPlayers,
 };

@@ -1,0 +1,69 @@
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Button, Text } from 'native-base';
+import PropTypes from 'prop-types';
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+
+  top: {
+    flex: 1,
+  },
+
+  bottom: {
+    flex: 0,
+    flexDirection: 'row',
+  },
+
+  buttonContainer: {
+    flex: 1,
+    padding: 8,
+  },
+});
+
+const WizardPage = ({ children, nextLabel, previousLabel, onNext, onPrevious }) => (
+  <View style={styles.container}>
+    <View style={styles.top}>
+      {children}
+    </View>
+    <View style={styles.bottom}>
+      { onPrevious &&
+        <View style={styles.buttonContainer}>
+          <Button block light onPress={onPrevious}>
+            <Text style={{ color: 'black' }}>{previousLabel}</Text>
+          </Button>
+        </View>
+      }
+      { onNext &&
+        <View style={styles.buttonContainer}>
+          <Button block primary onPress={onNext}>
+            <Text>{nextLabel}</Text>
+          </Button>
+        </View>
+      }
+    </View>
+  </View>
+);
+
+WizardPage.propTypes = {
+  children: PropTypes.node,
+  nextLabel: PropTypes.string,
+  previousLabel: PropTypes.string,
+  onNext: PropTypes.func,
+  onPrevious: PropTypes.func,
+};
+
+WizardPage.defaultProps = {
+  children: null,
+  nextLabel: null,
+  previousLabel: null,
+  onNext: null,
+  onPrevious: null,
+};
+
+export default WizardPage;

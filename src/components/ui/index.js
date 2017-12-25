@@ -18,6 +18,7 @@ import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 import FormValidationMessage from './FormValidationMessage';
 import RankedPlayer from './RankedPlayer';
+import WizardPage from './WizardPage';
 
 export {
   Alerts,
@@ -33,4 +34,5 @@ export {
   FormLabel,
   FormValidationMessage,
   RankedPlayer,
+  WizardPage,
 };
