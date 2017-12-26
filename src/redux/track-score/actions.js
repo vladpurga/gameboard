@@ -4,7 +4,7 @@
 import { Firebase, FirebaseRef } from '@constants/';
 
 export function trackScore(gameResult) {
-  if (Firebase === null) return () => new Promise(resolve => resolve());
+  // if (Firebase === null) return () => new Promise(resolve => resolve());
   const currentUser = Firebase.auth().currentUser;
   const UID = currentUser ? currentUser.uid : null;
 
@@ -16,7 +16,10 @@ export function trackScore(gameResult) {
   const ref = FirebaseRef.child('played-games');
   ref.push(playedGame);
 
-  return dispatch => dispatch('TRACK_SCORE', {});
+  return {
+    type: 'TRACK_SCORE',
+    playedGame,
+  };
 }
 
 export function noop() { }
