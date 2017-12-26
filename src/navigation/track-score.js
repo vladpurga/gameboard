@@ -11,7 +11,7 @@ import { Scene } from 'react-native-router-flux';
 import { AppConfig } from '@constants/';
 
 // Scenes
-import TrackScore from '@containers/track-score/TrackScoreView';
+import TrackScore from '@containers/track-score/TrackScoreContainer';
 
 const scenes = (
   <Scene key={'track-score'}>

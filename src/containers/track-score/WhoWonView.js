@@ -3,47 +3,14 @@
  *  - Used to select who played in the game which you are tracking a score for.
  */
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { reduxForm } from 'redux-form';
-import { Button, H1, Text } from 'native-base';
+import { H1 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { GameRankZone, RankedPlayer, Spacer } from '@components/ui/';
+import { GameRankZone, RankedPlayer, Spacer, WizardPage } from '@components/ui/';
 import rankings from '@lib/rankings';
 
 import validate from './validate';
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-
-  top: {
-    flex: 1,
-  },
-
-  bottom: {
-    flex: 0,
-    flexDirection: 'row',
-  },
-
-  buttonContainer: {
-    flex: 1,
-    padding: 8,
-  },
-
-  playerContainer: {
-    backgroundColor: '#dedede',
-    borderWidth: 1,
-    borderColor: '#232323',
-    borderRadius: 10,
-    padding: 8,
-  },
-
-});
 
 class WhoWon extends Component {
   static componentName = 'WhoWon';
@@ -64,19 +31,31 @@ class WhoWon extends Component {
   componentWillReceiveProps() {
   }
 
-  renderPlayers = players => (
-    <View>
-      {players.map(player => (
-        <RankedPlayer
-          key={player.id}
-          player={player}
-          moveDown={player.moveDown}
-          moveUp={player.moveUp}
-        />
-      ),
-      )}
-    </View>
-  );
+  createMoveUpHandler = (player, nextAvailableRank, change) => () => {
+    if (!Number.isInteger(player.rank)) {
+      change(`players[${player.index}].rank`, nextAvailableRank);
+    } else {
+      change(`players[${player.index}].rank`, player.rank - 1);
+    }
+  }
+
+  createMoveDownHandler = (player, nextAvailableRank, change) => () => {
+    //  Is the player on the space ABOVE the next available rank? If so, then
+    //  moving them down is going to skip that rank and make them a loser:
+    //     1    - Winner       : Player 1     <--- move down from here goes to losers
+    //     2    - Second Place : <empty, i.e. next available rank>
+    //     null - Losers       : Player 2
+    //  We also make the player a loser if they move down and the next available
+    //  rank is ABOVE them, i.e:
+    //     1    - Winner       : <empty, i.e. next available rank>
+    //     2    - Second Place : Player 1     <--- move down from here goes to losers
+    //     null - Losers       : Player 2
+    if (player.rank === (nextAvailableRank - 1) || player.rank > nextAvailableRank) {
+      change(`players[${player.index}].rank`, null);
+    } else {
+      change(`players[${player.index}].rank`, player.rank + 1);
+    }
+  }
 
   render = () => {
     const { handleSubmit, previousPage, change, game, players } = this.props;
@@ -84,55 +63,53 @@ class WhoWon extends Component {
     //  Get the next available rank from the set of players.
     const nextAvailableRank = rankings.nextFreeRank(players);
 
-    //  Create the moveUp/moveDown functions for each player.
-    players.forEach((player, index) => {
-      const moveUp = () => {
-        const newRank = Number.isInteger(player.rank) ? player.rank - 1 : nextAvailableRank;
-        change(`players[${index}].rank`, newRank);
-      };
-      const moveDown = () => {
-        //  BUG: https://github.com/dwmkerr/gameboard/issues/1
-        const newRank = player.rank === (nextAvailableRank - 1) ? null : nextAvailableRank;
-        change(`players[${index}].rank`, newRank);
-      };
-      Object.assign(player, {
-        moveUp: player.rank !== 1 ? moveUp : null,
-        moveDown: player.rank !== null ? moveDown : null,
-      });
-    });
+    // //  Create the moveUp/moveDown functions for each player.
+    // players.forEach((player, index) => {
+      // const moveUp = () => {
+        // const newRank = Number.isInteger(player.rank) ? player.rank - 1 : nextAvailableRank;
+        // change(`players[${index}].rank`, newRank);
+      // };
+      // const moveDown = () => {
+        // //  BUG: https://github.com/dwmkerr/gameboard/issues/1
+        // const newRank = player.rank === (nextAvailableRank - 1) ? null : nextAvailableRank;
+        // change(`players[${index}].rank`, newRank);
+      // };
+      // Object.assign(player, {
+        // moveUp: player.rank !== 1 ? moveUp : null,
+        // moveDown: player.rank !== null ? moveDown : null,
+      // });
+    // });
 
-    const rankedPlayers = players.reduce((acc, player) => {
+    const rankedPlayers = players.reduce((acc, player, index) => {
       acc[player.rank] = acc[player.rank] || [];
-      acc[player.rank].push(player);
+      //  keep track of the original index, a fudge so that we can tell redux
+      //  form which element we are changing, even when we re-order them
+      acc[player.rank].push({ ...player, index });
       return acc;
-    }, { [nextAvailableRank]: [] }); // the next avaiable rank is shown
+    }, { [nextAvailableRank]: [] }); // the next available rank is shown
 
     return (
-      <View style={styles.container}>
-        <View style={styles.top}>
-          <H1>Who Won {game}?</H1>
-          <Spacer size={20} />
-          {
-            Object.keys(rankedPlayers).map(key => (
-              <GameRankZone key={key} rank={rankings.rankName(key)}>
-                {this.renderPlayers(rankedPlayers[key])}
-              </GameRankZone>
-            ))
-          }
-        </View>
-        <View style={styles.bottom}>
-          <View style={styles.buttonContainer}>
-            <Button block light onPress={previousPage}>
-              <Text style={{ color: 'black' }}>Back</Text>
-            </Button>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button block primary onPress={handleSubmit}>
-              <Text>Next</Text>
-            </Button>
-          </View>
-        </View>
-      </View>
+      <WizardPage
+        onNext={handleSubmit}
+        onPrevious={previousPage}
+      >
+        <H1>Who Won {game}?</H1>
+        <Spacer size={20} />
+        {
+          Object.keys(rankedPlayers).map(key => (
+            <GameRankZone key={key} rank={rankings.rankName(key)}>
+              {rankedPlayers[key].map(player => (
+                <RankedPlayer
+                  key={player.id}
+                  player={player}
+                  moveDown={this.createMoveDownHandler(player, nextAvailableRank, change)}
+                  moveUp={this.createMoveUpHandler(player, nextAvailableRank, change)}
+                />
+              ))}
+            </GameRankZone>
+          ))
+        }
+      </WizardPage>
     );
   }
 }

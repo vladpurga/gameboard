@@ -60,8 +60,8 @@ WizardPage.propTypes = {
 
 WizardPage.defaultProps = {
   children: null,
-  nextLabel: null,
-  previousLabel: null,
+  nextLabel: 'Next',
+  previousLabel: 'Back',
   onNext: null,
   onPrevious: null,
 };

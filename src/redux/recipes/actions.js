@@ -12,8 +12,8 @@ import { Firebase, FirebaseRef } from '@constants/';
 export function getFavourites(dispatch) {
   if (Firebase === null) return () => new Promise(resolve => resolve());
 
-  const UID = Firebase.auth().currentUser.uid;
-  if (!UID) return false;
+  const currentUser = Firebase.auth().currentUser;
+  const UID = currentUser ? currentUser.uid : null;
 
   const ref = FirebaseRef.child(`favourites/${UID}`);
 

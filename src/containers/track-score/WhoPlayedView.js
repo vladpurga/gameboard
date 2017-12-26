@@ -5,37 +5,16 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import { Button, H1, Icon, Text } from 'native-base';
+import { Button, H1, Icon } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Spacer } from '@components/ui/';
+import { Spacer, WizardPage } from '@components/ui/';
 
 
 import validate from './validate';
 import renderInput from './render-input';
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-  },
-
-  top: {
-    flex: 1,
-  },
-
-  bottom: {
-    flex: 0,
-    flexDirection: 'row',
-  },
-
-  buttonContainer: {
-    flex: 1,
-    padding: 8,
-  },
-
   playerContainer: {
     padding: 8,
   },
@@ -107,25 +86,14 @@ class WhoPlayed extends Component {
     const { handleSubmit, previousPage, game } = this.props;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.top}>
-          <H1>Who Played {game}?</H1>
-          <Spacer size={20} />
-          <FieldArray name="players" component={this.renderPlayers} />
-        </View>
-        <View style={styles.bottom}>
-          <View style={styles.buttonContainer}>
-            <Button block light onPress={previousPage}>
-              <Text style={{ color: 'black' }}>Back</Text>
-            </Button>
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button block primary onPress={handleSubmit}>
-              <Text>Next</Text>
-            </Button>
-          </View>
-        </View>
-      </View>
+      <WizardPage
+        onPrevious={previousPage}
+        onNext={handleSubmit}
+      >
+        <H1>Who Played {game}?</H1>
+        <Spacer size={20} />
+        <FieldArray name="players" component={this.renderPlayers} />
+      </WizardPage>
     );
   }
 }

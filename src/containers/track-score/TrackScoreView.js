@@ -3,6 +3,7 @@
  *  - Contains a multi-screen form to let the user track the score for a game.
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
@@ -41,6 +42,7 @@ class TrackScore extends Component {
   static componentName = 'TrackScore';
 
   static propTypes = {
+    trackScore: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -69,6 +71,7 @@ class TrackScore extends Component {
 
   handleSubmit = (values) => {
     console.log('submit', values);
+    this.props.trackScore(values);
   }
 
   render = () => {

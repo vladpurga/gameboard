@@ -29,7 +29,7 @@ const GameRankZone = ({ rank, children }) => {
   const showHint = count === 0;
 
   const contents = showHint ?
-    (<View style={styles.hintContainer}><Text style={{ textAlign: 'center' }}>Drag the winner here!</Text></View>) :
+    (<View style={styles.hintContainer}><Text style={{ textAlign: 'center' }}>Drag the {rank} here!</Text></View>) :
     children;
 
   return (
