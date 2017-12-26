@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Text } from 'native-base';
 import PropTypes from 'prop-types';
 
@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
 
 const WizardPage = ({ children, nextLabel, previousLabel, onNext, onPrevious }) => (
   <View style={styles.container}>
-    <View style={styles.top}>
+    <ScrollView style={styles.top}>
       {children}
-    </View>
+    </ScrollView>
     <View style={styles.bottom}>
       { onPrevious &&
         <View style={styles.buttonContainer}>

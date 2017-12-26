@@ -63,23 +63,6 @@ class WhoWon extends Component {
     //  Get the next available rank from the set of players.
     const nextAvailableRank = rankings.nextFreeRank(players);
 
-    // //  Create the moveUp/moveDown functions for each player.
-    // players.forEach((player, index) => {
-      // const moveUp = () => {
-        // const newRank = Number.isInteger(player.rank) ? player.rank - 1 : nextAvailableRank;
-        // change(`players[${index}].rank`, newRank);
-      // };
-      // const moveDown = () => {
-        // //  BUG: https://github.com/dwmkerr/gameboard/issues/1
-        // const newRank = player.rank === (nextAvailableRank - 1) ? null : nextAvailableRank;
-        // change(`players[${index}].rank`, newRank);
-      // };
-      // Object.assign(player, {
-        // moveUp: player.rank !== 1 ? moveUp : null,
-        // moveDown: player.rank !== null ? moveDown : null,
-      // });
-    // });
-
     const rankedPlayers = players.reduce((acc, player, index) => {
       acc[player.rank] = acc[player.rank] || [];
       //  keep track of the original index, a fudge so that we can tell redux
