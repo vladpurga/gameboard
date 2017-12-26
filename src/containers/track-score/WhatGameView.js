@@ -4,38 +4,13 @@
  */
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { H1 } from 'native-base';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-} from 'react-native';
 
-// Components
-import {
-  Text,
-} from '@components/ui/';
+import { Spacer, WizardPage } from '@components/ui/';
 
 import validate from './validate';
 import renderInput from './render-input';
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'blue',
-    color: 'white',
-    height: 30,
-    lineHeight: 30,
-    marginTop: 10,
-    textAlign: 'center',
-    width: 250,
-  },
-  input: {
-    borderColor: 'black',
-    borderWidth: 1,
-    height: 37,
-    width: 250,
-  },
-});
 
 class WhatGame extends Component {
   static componentName = 'WhatGame';
@@ -54,13 +29,14 @@ class WhatGame extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <View>
-        <Text h1>What Game?</Text>
-        <Field name="game" component={renderInput} autoFocus />
-        <TouchableOpacity onPress={handleSubmit}>
-          <Text autoFocus style={[styles.button]}>Next</Text>
-        </TouchableOpacity>
-      </View>
+      <WizardPage
+        nextLabel="Next"
+        onNext={handleSubmit}
+      >
+        <H1>What Game?</H1>
+        <Spacer size={20} />
+        <Field name="game" component={renderInput} autoFocus placeHolder="Game Name" />
+      </WizardPage>
     );
   }
 }

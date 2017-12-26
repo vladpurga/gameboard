@@ -3,24 +3,22 @@
  *  - Contains a multi-screen form to let the user track the score for a game.
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   View,
-  ScrollView,
 } from 'react-native';
-
-// Consts and Libs
-import { AppStyles } from '@theme/';
 
 // Containers
 import WhatGame from './WhatGameContainer';
 import WhoPlayed from './WhoPlayedContainer';
+import WhoWon from './WhoWonContainer';
+import AddScores from './AddScoresContainer';
 
 const styles = StyleSheet.create({
   // Tab Styles
   tabContainer: {
     flex: 1,
-    marginLeft: 30,
     marginTop: 30,
   },
   button: {
@@ -44,6 +42,7 @@ class TrackScore extends Component {
   static componentName = 'TrackScore';
 
   static propTypes = {
+    trackScore: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -51,9 +50,6 @@ class TrackScore extends Component {
 
   constructor() {
     super();
-
-    this.nextPage = this.nextPage.bind(this);
-    this.previousPage = this.previousPage.bind(this);
 
     this.state = {
       page: 1,
@@ -63,14 +59,19 @@ class TrackScore extends Component {
   componentWillReceiveProps() {
   }
 
-  nextPage(values) {
+  nextPage = (values) => {
     console.log('next page', values);
     this.setState({ page: this.state.page + 1 });
   }
 
-  previousPage(values) {
+  previousPage = (values) => {
     console.log('previous page', values);
     this.setState({ page: this.state.page - 1 });
+  }
+
+  handleSubmit = (values) => {
+    console.log('submit', values);
+    this.props.trackScore(values);
   }
 
   render = () => {
@@ -78,22 +79,27 @@ class TrackScore extends Component {
 
     return (
       <View style={styles.tabContainer}>
-        <ScrollView
-          keyboardShouldPersistTaps="always"
-          automaticallyAdjustContentInsets={false}
-          style={[AppStyles.container]}
-        >
-          { page === 1 &&
-          <WhatGame onSubmit={this.nextPage} />
-          }
-          { page === 2 &&
-          <WhoPlayed
-            onSubmit={this.nextPage}
-            previousPage={this.previousPage}
-          />
-          }
-
-        </ScrollView>
+        { page === 1 &&
+        <WhatGame onSubmit={this.nextPage} />
+        }
+        { page === 2 &&
+        <WhoPlayed
+          onSubmit={this.nextPage}
+          previousPage={this.previousPage}
+        />
+        }
+        { page === 3 &&
+        <WhoWon
+          onSubmit={this.nextPage}
+          previousPage={this.previousPage}
+        />
+        }
+        { page === 4 &&
+        <AddScores
+          onSubmit={this.handleSubmit}
+          previousPage={this.previousPage}
+        />
+        }
       </View>
     );
   }

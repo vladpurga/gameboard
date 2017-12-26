@@ -8,6 +8,7 @@
 import Alerts from './Alerts';
 import Button from './Button';
 import Card from './Card';
+import GameRankZone from './GameRankZone';
 import Spacer from './Spacer';
 import TabIcon from './TabIcon';
 import Text from './Text';
@@ -16,11 +17,14 @@ import ListItem from './ListItem';
 import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 import FormValidationMessage from './FormValidationMessage';
+import RankedPlayer from './RankedPlayer';
+import WizardPage from './WizardPage';
 
 export {
   Alerts,
   Button,
   Card,
+  GameRankZone,
   Spacer,
   TabIcon,
   Text,
@@ -29,4 +33,6 @@ export {
   FormInput,
   FormLabel,
   FormValidationMessage,
+  RankedPlayer,
+  WizardPage,
 };

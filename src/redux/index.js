@@ -14,6 +14,7 @@ import router from '@redux/router/reducer';
 import sideMenu from '@redux/sidemenu/reducer';
 import user from '@redux/user/reducer';
 import recipe from '@redux/recipes/reducer';
+import trackScore from '@redux/track-score/reducer';
 
 // Combine all
 const appReducer = combineReducers({
@@ -22,6 +23,7 @@ const appReducer = combineReducers({
   user,
   recipe,
   form: formReducer,
+  trackScore,
 });
 
 // Setup root reducer
