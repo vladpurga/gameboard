@@ -18,7 +18,7 @@ import { Actions } from 'react-native-router-flux';
 import { AppStyles, AppSizes, AppColors } from '@theme/';
 
 // Components
-import { Spacer, Text, Button } from '@ui/';
+import { JumboButton, Spacer, Text, Button } from '@ui/';
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -49,11 +49,10 @@ class Authenticate extends Component {
 
       <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
         <View style={[AppStyles.flex1]}>
-          <Button
-            title={'Track Score'}
-            icon={{ name: 'people' }}
+          <JumboButton
+            title="Track Score"
+            subtitle="Record the result of a game"
             onPress={Actions.trackScore}
-            backgroundColor={'#CB009E'}
           />
         </View>
       </View>
@@ -63,10 +62,10 @@ class Authenticate extends Component {
       <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
         <View style={[AppStyles.flex1]}>
           <Button
-            title={'Login'}
+            title="Login"
             icon={{ name: 'lock' }}
             onPress={Actions.login}
-            backgroundColor={'#CB009E'}
+            backgroundColor="#CB009E"
           />
         </View>
       </View>
@@ -76,10 +75,10 @@ class Authenticate extends Component {
       <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
         <View style={[AppStyles.flex1]}>
           <Button
-            title={'Sign up'}
+            title="Sign up"
             icon={{ name: 'face' }}
             onPress={Actions.signUp}
-            backgroundColor={'#CB009E'}
+            backgroundColor="#CB009E"
           />
         </View>
       </View>
@@ -97,10 +96,10 @@ class Authenticate extends Component {
         <View style={[AppStyles.flex2]}>
           <Button
             small
-            title={'Skip'}
+            title="Skip"
             onPress={Actions.app}
             raised={false}
-            backgroundColor={'rgba(255,255,255,0.2)'}
+            backgroundColor="rgba(255,255,255,0.2)"
           />
         </View>
         <View style={[AppStyles.flex1]} />
@@ -112,10 +111,10 @@ class Authenticate extends Component {
         <View style={[AppStyles.flex1]} />
         <View style={[AppStyles.flex2]}>
           <Button
-            title={'Track Score'}
+            title="Track Score"
             onPress={Actions.trackScore}
             raised={false}
-            backgroundColor={'rgba(255,255,255,0.2)'}
+            backgroundColor="rgba(255,255,255,0.2)"
           />
         </View>
         <View style={[AppStyles.flex1]} />
