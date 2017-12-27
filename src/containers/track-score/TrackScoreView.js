@@ -14,6 +14,7 @@ import WhatGame from './WhatGameContainer';
 import WhoPlayed from './WhoPlayedContainer';
 import WhoWon from './WhoWonContainer';
 import AddScores from './AddScoresContainer';
+import AllDone from './AllDoneView';
 
 const styles = StyleSheet.create({
   // Tab Styles
@@ -72,13 +73,17 @@ class TrackScore extends Component {
   handleSubmit = (values) => {
     console.log('submit', values);
     this.props.trackScore(values);
+    this.setState({ done: true, game: values.game, page: null });
   }
 
   render = () => {
-    const { page } = this.state;
+    const { done, game, page } = this.state;
 
     return (
       <View style={styles.tabContainer}>
+        { done === true &&
+        <AllDone game={game} />
+        }
         { page === 1 &&
         <WhatGame onSubmit={this.nextPage} />
         }

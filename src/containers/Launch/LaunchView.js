@@ -72,8 +72,8 @@ class AppLaunch extends Component {
       >
         <ActivityIndicator
           animating
-          size={'large'}
-          color={'#C1C5C8'}
+          size="large"
+          color="#C1C5C8"
         />
       </Image>
     </View>

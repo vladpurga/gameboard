@@ -8,31 +8,33 @@
 import Alerts from './Alerts';
 import Button from './Button';
 import Card from './Card';
-import GameRankZone from './GameRankZone';
-import Spacer from './Spacer';
-import TabIcon from './TabIcon';
-import Text from './Text';
-import List from './List';
-import ListItem from './ListItem';
 import FormInput from './FormInput';
 import FormLabel from './FormLabel';
 import FormValidationMessage from './FormValidationMessage';
+import GameRankZone from './GameRankZone';
+import List from './List';
+import ListItem from './ListItem';
+import JumboButton from './JumboButton';
 import RankedPlayer from './RankedPlayer';
+import Spacer from './Spacer';
+import TabIcon from './TabIcon';
+import Text from './Text';
 import WizardPage from './WizardPage';
 
 export {
   Alerts,
   Button,
   Card,
-  GameRankZone,
-  Spacer,
-  TabIcon,
-  Text,
-  List,
-  ListItem,
   FormInput,
   FormLabel,
   FormValidationMessage,
+  GameRankZone,
+  JumboButton,
+  List,
+  ListItem,
   RankedPlayer,
+  Spacer,
+  TabIcon,
+  Text,
   WizardPage,
 };
