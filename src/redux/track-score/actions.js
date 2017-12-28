@@ -1,20 +1,14 @@
-/**
- * Track Score Actions
- */
-import { Firebase, FirebaseRef } from '@constants/';
+import firebase from '@lib/firebase';
 
 export function trackScore(gameResult) {
-  // if (Firebase === null) return () => new Promise(resolve => resolve());
-  const currentUser = Firebase.auth().currentUser;
-  const UID = currentUser ? currentUser.uid : null;
-
   const playedGame = {
     ...gameResult,
-    uidScorer: UID,
+    scorerUid: firebase.auth().currentUser.uid,
+    createdAt: firebase.database.ServerValue.TIMESTAMP,
   };
-
-  const ref = FirebaseRef.child('played-games');
-  ref.push(playedGame);
+  firebase.database()
+    .ref('played-games')
+    .push(playedGame);
 
   return {
     type: 'TRACK_SCORE',

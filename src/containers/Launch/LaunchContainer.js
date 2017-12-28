@@ -7,6 +7,7 @@
 import { connect } from 'react-redux';
 
 // Actions
+import * as LoginActions from '@redux/login/actions';
 import * as UserActions from '@redux/user/actions';
 import * as RecipeActions from '@redux/recipes/actions';
 
@@ -19,6 +20,7 @@ const mapStateToProps = () => ({
 
 // Any actions to map to the component?
 const mapDispatchToProps = {
+  firebaseLogin: LoginActions.login,
   login: UserActions.login,
   getRecipes: RecipeActions.getRecipes,
   getMeals: RecipeActions.getMeals,

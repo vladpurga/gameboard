@@ -35,6 +35,7 @@ class AppLaunch extends Component {
   static componentName = 'AppLaunch';
 
   static propTypes = {
+    firebaseLogin: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     getRecipes: PropTypes.func.isRequired,
     getMeals: PropTypes.func.isRequired,
@@ -48,6 +49,8 @@ class AppLaunch extends Component {
   componentDidMount = () => {
     // Show status bar on app launch
     StatusBar.setHidden(false, true);
+
+    this.props.firebaseLogin();
 
     // Preload content here
     Promise.all([

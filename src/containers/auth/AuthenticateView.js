@@ -61,6 +61,18 @@ class Authenticate extends Component {
 
       <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
         <View style={[AppStyles.flex1]}>
+          <JumboButton
+            title="Game Stats"
+            subtitle="Who da best?"
+            onPress={Actions.gameStats}
+          />
+        </View>
+      </View>
+
+      <Spacer size={10} />
+
+      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
+        <View style={[AppStyles.flex1]}>
           <Button
             title="Login"
             icon={{ name: 'lock' }}
@@ -98,21 +110,6 @@ class Authenticate extends Component {
             small
             title="Skip"
             onPress={Actions.app}
-            raised={false}
-            backgroundColor="rgba(255,255,255,0.2)"
-          />
-        </View>
-        <View style={[AppStyles.flex1]} />
-      </View>
-
-      <Spacer size={10} />
-
-      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-        <View style={[AppStyles.flex1]} />
-        <View style={[AppStyles.flex2]}>
-          <Button
-            title="Track Score"
-            onPress={Actions.trackScore}
             raised={false}
             backgroundColor="rgba(255,255,255,0.2)"
           />

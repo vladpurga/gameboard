@@ -9,7 +9,8 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
 // Our custom reducers
-// We need to import each one here and add them to the combiner at the bottom
+import login from '@redux/login/reducer';
+import gameStats from '@redux/game-stats/reducer';
 import router from '@redux/router/reducer';
 import sideMenu from '@redux/sidemenu/reducer';
 import user from '@redux/user/reducer';
@@ -18,6 +19,8 @@ import trackScore from '@redux/track-score/reducer';
 
 // Combine all
 const appReducer = combineReducers({
+  login,
+  gameStats,
   router,
   sideMenu,
   user,

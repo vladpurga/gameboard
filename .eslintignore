@@ -1,0 +1,6 @@
+.git/
+ios/
+android/
+firebase-cloud-functions/
+node_modules/
+coverage/

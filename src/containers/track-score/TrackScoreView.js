@@ -1,13 +1,11 @@
-/**
+/*
  * Track Score View
  *  - Contains a multi-screen form to let the user track the score for a game.
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 // Containers
 import WhatGame from './WhatGameContainer';
@@ -44,6 +42,7 @@ class TrackScore extends Component {
 
   static propTypes = {
     trackScore: PropTypes.func.isRequired,
+    gameStatsSetGame: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -60,14 +59,10 @@ class TrackScore extends Component {
   componentWillReceiveProps() {
   }
 
-  nextPage = (values) => {
-    console.log('next page', values);
-    this.setState({ page: this.state.page + 1 });
-  }
-
-  previousPage = (values) => {
-    console.log('previous page', values);
-    this.setState({ page: this.state.page - 1 });
+  onGameStats = (game) => {
+    //  Set the game for game stats, then move to the game stats scene.
+    this.props.gameStatsSetGame(game);
+    Actions.gameStats();
   }
 
   handleSubmit = (values) => {
@@ -76,13 +71,23 @@ class TrackScore extends Component {
     this.setState({ done: true, game: values.game, page: null });
   }
 
+  previousPage = (values) => {
+    console.log('previous page', values);
+    this.setState({ page: this.state.page - 1 });
+  }
+
+  nextPage = (values) => {
+    console.log('next page', values);
+    this.setState({ page: this.state.page + 1 });
+  }
+
   render = () => {
     const { done, game, page } = this.state;
 
     return (
       <View style={styles.tabContainer}>
         { done === true &&
-        <AllDone game={game} />
+        <AllDone game={game} gameStatsHandler={this.onGameStats} />
         }
         { page === 1 &&
         <WhatGame onSubmit={this.nextPage} />

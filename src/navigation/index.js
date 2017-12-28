@@ -18,6 +18,8 @@ import AppLaunch from '@containers/Launch/LaunchContainer';
 import Placeholder from '@components/general/Placeholder';
 import AuthScenes from './auth';
 import TabsScenes from './tabs';
+
+import GameStatsScenes from './game-stats';
 import TrackScoreScenes from './track-score';
 
 /* Routes ==================================================================== */
@@ -34,6 +36,8 @@ export default Actions.create(
     {AuthScenes}
 
     {TrackScoreScenes}
+
+    {GameStatsScenes}
 
     {/* Main App */}
     <Scene key={'app'} {...AppConfig.navbarProps} title={AppConfig.appName} hideNavBar={false} type={ActionConst.RESET}>

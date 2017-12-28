@@ -9,16 +9,21 @@ import PropTypes from 'prop-types';
 
 import { JumboButton, Spacer, WizardPage } from '@components/ui/';
 
-const AllDone = ({ game }) => (
+const AllDone = ({ game, gameStatsHandler }) => (
   <WizardPage>
     <H1>All Done!</H1>
     <Spacer size={20} />
-    <JumboButton title="View Stats" subtitle={`View your stats for ${game}`} />
+    <JumboButton
+      title={`${game} Stats`}
+      subtitle={`View your stats for ${game}`}
+      onPress={() => gameStatsHandler(game)}
+    />
   </WizardPage>
 );
 
 AllDone.propTypes = {
   game: PropTypes.string.isRequired,
+  gameStatsHandler: PropTypes.func.isRequired,
 };
 
 export default AllDone;
