@@ -2,7 +2,7 @@
  * Game Stats Store
  */
 export default {
-  game: 'Caverna',
+  game: null,
   playedGames: [
   ],
 };

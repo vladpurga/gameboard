@@ -1,5 +1,5 @@
 import firebase from '@lib/firebase';
-import { updatePlayedGames } from '@redux/game-stats/actions';
+import { setGame } from '../game-stats/actions';
 
 export const login = () => (dispatch) => {
   //  Start logging in - we're busy.
@@ -18,8 +18,8 @@ export const login = () => (dispatch) => {
         data: false,
       });
 
-      //  Kick off any post-login actions.
-      dispatch(updatePlayedGames());
+      //  Load stats for Grifters for now...
+      setGame('Grifters');
     });
 };
 

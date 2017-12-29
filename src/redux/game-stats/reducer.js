@@ -11,7 +11,7 @@ export default function recipeReducer(state = initialState, action) {
     case 'GAME_STATS_SET_GAME': {
       return {
         ...state,
-        game: action.data.game,
+        game: action.data,
       };
     }
     case 'GAME_STATS_UPDATE_PLAYED_GAMES': {

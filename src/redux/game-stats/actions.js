@@ -1,21 +1,26 @@
 import firebase from '@lib/firebase';
 
-export function setGame(game) {
-  return {
+//  Sets the game we are currently viewing stats for.
+export const setGame = game => (dispatch) => {
+  //  Set the current game.
+  dispatch({
     type: 'GAME_STATS_SET_GAME',
-    data: {
-      game,
-    },
-  };
-}
+    data: game,
+  });
 
-export const updatePlayedGames = () => (dispatch) => {
+  //  Remove any existing queries.
   firebase.database()
     .ref('played-games')
     .orderByChild('game')
-    .equalTo('Caverna')
+    .equalTo(game)
+    .off();
+
+  //  Now watch all of the played games for that game.
+  firebase.database()
+    .ref('played-games')
+    .orderByChild('game')
+    .equalTo(game)
     .on('value', (snapshot) => {
-      // const playedGames = snapshot.val() || [];
       const playedGames = [];
       snapshot.forEach((child) => {
         const item = child.val();
@@ -28,3 +33,5 @@ export const updatePlayedGames = () => (dispatch) => {
       });
     });
 };
+
+export function noop() {}
