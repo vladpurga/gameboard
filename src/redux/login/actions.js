@@ -19,7 +19,7 @@ export const login = () => (dispatch) => {
       });
 
       //  Load stats for Grifters for now...
-      setGame('Grifters');
+      setGame('Grifters')(dispatch);
     });
 };
 

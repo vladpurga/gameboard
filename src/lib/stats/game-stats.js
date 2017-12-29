@@ -14,10 +14,7 @@ export default function gameStats(playedGames) {
     : moment.unix(mostRecentTimestamp / 1000).fromNow();
 
   return {
-    total: {
-      description: 'Total',
-      value: total,
-    },
+    played: total,
     lastPlayed: mostRecent,
   };
 }

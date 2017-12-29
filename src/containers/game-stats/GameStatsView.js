@@ -31,6 +31,24 @@ const styles = StyleSheet.create({
     height: 37,
     width: 250,
   },
+
+  statContainer: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+
+  statName: {
+    flex: 1,
+    textAlign: 'right',
+    padding: 8,
+  },
+
+  statValue: {
+    flex: 1,
+    textAlign: 'left',
+    fontWeight: 'bold',
+    padding: 8,
+  },
 });
 
 class GameStats extends Component {
@@ -47,16 +65,15 @@ class GameStats extends Component {
   }
 
   renderStat = ({ name, value }) => (
-    <View style={{ flexDirection: 'row', flex: 1 }}>
-      <Text style={{ flex: 1, textAlign: 'right', padding: 8 }}>{name}</Text>
-      <Text style={{ flex: 1, textAlign: 'left', fontWeight: 'bold', padding: 8 }}>{value}</Text>
+    <View style={styles.statContainer}>
+      <Text style={styles.statName}>{name}</Text>
+      <Text style={styles.statValue}>{value}</Text>
     </View>
   )
 
   render = () => {
     const { gameStats: { game, playedGames } } = this.props;
     const stats = gameStats(playedGames);
-    debugger;
 
     return (
       <View style={styles.tabContainer}>
@@ -66,7 +83,7 @@ class GameStats extends Component {
           <Text>Last played {stats.lastPlayed}</Text>
           <Spacer size={20} />
           <H2>Wins</H2>
-          {this.renderStat({ name: 'Played', value: 5 })}
+          {this.renderStat({ name: 'Played', value: stats.played })}
           {this.renderStat({ name: 'Won', value: 2 })}
           {this.renderStat({ name: 'Longest Streak', value: 2 })}
           <Spacer size={20} />
