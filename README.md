@@ -12,8 +12,15 @@
 ## Social Accounts
 
 - Twitter: https://apps.twitter.com/app/14632367
-- Google:  https://github.com/devfd/react-native-google-signin
+- Google:  
+
+## Google
+
+- Setup following this: https://github.com/devfd/react-native-google-signin
+- Then set up signing following this: https://developers.google.com/android/guides/client-auth
 ---
+
+
 
 # React Native Starter Kit
 

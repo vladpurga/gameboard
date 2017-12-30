@@ -13,6 +13,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
 // Consts and Libs
 import { AppStyles, AppSizes, AppColors } from '@theme/';
@@ -39,6 +40,38 @@ const styles = StyleSheet.create({
 /* Component ==================================================================== */
 class Authenticate extends Component {
   static componentName = 'Authenticate';
+
+  googleSignIn = async () => {
+    //  Ensure we have Google Play Services available, prompting the user to
+    //  install if needed. If we still fail, we cannot recover.
+    try {
+      await GoogleSignin.hasPlayServices({ autoResolve: true });
+    } catch (err) {
+      console.log('Play services error', err.code, err.message);
+    }
+
+    //  Configure Sign In - the fields we want etc.
+    await GoogleSignin.configure({
+      iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS
+    });
+
+    //  Get the current user, which might already be available if we are already
+    //  logged in. If the user is already signed in, we can store the user and
+    //  we're done.
+    const currentUser = await GoogleSignin.currentUserAsync();
+    if (currentUser) {
+      this.setState({ user });
+      return;
+    }
+
+    //  We don't have a current user, so we need to sign in.
+    try {
+      const user = await GoogleSignin.signIn();
+      this.setState({ user });
+    } catch (err) {
+      console.log('Sign in error', err.code, err.message);
+    }
+  }
 
   render = () => (
     <View style={[AppStyles.containerCentered, AppStyles.container, styles.background]}>
@@ -68,6 +101,15 @@ class Authenticate extends Component {
           />
         </View>
       </View>
+
+      <Spacer size={10} />
+
+      <GoogleSigninButton
+        style={{ width: 48, height: 48 }}
+        size={GoogleSigninButton.Size.Icon}
+        color={GoogleSigninButton.Color.Dark}
+        onPress={this.googleSignIn}
+      />
 
       <Spacer size={10} />
 
