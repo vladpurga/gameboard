@@ -48,6 +48,7 @@ class Authenticate extends Component {
       await GoogleSignin.hasPlayServices({ autoResolve: true });
     } catch (err) {
       console.log('Play services error', err.code, err.message);
+      throw err;
     }
 
     //  Configure Sign In - the fields we want etc.
@@ -60,16 +61,16 @@ class Authenticate extends Component {
     //  we're done.
     const currentUser = await GoogleSignin.currentUserAsync();
     if (currentUser) {
-      this.setState({ user });
-      return;
+      return currentUser;
     }
 
     //  We don't have a current user, so we need to sign in.
     try {
       const user = await GoogleSignin.signIn();
-      this.setState({ user });
+      return user;
     } catch (err) {
       console.log('Sign in error', err.code, err.message);
+      throw err;
     }
   }
 
@@ -106,7 +107,7 @@ class Authenticate extends Component {
 
       <GoogleSigninButton
         style={{ width: 48, height: 48 }}
-        size={GoogleSigninButton.Size.Icon}
+        size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Dark}
         onPress={this.googleSignIn}
       />
