@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "975841127237",
+    "firebase_url": "https://gameboard-560d5.firebaseio.com",
+    "project_id": "gameboard-560d5",
+    "storage_bucket": "gameboard-560d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975841127237:android:04d4577c97c364c5",
+        "android_client_info": {
+          "package_name": "com.dwmkerr.gameboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975841127237-p6l38d9hk46c5f28guf6ruvtdruk4ub9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByZ8WQKW3hjLxfHuHYA5IdPxIZXboyJ9I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
