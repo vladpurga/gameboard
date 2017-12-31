@@ -10,6 +10,7 @@ import React, { Component } from 'react';
 import {
   View,
   Image,
+  Platform,
   StyleSheet,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -41,32 +42,45 @@ const styles = StyleSheet.create({
 class Authenticate extends Component {
   static componentName = 'Authenticate';
 
-  googleSignIn = async () => {
-    //  Ensure we have Google Play Services available, prompting the user to
-    //  install if needed. If we still fail, we cannot recover.
-    try {
-      await GoogleSignin.hasPlayServices({ autoResolve: true });
-    } catch (err) {
-      console.log('Play services error', err.code, err.message);
-      throw err;
+  async componentDidMount() {
+    //  Platform specific Google Signin configuration.
+    if (Platform.OS === 'ios') {
+      await GoogleSignin.configure({
+        iosClientId: '975841127237-1u0in83mi62uai9aao8l41vu2h9ca717.apps.googleusercontent.com',
+      });
     }
 
-    //  Configure Sign In - the fields we want etc.
-    await GoogleSignin.configure({
-      iosClientId: '<FROM DEVELOPER CONSOLE>', // only for iOS
-    });
+    if (Platform.OS === 'android') {
+      //  Ensure we have Google Play Services available, prompting the user to
+      //  install if needed. If we still fail, we cannot recover.
+      try {
+        await GoogleSignin.hasPlayServices({ autoResolve: true });
+      } catch (err) {
+        console.log('Play services error', err.code, err.message);
+        throw err;
+      }
 
+      //  Configure Sign In - the fields we want etc.
+      await GoogleSignin.configure({
+        iosClientId: '975841127237-1u0in83mi62uai9aao8l41vu2h9ca717.apps.googleusercontent.com', // only for iOS
+      });
+    }
+  }
+
+  googleSignIn = async () => {
     //  Get the current user, which might already be available if we are already
     //  logged in. If the user is already signed in, we can store the user and
     //  we're done.
     const currentUser = await GoogleSignin.currentUserAsync();
     if (currentUser) {
+      console.log('User already available!', currentUser);
       return currentUser;
     }
 
     //  We don't have a current user, so we need to sign in.
     try {
       const user = await GoogleSignin.signIn();
+      console.log('User signed in!', user);
       return user;
     } catch (err) {
       console.log('Sign in error', err.code, err.message);
@@ -107,8 +121,8 @@ class Authenticate extends Component {
 
       <GoogleSigninButton
         style={{ width: 48, height: 48 }}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
+        size={GoogleSigninButton.Size.Standard}
+        color={GoogleSigninButton.Color.Light}
         onPress={this.googleSignIn}
       />
 

@@ -1,4 +1,4 @@
-package com.dwmkerr.gameboard;
+package com.gameboard;
 
 import com.facebook.react.ReactActivity;
 

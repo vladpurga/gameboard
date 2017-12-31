@@ -72,6 +72,10 @@ import com.android.build.OutputFile
  * ]
  */
 
+project.ext.react = [
+    entryFile: "index.js"
+]
+
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**
@@ -133,8 +137,8 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-signin')
     compile project(':react-native-vector-icons')
+    compile project(':react-native-google-signin')
     compile project(':react-native-google-analytics-bridge')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
@@ -143,6 +147,9 @@ dependencies {
     //  Seems to be required for React Native Google Sign In, see:
     //  https://github.com/devfd/react-native-google-signin/blob/master/android-guide.md
     compile(project(":react-native-google-signin")){
+        exclude group: "com.google.android.gms"
+    }
+    compile(project(":react-native-google-analytics-bridge")){
         exclude group: "com.google.android.gms"
     }
 

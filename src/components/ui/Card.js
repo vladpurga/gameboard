@@ -8,7 +8,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-native-elements';
+import { Card } from 'native-base';
 
 // Consts and Libs
 import { AppSizes, AppColors, AppStyles } from '@theme/';

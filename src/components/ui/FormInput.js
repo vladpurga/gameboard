@@ -8,7 +8,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormInput } from 'react-native-elements';
+import { Input } from 'native-base';
 
 // Consts and Libs
 import { AppColors, AppFonts } from '@theme/';
@@ -62,7 +62,7 @@ class CustomFormInput extends Component {
     return props;
   }
 
-  render = () => <FormInput {...this.inputProps()} />
+  render = () => <Input {...this.inputProps()} />
 }
 
 /* Export Component ==================================================================== */

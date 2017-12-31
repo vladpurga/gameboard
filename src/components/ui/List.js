@@ -8,7 +8,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'react-native-elements';
+import { List } from 'native-base';
 
 // Consts and Libs
 import { AppColors } from '@theme/';

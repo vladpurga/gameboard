@@ -60,9 +60,9 @@ class AppLaunch extends Component {
       // Once we've preloaded basic content,
       // - Try to authenticate based on existing token
       this.props.login()
-        // Logged in, show index screen
+      // Logged in, show index screen
         .then(() => Actions.app({ type: 'reset' }))
-        // Not Logged in, show Login screen
+      // Not Logged in, show Login screen
         .catch(() => Actions.authenticate({ type: 'reset' }));
     }).catch(err => Alert.alert(err.message));
   }
@@ -72,13 +72,13 @@ class AppLaunch extends Component {
       <Image
         source={require('../../images/launch.jpg')}
         style={[styles.launchImage, AppStyles.containerCentered]}
-      >
-        <ActivityIndicator
-          animating
-          size="large"
-          color="#C1C5C8"
-        />
-      </Image>
+      />
+      {/* TODO: The indicator used to be in the image, but had to be moved out... */}
+      <ActivityIndicator
+        animating
+        size="large"
+        color="#C1C5C8"
+      />
     </View>
   );
 }

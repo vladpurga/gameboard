@@ -1,18 +1,12 @@
 import * as firebase from 'firebase';
-import {
-  API_KEY,
-  AUTH_DOMAIN,
-  DATABASE_URL,
-  STORAGE_BUCKET,
-  MESSAGING_SENDER_ID,
-} from 'react-native-dotenv';
 
 firebase.initializeApp({
-  apiKey: API_KEY,
-  authDomain: AUTH_DOMAIN,
-  databaseURL: DATABASE_URL,
-  storageBucket: STORAGE_BUCKET,
-  messagingSenderId: MESSAGING_SENDER_ID,
+  apiKey: 'AIzaSyD9gV4hkfUlxixgqGSutWt0tqOzPbvxy0U',
+  authDomain: 'gameboard-560d5.firebaseapp.com',
+  databaseURL: 'https://gameboard-560d5.firebaseio.com',
+  projectId: 'gameboard-560d5',
+  storageBucket: 'gameboard-560d5.appspot.com',
+  messagingSenderId: '975841127237',
 });
 
 export default firebase;

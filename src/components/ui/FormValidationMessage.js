@@ -6,8 +6,9 @@
  * React Native Starter App
  * https://github.com/mcnamee/react-native-starter-app
  */
-import React, { Component, PropTypes } from 'react';
-import { FormValidationMessage } from 'react-native-elements';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Text } from 'native-base';
 
 // Consts and Libs
 import { AppFonts } from '@theme/';
@@ -53,7 +54,7 @@ class CustomFormValidationMessage extends Component {
     return props;
   }
 
-  render = () => <FormValidationMessage {...this.inputProps()} />
+  render = () => <Text {...this.inputProps()} />
 }
 
 /* Export Component ==================================================================== */

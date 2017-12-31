@@ -12,7 +12,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon } from 'native-base';
 
 // Consts and Libs
 import { AppStyles } from '@theme/';

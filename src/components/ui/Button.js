@@ -8,7 +8,8 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-native-elements';
+
+import { Button } from 'native-base';
 
 // Consts and Libs
 import { AppColors, AppFonts, AppSizes } from '@theme/';

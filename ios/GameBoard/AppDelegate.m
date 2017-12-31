@@ -20,7 +20,7 @@
 {
   NSURL *jsCodeLocation;
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"GameBoard"
@@ -33,16 +33,6 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-
-  /**
-   * Custom
-   * Get launch image - saves annoying white flash
-   */
-  UIImageView *launchScreenView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Launch"]]; // Image named "Launch"
-  launchScreenView.frame = self.window.bounds;
-  launchScreenView.contentMode = UIViewContentModeScaleAspectFill;
-  rootView.loadingView = launchScreenView;
-  
   return YES;
 }
 

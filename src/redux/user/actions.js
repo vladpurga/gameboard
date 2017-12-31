@@ -176,12 +176,12 @@ export function updateProfile(formData = {}) {
   // Set the email against user account
   return () => Firebase.auth().currentUser
     .updateEmail(email)
-      .then(() => {
-        // Then update user in DB
-        FirebaseRef.child(`users/${UID}`).update({
-          firstName, lastName,
-        });
+    .then(() => {
+      // Then update user in DB
+      FirebaseRef.child(`users/${UID}`).update({
+        firstName, lastName,
       });
+    });
 }
 
 /**

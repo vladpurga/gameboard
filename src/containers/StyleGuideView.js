@@ -14,7 +14,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
-import { SocialIcon } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
 // Consts and Libs
@@ -227,20 +226,6 @@ class StyleGuide extends Component {
               </Card>
 
               <Spacer size={20} />
-
-              <Card title={'Socials'}>
-                <SocialIcon button type={'facebook'} title={'Login with Facebook'} />
-                <SocialIcon button type={'instagram'} light title={'Connect to Instagram'} />
-                <SocialIcon button type={'twitter'} />
-                <SocialIcon button type={'medium'} />
-
-                <View style={[AppStyles.row, AppStyles.centerAligned]}>
-                  <SocialIcon type={'facebook'} />
-                  <SocialIcon type={'instagram'} />
-                  <SocialIcon type={'twitter'} />
-                  <SocialIcon type={'medium'} />
-                </View>
-              </Card>
             </ScrollView>
           </View>
         );

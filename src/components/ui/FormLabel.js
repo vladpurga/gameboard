@@ -8,7 +8,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormLabel } from 'react-native-elements';
+import { Label } from 'native-base';
 
 // Consts and Libs
 import { AppColors, AppFonts } from '@theme/';
@@ -48,7 +48,7 @@ class CustomFormLabel extends Component {
     return props;
   }
 
-  render = () => <FormLabel {...this.labelProps()}>{this.props.children}</FormLabel>;
+  render = () => <Label {...this.labelProps()}>{this.props.children}</Label>;
 }
 
 /* Export Component ==================================================================== */
