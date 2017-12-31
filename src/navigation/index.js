@@ -16,44 +16,53 @@ import Drawer from '@containers/ui/DrawerContainer';
 // Scenes
 import AppLaunch from '@containers/Launch/LaunchContainer';
 import Placeholder from '@components/general/Placeholder';
-import AuthScenes from './auth';
+import LoginScenes from './login';
 import TabsScenes from './tabs';
 
+import HomeScenes from './home';
 import GameStatsScenes from './game-stats';
 import TrackScoreScenes from './track-score';
 
 /* Routes ==================================================================== */
 export default Actions.create(
-  <Scene key={'root'} {...AppConfig.navbarProps}>
+  <Scene key="root" {...AppConfig.navbarProps}>
     <Scene
       hideNavBar
-      key={'splash'}
+      key="splash"
       component={AppLaunch}
-      analyticsDesc={'AppLaunch: Launching App'}
+      analyticsDesc="AppLaunch: Launching App"
     />
 
     {/* Auth */}
-    {AuthScenes}
+    {LoginScenes}
 
     {TrackScoreScenes}
 
     {GameStatsScenes}
 
     {/* Main App */}
-    <Scene key={'app'} {...AppConfig.navbarProps} title={AppConfig.appName} hideNavBar={false} type={ActionConst.RESET}>
+    <Scene
+      key="app"
+      {...AppConfig.navbarProps}
+      title={AppConfig.appName}
+      hideNavBar={false}
+      type={ActionConst.RESET}
+    >
       {/* Drawer Side Menu */}
-      <Scene key={'home'} component={Drawer} initial={'tabBar'}>
+      <Scene key="home" component={Drawer} initial="tabBar">
         {/* Tabbar */}
         {TabsScenes}
       </Scene>
 
+      {HomeScenes}
+
       {/* General */}
       <Scene
         clone
-        key={'comingSoon'}
-        title={'Coming Soon'}
+        key="comingSoon"
+        title="Coming Soon"
         component={Placeholder}
-        analyticsDesc={'Placeholder: Coming Soon'}
+        analyticsDesc="Placeholder: Coming Soon"
       />
     </Scene>
   </Scene>,

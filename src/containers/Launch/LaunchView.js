@@ -12,33 +12,16 @@ import PropTypes from 'prop-types';
 import {
   View,
   Image,
-  Alert,
   StatusBar,
-  StyleSheet,
-  ActivityIndicator,
 } from 'react-native';
+import { Spinner, Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
-// Consts and Libs
-import { AppStyles, AppSizes } from '@theme/';
-
-/* Styles ==================================================================== */
-const styles = StyleSheet.create({
-  launchImage: {
-    width: AppSizes.screen.width,
-    height: AppSizes.screen.height,
-  },
-});
-
-/* Component ==================================================================== */
 class AppLaunch extends Component {
   static componentName = 'AppLaunch';
 
   static propTypes = {
-    firebaseLogin: PropTypes.func.isRequired,
-    login: PropTypes.func.isRequired,
-    getRecipes: PropTypes.func.isRequired,
-    getMeals: PropTypes.func.isRequired,
+    resume: PropTypes.func.isRequired,
   }
 
   constructor() {
@@ -50,35 +33,68 @@ class AppLaunch extends Component {
     // Show status bar on app launch
     StatusBar.setHidden(false, true);
 
-    this.props.firebaseLogin();
+    //  First, see if we can resume the user's logged in session. If we can, we
+    //  can go straight to the home screen.
+    this.props.resume().then((resumed) => {
+      if (resumed) {
+        Actions.app({ type: 'reset' });
+      } else {
+        Actions.login({ type: 'reset' });
+      }
+    });
 
-    // Preload content here
-    Promise.all([
-      this.props.getMeals(),
-      this.props.getRecipes(),
-    ]).then(() => {
-      // Once we've preloaded basic content,
-      // - Try to authenticate based on existing token
-      this.props.login()
-      // Logged in, show index screen
-        .then(() => Actions.app({ type: 'reset' }))
-      // Not Logged in, show Login screen
-        .catch(() => Actions.authenticate({ type: 'reset' }));
-    }).catch(err => Alert.alert(err.message));
+    //  Anonymous firebase authentication. This will be deprecated.
+    // this.props.firebaseLogin();
+
+    // // Preload content here
+    // Promise.all([
+      // this.props.getMeals(),
+      // this.props.getRecipes(),
+    // ]).then(() => {
+      // // Once we've preloaded basic content,
+      // // - Try to authenticate based on existing token
+      // this.props.login()
+      // // Logged in, show index screen
+        // .then(() => Actions.app({ type: 'reset' }))
+      // // Not Logged in, show Login screen
+        // .catch(() => Actions.authenticate({ type: 'reset' }));
+    // }).catch(err => Alert.alert(err.message));
   }
 
   render = () => (
-    <View style={[AppStyles.container]}>
-      <Image
-        source={require('../../images/launch.jpg')}
-        style={[styles.launchImage, AppStyles.containerCentered]}
-      />
-      {/* TODO: The indicator used to be in the image, but had to be moved out... */}
-      <ActivityIndicator
-        animating
-        size="large"
-        color="#C1C5C8"
-      />
+    <View style={{ flex: 1, backgroundColor: '#eee' }}>
+      <View
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Image
+          style={{
+            flex: 1,
+            alignSelf: 'stretch',
+            width: undefined,
+            height: undefined,
+          }}
+          source={require('../../images/launch.jpg')}
+        />
+      </View>
+      <View style={{ flex: 1 }} />
+      <View
+        style={{
+          flex: 2,
+          backgroundColor: 'transparent',
+          justifyContent: 'center',
+        }}
+      >
+        <Spinner color="black" />
+        <Text style={{ textAlign: 'center' }}>Unpacking meeples...</Text>
+      </View>
     </View>
   );
 }

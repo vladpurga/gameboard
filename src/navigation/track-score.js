@@ -14,14 +14,14 @@ import { AppConfig } from '@constants/';
 import TrackScore from '@containers/track-score/TrackScoreContainer';
 
 const scenes = (
-  <Scene key={'track-score'}>
+  <Scene key="track-score">
     <Scene
       {...AppConfig.navbarProps}
-      key={'trackScore'}
-      title={'Track Score'}
+      key="trackScore"
+      title="Track Score"
       clone
       component={TrackScore}
-      analyticsDesc={'Track Score'}
+      analyticsDesc="Track Score"
     />
   </Scene>
 );

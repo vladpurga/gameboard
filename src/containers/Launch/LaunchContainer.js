@@ -21,6 +21,7 @@ const mapStateToProps = () => ({
 // Any actions to map to the component?
 const mapDispatchToProps = {
   firebaseLogin: LoginActions.login,
+  resume: LoginActions.resume,
   login: UserActions.login,
   getRecipes: RecipeActions.getRecipes,
   getMeals: RecipeActions.getMeals,

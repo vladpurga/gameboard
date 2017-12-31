@@ -7,6 +7,7 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   View,
   Image,
@@ -18,9 +19,6 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
 // Consts and Libs
 import { AppStyles, AppSizes, AppColors } from '@theme/';
-
-// Components
-import { JumboButton, Spacer, Text, Button } from '@ui/';
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -39,8 +37,12 @@ const styles = StyleSheet.create({
 });
 
 /* Component ==================================================================== */
-class Authenticate extends Component {
-  static componentName = 'Authenticate';
+class Login extends Component {
+  static componentName = 'Login';
+
+  static propTypes = {
+    googleLogin: PropTypes.func.isRequired,
+  }
 
   async componentDidMount() {
     //  Platform specific Google Signin configuration.
@@ -74,14 +76,18 @@ class Authenticate extends Component {
     const currentUser = await GoogleSignin.currentUserAsync();
     if (currentUser) {
       console.log('User already available!', currentUser);
-      return currentUser;
+      await this.props.googleLogin(currentUser.idToken);
+      Actions.home();
+      return;
     }
 
     //  We don't have a current user, so we need to sign in.
     try {
       const user = await GoogleSignin.signIn();
       console.log('User signed in!', user);
-      return user;
+      await this.props.googleLogin(user.idToken);
+      Actions.home();
+      return;
     } catch (err) {
       console.log('Sign in error', err.code, err.message);
       throw err;
@@ -95,89 +101,14 @@ class Authenticate extends Component {
         style={[styles.logo]}
       />
 
-      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-        <View style={[AppStyles.flex1]}>
-          <JumboButton
-            title="Track Score"
-            subtitle="Record the result of a game"
-            onPress={Actions.trackScore}
-          />
-        </View>
-      </View>
-
-      <Spacer size={10} />
-
-      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-        <View style={[AppStyles.flex1]}>
-          <JumboButton
-            title="Game Stats"
-            subtitle="Who da best?"
-            onPress={Actions.gameStats}
-          />
-        </View>
-      </View>
-
-      <Spacer size={10} />
-
       <GoogleSigninButton
-        style={{ width: 48, height: 48 }}
-        size={GoogleSigninButton.Size.Standard}
+        style={{ width: 312, height: 48 }}
+        size={GoogleSigninButton.Size.Wide}
         color={GoogleSigninButton.Color.Light}
         onPress={this.googleSignIn}
       />
-
-      <Spacer size={10} />
-
-      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-        <View style={[AppStyles.flex1]}>
-          <Button
-            title="Login"
-            icon={{ name: 'lock' }}
-            onPress={Actions.login}
-            backgroundColor="#CB009E"
-          />
-        </View>
-      </View>
-
-      <Spacer size={10} />
-
-      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-        <View style={[AppStyles.flex1]}>
-          <Button
-            title="Sign up"
-            icon={{ name: 'face' }}
-            onPress={Actions.signUp}
-            backgroundColor="#CB009E"
-          />
-        </View>
-      </View>
-
-      <Spacer size={15} />
-
-      <Text p style={[AppStyles.textCenterAligned, styles.whiteText]}>
-        - or -
-      </Text>
-
-      <Spacer size={10} />
-
-      <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-        <View style={[AppStyles.flex1]} />
-        <View style={[AppStyles.flex2]}>
-          <Button
-            small
-            title="Skip"
-            onPress={Actions.app}
-            raised={false}
-            backgroundColor="rgba(255,255,255,0.2)"
-          />
-        </View>
-        <View style={[AppStyles.flex1]} />
-      </View>
-
-      <Spacer size={40} />
     </View>
-  )
+  );
 }
 
-/* Export Component ==================================================================== */
-export default Authenticate;
+export default Login;
