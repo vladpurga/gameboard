@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
+import { Actions } from 'react-native-router-flux';
 import firebase from '@lib/firebase';
 import { setGame } from '../game-stats/actions';
 
@@ -80,8 +81,8 @@ export const resume = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   await AsyncStorage.removeItem('login/credentials');
   await firebase.auth().signOut();
-
   await GoogleSignin.signOut();
+  Actions.launch({ type: 'reset' });
   dispatch({
     type: 'LOGIN_LOGOUT',
   });

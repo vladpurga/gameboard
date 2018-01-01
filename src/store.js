@@ -6,25 +6,15 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 /* global __DEV__ */
-import React from 'react';
 import { applyMiddleware, compose, createStore } from 'redux';
-import { connect, Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import { Router } from 'react-native-router-flux';
 
 // Consts and Libs
-import { AppStyles } from '@theme/';
-import AppRoutes from '@navigation/';
 import Analytics from '@lib/analytics';
 
 // All redux reducers (rolled into one mega-reducer)
 import rootReducer from '@redux/index';
-
-const Root = require('./Root');
-
-// Connect RNRF with Redux
-const RouterWithRedux = connect()(Router);
 
 // Load middleware
 let middleware = [
@@ -45,12 +35,4 @@ const store = compose(
   applyMiddleware(...middleware),
 )(createStore)(rootReducer);
 
-/* Component ==================================================================== */
-// Wrap App in Redux provider (makes Redux available to all sub-components)
-export default function AppContainer() {
-  return (
-    <Provider store={store}>
-      <RouterWithRedux scenes={AppRoutes} style={AppStyles.appContainer} />
-    </Provider>
-  );
-}
+export default store;

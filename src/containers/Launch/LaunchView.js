@@ -37,28 +37,12 @@ class AppLaunch extends Component {
     //  can go straight to the home screen.
     this.props.resume().then((resumed) => {
       if (resumed) {
-        Actions.app({ type: 'reset' });
+        //  Move to the home scene, completely resetting the nav stack.
+        Actions.home({ type: 'reset' });
       } else {
         Actions.login({ type: 'reset' });
       }
     });
-
-    //  Anonymous firebase authentication. This will be deprecated.
-    // this.props.firebaseLogin();
-
-    // // Preload content here
-    // Promise.all([
-      // this.props.getMeals(),
-      // this.props.getRecipes(),
-    // ]).then(() => {
-      // // Once we've preloaded basic content,
-      // // - Try to authenticate based on existing token
-      // this.props.login()
-      // // Logged in, show index screen
-        // .then(() => Actions.app({ type: 'reset' }))
-      // // Not Logged in, show Login screen
-        // .catch(() => Actions.authenticate({ type: 'reset' }));
-    // }).catch(err => Alert.alert(err.message));
   }
 
   render = () => (

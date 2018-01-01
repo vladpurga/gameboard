@@ -5,8 +5,8 @@
  * React Native Starter App
  * https://github.com/mcnamee/react-native-starter-app
  */
-
 import { AppRegistry } from 'react-native';
-import AppContainer from './src/';
 
-AppRegistry.registerComponent('GameBoard', () => AppContainer);
+import App from './src/App';
+
+AppRegistry.registerComponent('GameBoard', () => App);

@@ -5,11 +5,11 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 /* global __DEV__ */
-import { AppColors, AppStyles, AppSizes } from '@theme/';
+import { AppColors, AppFonts } from '@theme/';
 
 export default {
   // App Details
-  appName: 'Starter Kit',
+  appName: 'GameBoard',
 
   // Build Configuration - eg. Debug or Release?
   DEV: __DEV__,
@@ -21,16 +21,26 @@ export default {
   urls: {
   },
 
-  // Navbar Props
   navbarProps: {
-    hideNavBar: false,
-    titleStyle: AppStyles.navbarTitle,
-    navigationBarStyle: AppStyles.navbar,
-    leftButtonIconStyle: AppStyles.navbarButton,
-    rightButtonIconStyle: AppStyles.navbarButton,
-    sceneStyle: {
-      backgroundColor: AppColors.background,
-      paddingTop: AppSizes.navbarHeight,
+    navigationBarStyle: { backgroundColor: 'white' },
+    titleStyle: {
+      color: AppColors.textPrimary,
+      alignSelf: 'center',
+      letterSpacing: 2,
+      fontSize: AppFonts.base.size,
     },
+    backButtonTintColor: AppColors.textPrimary,
   },
+
+  tabProps: {
+    swipeEnabled: false,
+    activeBackgroundColor: 'rgba(255,255,255,0.1)',
+    inactiveBackgroundColor: AppColors.brand.primary,
+    tabBarStyle: { backgroundColor: AppColors.brand.primary },
+  },
+
+  icons: {
+    style: { color: 'white' },
+  },
+
 };
