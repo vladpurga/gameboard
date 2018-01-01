@@ -11,7 +11,7 @@
       ".read": true,
     	".indexOn": ["category"]
     },
-      
+
     "played-games": {
       ".read": true,
       ".write": true
@@ -29,6 +29,13 @@
         "role": {
           ".validate": "(root.child('users/'+auth.uid+'/role').val() === 'admin' && newData.val() === 'admin') || newData.val() === 'user'"
         }
+      }
+    },
+
+    "friends": {
+      "$uid": {
+         ".read": "$uid === auth.uid",
+         ".write": "$uid === auth.uid"
       }
     },
 

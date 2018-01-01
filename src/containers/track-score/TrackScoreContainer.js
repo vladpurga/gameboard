@@ -12,12 +12,13 @@ import TrackScore from './TrackScoreView';
 
 // What data from the store shall we send to the component?
 const mapStateToProps = state => ({
-  user: state.user,
+  game: state.trackScore.game,
 });
 
 // Any actions to map to the component?
 const mapDispatchToProps = {
   trackScore: TrackScoreActions.trackScore,
+  trackScoreSetGame: TrackScoreActions.setGame,
   gameStatsSetGame: GameStatsActions.setGame,
 };
 

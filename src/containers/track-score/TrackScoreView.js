@@ -8,7 +8,7 @@ import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 // Containers
-import WhatGame from './WhatGameContainer';
+import WhatGame from './WhatGameView';
 import WhoPlayed from './WhoPlayedContainer';
 import WhoWon from './WhoWonContainer';
 import AddScores from './AddScoresContainer';
@@ -42,7 +42,9 @@ class TrackScore extends Component {
 
   static propTypes = {
     trackScore: PropTypes.func.isRequired,
+    trackScoreSetGame: PropTypes.func.isRequired,
     gameStatsSetGame: PropTypes.func.isRequired,
+    game: PropTypes.string.isRequired,
   }
 
   static defaultProps = {
@@ -71,6 +73,11 @@ class TrackScore extends Component {
     this.setState({ done: true, game: values.game, page: null });
   }
 
+  handleWhatGameNext = (game) => {
+    this.props.trackScoreSetGame(game);
+    this.nextPage();
+  }
+
   previousPage = (values) => {
     console.log('previous page', values);
     this.setState({ page: this.state.page - 1 });
@@ -90,11 +97,14 @@ class TrackScore extends Component {
         <AllDone game={game} gameStatsHandler={this.onGameStats} />
         }
         { page === 1 &&
-        <WhatGame onSubmit={this.nextPage} />
+        <WhatGame
+          game={this.props.game}
+          onNext={this.handleWhatGameNext}
+        />
         }
         { page === 2 &&
         <WhoPlayed
-          onSubmit={this.nextPage}
+          onNext={this.nextPage}
           previousPage={this.previousPage}
         />
         }

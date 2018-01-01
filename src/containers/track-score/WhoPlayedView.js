@@ -3,9 +3,7 @@
  *  - Used to select who played in the game which you are tracking a score for.
  */
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Field, FieldArray, reduxForm } from 'redux-form';
 import {
   Button,
   Card,
@@ -14,32 +12,26 @@ import {
   Body,
   Right,
   H1,
+  H2,
   Icon,
   Text,
   Thumbnail,
 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import firebase from '@lib/firebase';
 import { Spacer, WizardPage } from '@components/ui/';
-
-import validate from './validate';
-import renderInput from './render-input';
-
-const styles = StyleSheet.create({
-  playerContainer: {
-    padding: 8,
-    borderColor: 'black',
-  },
-});
 
 class WhoPlayed extends Component {
   static componentName = 'WhoPlayed';
 
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
+    onNext: PropTypes.func.isRequired,
     previousPage: PropTypes.func.isRequired,
+    friends: PropTypes.arrayOf(PropTypes.object).isRequired,
+    players: PropTypes.arrayOf(PropTypes.object).isRequired,
     game: PropTypes.string.isRequired,
+    trackScoreAddPlayer: PropTypes.func.isRequired,
+    trackScoreRemovePlayer: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -48,27 +40,18 @@ class WhoPlayed extends Component {
   componentWillReceiveProps() {
   }
 
-  renderMe = () => {
-    //  The logged in user is always available to add to the list of players.
-    const user = firebase.auth().currentUser;
-    const {
-      displayName,
-      email,
-      photoURL,
-    } = user;
-    return this.renderPlayer({ name: displayName, email, imageUri: photoURL });
-  }
-
   renderPlayer = (props) => {
     const {
+      id,
       name,
       email,
       imageUri,
-      onDelete,
+      onAdd,
+      onRemove,
     } = props;
 
     return (
-      <Card style={{ borderRadius: 10 }}>
+      <Card key={id} style={{ borderRadius: 10 }}>
         <CardItem style={{ borderRadius: 10 }}>
           <Left>
             <Thumbnail source={{ uri: imageUri }} />
@@ -78,78 +61,52 @@ class WhoPlayed extends Component {
             </Body>
           </Left>
           <Right>
-            <Button
-              transparent
-              light
-              onPress={onDelete}
-            >
-              <Icon name="trash" style={{ fontSize: 32, color: 'black' }} />
-            </Button>
+            { onAdd &&
+              <Button
+                transparent
+                light
+                onPress={onAdd}
+              >
+                <Icon name="add" style={{ fontSize: 32, paddingRight: 10, color: 'black' }} />
+              </Button>
+            }
+            { onRemove &&
+              <Button
+                transparent
+                light
+                onPress={onRemove}
+              >
+                <Icon name="remove" style={{ fontSize: 32, paddingRight: 10, color: 'black' }} />
+              </Button>
+            }
           </Right>
         </CardItem>
       </Card>
     );
   }
 
-  renderPlayers = ({ fields }) => {
-    //  If you press 'add player', this is wht you add...
-    const newPlayer = {
-      id: Math.random(),
-      name: `Player ${fields.length + 1}`,
-      rank: null,
-    };
-
-    return (
-      <View>
-        {fields.map((player, index) =>
-          (
-            <View style={styles.playerContainer} key={fields.get(index).id}>
-              <View style={{ background: 'red', flexDirection: 'row' }}>
-                <View style={{ flex: 1 }}>
-                  <Field
-                    name={`${player}.name`}
-                    type="text"
-                    component={renderInput}
-                    placeholder="Player Name"
-                  />
-                </View>
-                <View style={{ flex: 0 }}>
-                  <Button
-                    transparent
-                    light
-                    onPress={() => fields.remove(index)}
-                  >
-                    <Icon name="trash" style={{ fontSize: 32, color: 'black' }} />
-                  </Button>
-                </View>
-              </View>
-            </View>
-          ),
-        )}
-        <Button
-          rounded
-          light
-          style={{ margin: 20, alignSelf: 'center' }}
-          onPress={() => fields.push(newPlayer)}
-        >
-          <Icon name="add" style={{ fontSize: 32, color: 'black' }} />
-        </Button>
-      </View>
-    );
-  }
-
   render = () => {
-    const { handleSubmit, previousPage, game } = this.props;
+    const {
+      onNext,
+      previousPage,
+      game,
+      friends,
+      players,
+    } = this.props;
 
     return (
       <WizardPage
         onPrevious={previousPage}
-        onNext={handleSubmit}
+        onNext={onNext}
       >
         <H1>Who Played {game}?</H1>
         <Spacer size={20} />
+        { players.map(player => this.renderPlayer({
+            ...player,
+            onRemove: () => this.props.trackScoreRemovePlayer(player.id),
+          }))
+        }
 
-        <FieldArray name="players" component={this.renderPlayers} />
         <Button
           onPress={Actions.AddFriend}
           iconLeft
@@ -159,17 +116,16 @@ class WhoPlayed extends Component {
           <Icon name="add" />
           <Text>Add Friend</Text>
         </Button>
-        { this.renderMe() }
+        <H2>Friends</H2>
+        { friends.map(player => this.renderPlayer({
+            ...player,
+            onAdd: () => this.props.trackScoreAddPlayer(player),
+          }))
+        }
       </WizardPage>
     );
   }
 }
 
-export default reduxForm({
-  form: 'trackScore',
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-
-  validate,
-})(WhoPlayed);
+export default WhoPlayed;
 

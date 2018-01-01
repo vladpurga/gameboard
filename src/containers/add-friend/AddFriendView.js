@@ -9,14 +9,22 @@ import { Actions } from 'react-native-router-flux';
 import { reduxForm, Field } from 'redux-form';
 
 import { Spacer, WizardPage } from '@components/ui/';
-import validate from './validate';
 import renderInput from './render-input';
+
+const validate = (values) => {
+  const errors = {};
+  if (!values.name) {
+    errors.name = 'Required';
+  }
+  return errors;
+};
 
 class AddFriend extends Component {
   static componentName = 'AddFriend';
 
   static propTypes = {
     addFriend: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
   }
 
   submit = (values) => {
@@ -33,7 +41,19 @@ class AddFriend extends Component {
     >
       <H1>Add Friend</H1>
       <Spacer size={20} />
-      <Field name="name" component={renderInput} autoFocus placeHolder="Name" />
+      <Field
+        name="name"
+        placeHolder="Name"
+        label="Name"
+        component={renderInput}
+        autoFocus
+      />
+      <Field
+        name="email"
+        placeHolder="E-Mail"
+        label="E-Mail"
+        component={renderInput}
+      />
     </WizardPage>
   )
 }

@@ -3,6 +3,7 @@ import { GoogleSignin } from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
 import firebase from '@lib/firebase';
 import { setGame } from '../game-stats/actions';
+import * as FriendsActions from '../friends/actions';
 
 export const login = () => (dispatch) => {
   //  Start logging in - we're busy.
@@ -22,7 +23,9 @@ export const login = () => (dispatch) => {
       });
 
       //  Load stats for Grifters for now...
+      //  Also start watching online data.
       setGame('Grifters')(dispatch);
+      FriendsActions.watchFriends()(dispatch);
     });
 };
 
@@ -55,6 +58,11 @@ export const googleLogin = idToken => async (dispatch) => {
     type: 'LOGIN_FIREBASE',
     data: firebase.auth().currentUser,
   });
+
+  //  Load stats for Grifters for now...
+  //  Also start watching online data.
+  setGame('Grifters')(dispatch);
+  FriendsActions.watchFriends()(dispatch);
 };
 
 export const resume = () => async (dispatch) => {

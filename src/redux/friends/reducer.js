@@ -8,6 +8,13 @@ export const initialState = Store;
 
 export default function friendsReducer(state = initialState, action) {
   switch (action.type) {
+    case 'FRIENDS_UPDATE_FRIENDS': {
+      return {
+        ...state,
+        friends: action.data,
+      };
+    }
+
     case 'ADD_FRIEND': {
       return {
         ...state,

@@ -33,7 +33,14 @@ class Home extends Component {
   static componentName = 'Home';
 
   static propTypes = {
+    trackScoreStart: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
+  }
+
+  trackScore = () => {
+    //  Blat the state for the track score flow, then move to the screen.
+    this.props.trackScoreStart('Champions of Midgard');
+    Actions.trackScore();
   }
 
   render = () => {
@@ -46,7 +53,7 @@ class Home extends Component {
             <JumboButton
               title="Track Score"
               subtitle="Record the result of a game"
-              onPress={Actions.trackScore}
+              onPress={this.trackScore}
             />
           </View>
         </View>
