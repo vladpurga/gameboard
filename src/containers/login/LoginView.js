@@ -77,7 +77,7 @@ class Login extends Component {
     if (currentUser) {
       console.log('User already available!', currentUser);
       await this.props.googleLogin(currentUser.idToken);
-      Actions.home();
+      Actions.home({ type: 'reset' });
       return;
     }
 
@@ -86,7 +86,7 @@ class Login extends Component {
       const user = await GoogleSignin.signIn();
       console.log('User signed in!', user);
       await this.props.googleLogin(user.idToken);
-      Actions.home();
+      Actions.home({ type: 'reset' });
       return;
     } catch (err) {
       console.log('Sign in error', err.code, err.message);

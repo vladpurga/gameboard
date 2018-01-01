@@ -1,11 +1,11 @@
 import React from 'react';
-import { Router, Scene, Tabs, Stack } from 'react-native-router-flux';
+import { Router, Scene, Stack } from 'react-native-router-flux';
 import { Icon } from 'native-base';
 
 import { AppConfig } from '@constants/';
 
-
 // Scenes
+import AddFriend from '@containers/add-friend/AddFriendContainer';
 import Launch from '@containers/launch/LaunchContainer';
 import Login from '@containers/login/LoginContainer';
 import Home from '@containers/home/HomeContainer';
@@ -26,36 +26,46 @@ const Index = (
         {...AppConfig.navbarProps}
       />
 
-      <Stack>
-        <Scene hideNavBar>
-          <Tabs
-            key="tabbar"
-            swipeEnabled
-            type="replace"
-            showLabel={false}
-            {...AppConfig.tabProps}
-          >
-            <Stack
-              key="trackScore"
-              title="TRACK SCORE"
-              icon={() => <Icon name="book" {...AppConfig.icons} />}
-              {...AppConfig.navbarProps}
-            >
-              <Scene key="trackScore" component={TrackScore} />
-            </Stack>
+      <Scene
+        key="trackScore"
+        title="TRACK SCORE"
+        component={TrackScore}
+        icon={() => <Icon name="podium" {...AppConfig.icons} />}
+        {...AppConfig.navbarProps}
+      />
 
-            <Stack
-              key="gameStats"
-              title="GAME STATS"
-              icon={() => <Icon name="book" {...AppConfig.icons} />}
-              {...AppConfig.navbarProps}
-            >
-              <Scene key="gameStats" component={GameStats} />
-            </Stack>
+      <Scene
+        key="gameStats"
+        title="GAME STATS"
+        component={GameStats}
+        icon={() => <Icon name="stats" {...AppConfig.icons} />}
+        {...AppConfig.navbarProps}
+      />
 
-          </Tabs>
-        </Scene>
-      </Stack>
+      <Scene
+        key="AddFriend"
+        title="ADD FRIEND"
+        component={AddFriend}
+        icon={() => <Icon name="add" {...AppConfig.icons} />}
+        {...AppConfig.navbarProps}
+      />
+      { /* The Nav Bar is the element on the bottom of the screen which allows
+          fast switching between sections of the app.
+          <Stack>
+            <Scene hideNavBar>
+              <Tabs
+                key="tabbar"
+                swipeEnabled
+                type="replace"
+                showLabel={false}
+                {...AppConfig.tabProps}
+              >
+
+
+              </Tabs>
+            </Scene>
+          </Stack> */
+      }
     </Stack>
   </Router>
 );
