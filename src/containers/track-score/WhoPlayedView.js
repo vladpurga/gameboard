@@ -13,7 +13,7 @@ import {
 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Player, Spacer, WizardPage } from '@components/ui/';
+import { Player, PlayerButton, Spacer, WizardPage } from '@components/ui/';
 
 class WhoPlayed extends Component {
   static componentName = 'WhoPlayed';
@@ -53,13 +53,26 @@ class WhoPlayed extends Component {
         <H1>Who Played {game}?</H1>
         <Spacer size={20} />
         { players.map(player => (
-          <Player
-            player={player}
-            onRemove={() => this.props.trackScoreRemovePlayer(player.id)}
-          />
+          <Player key={player.id} player={player}>
+            <PlayerButton
+              iconName="remove"
+              onPress={() => this.props.trackScoreRemovePlayer(player.id)}
+            />
+          </Player>
           ))
         }
-
+        <Spacer size={10} />
+        <H2>Friends</H2>
+        { availableFriends.map(player => (
+          <Player key={player.id} player={player}>
+            <PlayerButton
+              iconName="add"
+              onPress={() => this.props.trackScoreAddPlayer(player)}
+            />
+          </Player>
+          ))
+        }
+        <Spacer size={10} />
         <Button
           onPress={Actions.AddFriend}
           iconLeft
@@ -69,14 +82,6 @@ class WhoPlayed extends Component {
           <Icon name="add" />
           <Text>Add Friend</Text>
         </Button>
-        <H2>Friends</H2>
-        { availableFriends.map(player => (
-          <Player
-            player={player}
-            onAdd={() => this.props.trackScoreAddPlayer(player)}
-          />
-          ))
-        }
       </WizardPage>
     );
   }

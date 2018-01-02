@@ -41,9 +41,10 @@ class TrackScore extends Component {
   static componentName = 'TrackScore';
 
   static propTypes = {
-    trackScore: PropTypes.func.isRequired,
+    trackScoreSubmit: PropTypes.func.isRequired,
     trackScoreSetGame: PropTypes.func.isRequired,
     gameStatsSetGame: PropTypes.func.isRequired,
+    trackScore: PropTypes.shape({ }).isRequired,
     game: PropTypes.string.isRequired,
   }
 
@@ -67,10 +68,9 @@ class TrackScore extends Component {
     Actions.gameStats();
   }
 
-  handleSubmit = (values) => {
-    console.log('submit', values);
-    this.props.trackScore(values);
-    this.setState({ done: true, game: values.game, page: null });
+  handleDone = () => {
+    this.props.trackScoreSubmit(this.props.trackScore);
+    this.setState({ done: true, game: this.props.game, page: null });
   }
 
   handleWhatGameNext = (game) => {
@@ -78,13 +78,11 @@ class TrackScore extends Component {
     this.nextPage();
   }
 
-  previousPage = (values) => {
-    console.log('previous page', values);
+  previousPage = () => {
     this.setState({ page: this.state.page - 1 });
   }
 
-  nextPage = (values) => {
-    console.log('next page', values);
+  nextPage = () => {
     this.setState({ page: this.state.page + 1 });
   }
 
@@ -110,13 +108,13 @@ class TrackScore extends Component {
         }
         { page === 3 &&
         <WhoWon
-          onSubmit={this.nextPage}
+          onNext={this.nextPage}
           previousPage={this.previousPage}
         />
         }
         { page === 4 &&
         <AddScores
-          onSubmit={this.handleSubmit}
+          onNext={this.handleDone}
           previousPage={this.previousPage}
         />
         }

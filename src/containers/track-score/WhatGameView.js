@@ -8,9 +8,7 @@ import { Field, reduxForm } from 'redux-form';
 import { H1 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Spacer, WizardPage } from '@components/ui/';
-
-import renderInput from './render-input';
+import { FormInput, Spacer, WizardPage } from '@components/ui/';
 
 class WhatGame extends Component {
   static componentName = 'WhatGame';
@@ -44,7 +42,7 @@ class WhatGame extends Component {
       >
         <H1>What Game?</H1>
         <Spacer size={20} />
-        <Field name="game" component={renderInput} autoFocus placeHolder="Game Name" />
+        <Field name="game" component={FormInput} autoFocus placeHolder="Game Name" />
       </WizardPage>
     );
   }

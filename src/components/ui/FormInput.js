@@ -35,14 +35,22 @@ const FormInput = (props) => {
 };
 
 FormInput.propTypes = {
-  input: PropTypes.string.isRequired,
-  autoFocus: PropTypes.string.isRequired,
-  placeHolder: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  input: PropTypes.shape({ }),
+  autoFocus: PropTypes.bool,
+  placeHolder: PropTypes.string,
+  label: PropTypes.string,
   meta: PropTypes.shape({
-    touched: PropTypes.boolean.isRequired,
-    error: PropTypes.error.isRequired,
-  }).isRequired,
+    touched: PropTypes.bool,
+    error: PropTypes.string,
+  }),
+};
+
+FormInput.defaultProps = {
+  input: {},
+  autoFocus: false,
+  placeHolder: null,
+  label: null,
+  meta: {},
 };
 
 export default FormInput;

@@ -3,43 +3,37 @@
  *  - Used to select who played in the game which you are tracking a score for.
  */
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
 import { H1 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { GameRankZone, RankedPlayer, Spacer, WizardPage } from '@components/ui/';
+import { GameRankZone, Player, PlayerButton, Spacer, WizardPage } from '@components/ui/';
 import rankings from '@lib/rankings';
-
-import validate from './validate';
 
 class WhoWon extends Component {
   static componentName = 'WhoWon';
 
   static propTypes = {
     //  Props from redux-form...
-    handleSubmit: PropTypes.func.isRequired,
+    onNext: PropTypes.func.isRequired,
     previousPage: PropTypes.func.isRequired,
-    change: PropTypes.func.isRequired,
     //  Props from our form...
     game: PropTypes.string.isRequired,
     players: PropTypes.arrayOf(PropTypes.object).isRequired,
+    trackScoreSetPlayerRank: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
   }
 
-  componentWillReceiveProps() {
-  }
-
-  createMoveUpHandler = (player, nextAvailableRank, change) => () => {
+  createMoveUpHandler = (player, nextAvailableRank) => () => {
     if (!Number.isInteger(player.rank)) {
-      change(`players[${player.index}].rank`, nextAvailableRank);
+      this.props.trackScoreSetPlayerRank(player.id, nextAvailableRank);
     } else {
-      change(`players[${player.index}].rank`, player.rank - 1);
+      this.props.trackScoreSetPlayerRank(player.id, player.rank - 1);
     }
   }
 
-  createMoveDownHandler = (player, nextAvailableRank, change) => () => {
+  createMoveDownHandler = (player, nextAvailableRank) => () => {
     //  Is the player on the space ABOVE the next available rank? If so, then
     //  moving them down is going to skip that rank and make them a loser:
     //     1    - Winner       : Player 1     <--- move down from here goes to losers
@@ -51,17 +45,16 @@ class WhoWon extends Component {
     //     2    - Second Place : Player 1     <--- move down from here goes to losers
     //     null - Losers       : Player 2
     if (player.rank === (nextAvailableRank - 1) || player.rank > nextAvailableRank) {
-      change(`players[${player.index}].rank`, null);
+      this.props.trackScoreSetPlayerRank(player.id, null);
     } else {
-      change(`players[${player.index}].rank`, player.rank + 1);
+      this.props.trackScoreSetPlayerRank(player.id, player.rank + 1);
     }
   }
 
   render = () => {
     const {
-      handleSubmit,
+      onNext,
       previousPage,
-      change,
       game,
       players,
     } = this.props;
@@ -79,7 +72,7 @@ class WhoWon extends Component {
 
     return (
       <WizardPage
-        onNext={handleSubmit}
+        onNext={onNext}
         onPrevious={previousPage}
       >
         <H1>Who Won {game}?</H1>
@@ -88,12 +81,10 @@ class WhoWon extends Component {
           Object.keys(rankedPlayers).map(key => (
             <GameRankZone key={key} rank={rankings.rankName(key)}>
               {rankedPlayers[key].map(player => (
-                <RankedPlayer
-                  key={player.id}
-                  player={player}
-                  moveDown={this.createMoveDownHandler(player, nextAvailableRank, change)}
-                  moveUp={this.createMoveUpHandler(player, nextAvailableRank, change)}
-                />
+                <Player key={player.id} player={player} hideIcon>
+                  { player.rank !== null && <PlayerButton iconName="md-arrow-down" onPress={this.createMoveDownHandler(player, nextAvailableRank)} /> }
+                  { player.rank !== 1 && <PlayerButton iconName="md-arrow-up" onPress={this.createMoveUpHandler(player, nextAvailableRank)} /> }
+                </Player>
               ))}
             </GameRankZone>
           ))
@@ -103,11 +94,5 @@ class WhoWon extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'trackScore',
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true, // <------ unregister fields on unmount
-
-  validate,
-})(WhoWon);
+export default WhoWon;
 

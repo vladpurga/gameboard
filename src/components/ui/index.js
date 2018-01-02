@@ -16,6 +16,7 @@ import List from './List';
 import ListItem from './ListItem';
 import JumboButton from './JumboButton';
 import Player from './Player';
+import PlayerButton from './PlayerButton';
 import RankedPlayer from './RankedPlayer';
 import Spacer from './Spacer';
 import TabIcon from './TabIcon';
@@ -34,6 +35,7 @@ export {
   List,
   ListItem,
   Player,
+  PlayerButton,
   RankedPlayer,
   Spacer,
   TabIcon,

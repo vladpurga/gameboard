@@ -35,4 +35,11 @@ export const addFriend = (friend) => {
   firebase.database()
     .ref(friendsPath)
     .push(friend);
+
+  //  Add the friend locally - it'll get updated and replaced by firebase when
+  //  the friend arrives server-side and is synchronised back to the client.
+  return {
+    type: 'FRIENDS_ADD_FRIEND',
+    data: friend,
+  };
 };

@@ -14,7 +14,16 @@
 
     "played-games": {
       ".read": true,
-      ".write": true
+      ".write": true,
+
+      ".indexOn": ["game"]
+    },
+
+    "friends": {
+      "$uid": {
+         ".read": "$uid === auth.uid",
+         ".write": "$uid === auth.uid"
+      }
     },
 
     "users": {
@@ -29,13 +38,6 @@
         "role": {
           ".validate": "(root.child('users/'+auth.uid+'/role').val() === 'admin' && newData.val() === 'admin') || newData.val() === 'user'"
         }
-      }
-    },
-
-    "friends": {
-      "$uid": {
-         ".read": "$uid === auth.uid",
-         ".write": "$uid === auth.uid"
       }
     },
 

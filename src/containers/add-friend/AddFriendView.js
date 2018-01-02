@@ -8,8 +8,7 @@ import { H1 } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import { reduxForm, Field } from 'redux-form';
 
-import { Spacer, WizardPage } from '@components/ui/';
-import renderInput from './render-input';
+import { FormInput, Spacer, WizardPage } from '@components/ui/';
 
 const validate = (values) => {
   const errors = {};
@@ -51,14 +50,15 @@ class AddFriend extends Component {
         name="name"
         placeHolder="Name"
         label="Name"
-        component={renderInput}
+        component={FormInput}
         autoFocus
       />
       <Field
         name="email"
         placeHolder="E-Mail"
         label="E-Mail"
-        component={renderInput}
+        keyboardType="email-address"
+        component={FormInput}
       />
     </WizardPage>
   )

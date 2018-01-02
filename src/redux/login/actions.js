@@ -45,7 +45,7 @@ export const googleLogin = idToken => async (dispatch) => {
     if (errorCode === 'auth/account-exists-with-different-credential') {
       // Email already associated with another account.
     }
-    console.error('Firebase login error', errorCode, errorMessage, email);
+    console.error('Firebase login error', error);
   }
 
   //  Awesome, we've logged in with Google + Firebase. Store the token for
