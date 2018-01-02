@@ -15,6 +15,7 @@ import GameRankZone from './GameRankZone';
 import List from './List';
 import ListItem from './ListItem';
 import JumboButton from './JumboButton';
+import Player from './Player';
 import RankedPlayer from './RankedPlayer';
 import Spacer from './Spacer';
 import TabIcon from './TabIcon';
@@ -32,6 +33,7 @@ export {
   JumboButton,
   List,
   ListItem,
+  Player,
   RankedPlayer,
   Spacer,
   TabIcon,

@@ -62,7 +62,7 @@ class Drawer extends Component {
 
   render() {
     const state = this.props.navigationState;
-    const children = state.children;
+    const { children } = state;
 
     return (
       <SideMenu

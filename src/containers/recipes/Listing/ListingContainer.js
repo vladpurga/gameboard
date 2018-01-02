@@ -69,8 +69,8 @@ class MealListing extends Component {
     * Fetch Data from API
     */
   fetchRecipes = () => this.props.getRecipes()
-    .then(() => this.setState({ error: null, loading: false }))
-    .catch(err => this.setState({ error: err.message, loading: false }))
+    .then(() => this.setState({ loading: false }))
+    .catch(() => this.setState({ loading: false }))
 
   render = () => {
     if (this.state.loading) return <Loading />;

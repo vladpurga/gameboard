@@ -26,29 +26,38 @@ const styles = StyleSheet.create({
   },
 });
 
-const WizardPage = ({ children, nextLabel, previousLabel, onNext, onPrevious }) => (
-  <View style={styles.container}>
-    <ScrollView style={styles.top}>
-      {children}
-    </ScrollView>
-    <View style={styles.bottom}>
-      { onPrevious &&
-        <View style={styles.buttonContainer}>
-          <Button block light onPress={onPrevious}>
-            <Text style={{ color: 'black' }}>{previousLabel}</Text>
-          </Button>
-        </View>
-      }
-      { onNext &&
-        <View style={styles.buttonContainer}>
-          <Button block primary onPress={onNext}>
-            <Text>{nextLabel}</Text>
-          </Button>
-        </View>
-      }
+const WizardPage = (props) => {
+  const {
+    children,
+    nextLabel,
+    previousLabel,
+    onNext,
+    onPrevious,
+  } = props;
+  return (
+    <View style={styles.container}>
+      <ScrollView style={styles.top}>
+        {children}
+      </ScrollView>
+      <View style={styles.bottom}>
+        { onPrevious &&
+          <View style={styles.buttonContainer}>
+            <Button block light onPress={onPrevious}>
+              <Text style={{ color: 'black' }}>{previousLabel}</Text>
+            </Button>
+          </View>
+        }
+        { onNext &&
+          <View style={styles.buttonContainer}>
+            <Button block primary onPress={onNext}>
+              <Text>{nextLabel}</Text>
+            </Button>
+          </View>
+        }
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 WizardPage.propTypes = {
   children: PropTypes.node,

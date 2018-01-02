@@ -21,8 +21,6 @@ import Analytics from '@lib/analytics';
 // All redux reducers (rolled into one mega-reducer)
 import rootReducer from '@redux/index';
 
-const Root = require('./Root');
-
 // Connect RNRF with Redux
 const RouterWithRedux = connect()(Router);
 

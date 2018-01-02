@@ -1,7 +1,7 @@
 /**
  * Error Screen
  *
-    <Error text={'Server is down'} />
+    <Error text="Server is down" />
  *
  * React Native Starter App
  * https://github.com/mcnamee/react-native-starter-app
@@ -20,7 +20,7 @@ import { Spacer, Text, Button } from '@ui/';
 /* Component ==================================================================== */
 const Error = ({ text, tryAgain }) => (
   <View style={[AppStyles.container, AppStyles.containerCentered]}>
-    <Icon name={'ios-alert-outline'} size={50} color={'#CCC'} />
+    <Icon name="ios-alert-outline" size={50} color="#CCC" />
 
     <Spacer size={10} />
 
@@ -32,7 +32,7 @@ const Error = ({ text, tryAgain }) => (
       <Button
         small
         outlined
-        title={'Try again'}
+        title="Try again"
         onPress={tryAgain}
       />
     }

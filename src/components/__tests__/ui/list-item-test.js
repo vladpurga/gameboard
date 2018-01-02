@@ -11,8 +11,8 @@ import ListItem from '@ui/ListItem';
 it('ListItem renders correctly', () => {
   const tree = renderer.create(
     <ListItem
-      title={'Hello world'}
-      subTitle={'Sub title'}
+      title="Hello world"
+      subTitle="Sub title"
       roundAvatar
       avatar={require('../../../image.png')}
     />,

@@ -1,7 +1,7 @@
 /**
  * Loading Screen
  *
-     <Loading text={'Server is down'} />
+     <Loading text="Server is down" />
  *
  * React Native Starter App
  * https://github.com/mcnamee/react-native-starter-app
@@ -27,7 +27,7 @@ const Loading = ({ text, transparent }) => (
   >
     <ActivityIndicator
       animating
-      size={'large'}
+      size="large"
       color={transparent ? '#000' : '#AAA'}
     />
 

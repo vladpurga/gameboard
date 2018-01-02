@@ -1,69 +1,48 @@
-/**
- * Text Input
- *
-     <FormInput></FormInput>
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'native-base';
+import { View } from 'react-native';
+import { Icon, Item, Label, Input, Text } from 'native-base';
 
-// Consts and Libs
-import { AppColors, AppFonts } from '@theme/';
+const FormInput = (props) => {
+  const {
+    input,
+    autoFocus,
+    placeHolder,
+    label,
+    meta: {
+      touched,
+      error,
+    },
+  } = props;
+  const showError = touched && !!error;
 
-/* Component ==================================================================== */
-class CustomFormInput extends Component {
-  static propTypes = {
-    containerStyle: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.shape({}),
-    ]),
-    inputStyle: PropTypes.oneOfType([
-      PropTypes.array,
-      PropTypes.shape({}),
-    ]),
-  }
+  const renderError = () => (
+    <View>
+      <Text>{error}</Text>
+      <Icon name="close-circle" />
+    </View>
+  );
 
-  static defaultProps = {
-    containerStyle: [],
-    inputStyle: [],
-  }
+  return (
+    <View>
+      {label ? <Label>{label}</Label> : null}
+      <Item error={showError} regular>
+        <Input {...input} placeHolder={placeHolder} autoFocus={autoFocus} />
+        {showError && renderError()}
+      </Item>
+    </View>
+  );
+};
 
-  inputProps = () => {
-    // Defaults
-    const props = {
-      ...this.props,
-      containerStyle: [{
-        borderBottomColor: AppColors.border,
-        borderBottomWidth: 1,
-        backgroundColor: 'rgba(255,255,255,0.05)',
-        marginTop: 10,
-        marginLeft: 0,
-        marginRight: 0,
-      }],
-      inputStyle: [{
-        color: AppColors.textPrimary,
-        fontFamily: AppFonts.base.family,
-        paddingHorizontal: 0,
-        paddingVertical: 3,
-      }],
-    };
+FormInput.propTypes = {
+  input: PropTypes.string.isRequired,
+  autoFocus: PropTypes.string.isRequired,
+  placeHolder: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  meta: PropTypes.shape({
+    touched: PropTypes.boolean.isRequired,
+    error: PropTypes.error.isRequired,
+  }).isRequired,
+};
 
-    if (this.props.containerStyle) {
-      props.containerStyle.push(this.props.containerStyle);
-    }
-
-    if (this.props.inputStyle) {
-      props.inputStyle.push(this.props.inputStyle);
-    }
-
-    return props;
-  }
-
-  render = () => <Input {...this.inputProps()} />
-}
-
-/* Export Component ==================================================================== */
-export default CustomFormInput;
+export default FormInput;

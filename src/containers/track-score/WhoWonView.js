@@ -58,7 +58,13 @@ class WhoWon extends Component {
   }
 
   render = () => {
-    const { handleSubmit, previousPage, change, game, players } = this.props;
+    const {
+      handleSubmit,
+      previousPage,
+      change,
+      game,
+      players,
+    } = this.props;
 
     //  Get the next available rank from the set of players.
     const nextAvailableRank = rankings.nextFreeRank(players);

@@ -49,7 +49,14 @@ class RecipeCard extends Component {
   }
 
   render = () => {
-    const { title, body, image, onPress, onPressFavourite, isFavourite } = this.props;
+    const {
+      title,
+      body,
+      image,
+      onPress,
+      onPressFavourite,
+      isFavourite,
+    } = this.props;
 
     return (
       <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
@@ -66,7 +73,7 @@ class RecipeCard extends Component {
               >
                 <Icon
                   raised
-                  name={'star-border'}
+                  name="star-border"
                   color={isFavourite ? '#FFFFFF' : '#FDC12D'}
                   containerStyle={{
                     backgroundColor: isFavourite ? '#FDC12D' : '#FFFFFF',

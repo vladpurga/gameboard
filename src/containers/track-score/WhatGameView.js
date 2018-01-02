@@ -16,6 +16,8 @@ class WhatGame extends Component {
   static componentName = 'WhatGame';
 
   static propTypes = {
+    //  This property is used in the connect function, but eslint don't know that
+    // eslint-disable-next-line react/no-unused-prop-types
     game: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     onNext: PropTypes.func.isRequired,

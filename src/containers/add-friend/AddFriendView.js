@@ -28,7 +28,13 @@ class AddFriend extends Component {
   }
 
   submit = (values) => {
-    this.props.addFriend(values);
+    //  Before we add a friend, we need to give them an id. If we have an email,
+    //  perfect. If not, their name becomes their id.
+    const friend = values;
+    Object.assign(friend, { id: (friend.email || friend.name) });
+
+    //  Add the friend, and pop the view.
+    this.props.addFriend(friend);
     Actions.pop();
   }
 

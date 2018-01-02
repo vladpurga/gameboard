@@ -24,7 +24,6 @@ class CustomFormLabel extends Component {
   }
 
   static defaultProps = {
-    containerStyle: [],
     labelStyle: [],
     children: null,
   }

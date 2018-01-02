@@ -11,8 +11,8 @@ import { List, ListItem } from '@ui';
 it('List renders correctly', () => {
   const tree = renderer.create(
     <List>
-      <ListItem title={'Hello'} />
-      <ListItem title={'Second'} />
+      <ListItem title="Hello" />
+      <ListItem title="Second" />
     </List>,
   ).toJSON();
 

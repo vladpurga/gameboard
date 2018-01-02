@@ -6,20 +6,14 @@ import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
 import {
   Button,
-  Card,
-  CardItem,
-  Left,
-  Body,
-  Right,
   H1,
   H2,
   Icon,
   Text,
-  Thumbnail,
 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Spacer, WizardPage } from '@components/ui/';
+import { Player, Spacer, WizardPage } from '@components/ui/';
 
 class WhoPlayed extends Component {
   static componentName = 'WhoPlayed';
@@ -37,54 +31,6 @@ class WhoPlayed extends Component {
   static defaultProps = {
   }
 
-  componentWillReceiveProps() {
-  }
-
-  renderPlayer = (props) => {
-    const {
-      id,
-      name,
-      email,
-      imageUri,
-      onAdd,
-      onRemove,
-    } = props;
-
-    return (
-      <Card key={id} style={{ borderRadius: 10 }}>
-        <CardItem style={{ borderRadius: 10 }}>
-          <Left>
-            <Thumbnail source={{ uri: imageUri }} />
-            <Body>
-              <Text>{name}</Text>
-              <Text note>{email}</Text>
-            </Body>
-          </Left>
-          <Right>
-            { onAdd &&
-              <Button
-                transparent
-                light
-                onPress={onAdd}
-              >
-                <Icon name="add" style={{ fontSize: 32, paddingRight: 10, color: 'black' }} />
-              </Button>
-            }
-            { onRemove &&
-              <Button
-                transparent
-                light
-                onPress={onRemove}
-              >
-                <Icon name="remove" style={{ fontSize: 32, paddingRight: 10, color: 'black' }} />
-              </Button>
-            }
-          </Right>
-        </CardItem>
-      </Card>
-    );
-  }
-
   render = () => {
     const {
       onNext,
@@ -94,6 +40,11 @@ class WhoPlayed extends Component {
       players,
     } = this.props;
 
+    //  The available players to add to the game are our set of friends who are
+    //  not yet already in the player list.
+    const playerKeys = players.map(p => p.id);
+    const availableFriends = friends.filter(f => playerKeys.indexOf(f.id) === -1);
+
     return (
       <WizardPage
         onPrevious={previousPage}
@@ -101,10 +52,12 @@ class WhoPlayed extends Component {
       >
         <H1>Who Played {game}?</H1>
         <Spacer size={20} />
-        { players.map(player => this.renderPlayer({
-            ...player,
-            onRemove: () => this.props.trackScoreRemovePlayer(player.id),
-          }))
+        { players.map(player => (
+          <Player
+            player={player}
+            onRemove={() => this.props.trackScoreRemovePlayer(player.id)}
+          />
+          ))
         }
 
         <Button
@@ -117,10 +70,12 @@ class WhoPlayed extends Component {
           <Text>Add Friend</Text>
         </Button>
         <H2>Friends</H2>
-        { friends.map(player => this.renderPlayer({
-            ...player,
-            onAdd: () => this.props.trackScoreAddPlayer(player),
-          }))
+        { availableFriends.map(player => (
+          <Player
+            player={player}
+            onAdd={() => this.props.trackScoreAddPlayer(player)}
+          />
+          ))
         }
       </WizardPage>
     );

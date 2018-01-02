@@ -18,7 +18,7 @@ it('Alerts (empty) renders correctly', () => {
 
 it('Alerts (Sucess) renders correctly', () => {
   const tree = renderer.create(
-    <Alerts success={'Hello Success'} />,
+    <Alerts success="Hello Success" />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -26,7 +26,7 @@ it('Alerts (Sucess) renders correctly', () => {
 
 it('Alerts (Error) renders correctly', () => {
   const tree = renderer.create(
-    <Alerts error={'Error hey'} />,
+    <Alerts error="Error hey" />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -34,7 +34,7 @@ it('Alerts (Error) renders correctly', () => {
 
 it('Alerts (Status) renders correctly', () => {
   const tree = renderer.create(
-    <Alerts status={'Something\'s happening...'} />,
+    <Alerts status="Something\'s happening..." />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

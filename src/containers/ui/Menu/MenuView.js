@@ -163,19 +163,19 @@ class Menu extends Component {
                   AppStyles.textCenterAligned,
                 ]}
               >
-                Logged in as:{'\n'}
+                Logged in as: {'\n'}
                 {this.props.user.email}
               </Text>
 
               <Spacer size={10} />
 
               <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVerticalSml]}>
-                <Button small title={'Log Out'} onPress={this.logout} />
+                <Button small title="Log Out" onPress={this.logout} />
               </View>
             </View>
           :
             <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVerticalSml]}>
-              <Button small title={'Log In'} onPress={() => this.onPress(Actions.login)} />
+              <Button small title="Log In" onPress={() => this.onPress(Actions.login)} />
             </View>
           }
         </View>

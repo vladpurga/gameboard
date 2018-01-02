@@ -10,7 +10,7 @@ import TabIcon from '@ui/TabIcon';
 
 it('TabIcon renders correctly', () => {
   const tree = renderer.create(
-    <TabIcon icon={'help'} selected />,
+    <TabIcon icon="help" selected />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

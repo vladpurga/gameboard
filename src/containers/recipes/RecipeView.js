@@ -90,7 +90,13 @@ class RecipeView extends Component {
   }
 
   render = () => {
-    const { title, body, image, ingredients, method } = this.props.recipe;
+    const {
+      title,
+      body,
+      image,
+      ingredients,
+      method,
+    } = this.props.recipe;
 
     return (
       <ScrollView style={[AppStyles.container]}>

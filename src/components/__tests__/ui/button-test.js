@@ -29,7 +29,7 @@ it('Button with onPress renders correctly', () => {
 
 it('Button with Text renders correctly', () => {
   const tree = renderer.create(
-    <Button onPress={onPress} title={'Test Button'} />,
+    <Button onPress={onPress} title="Test Button" />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

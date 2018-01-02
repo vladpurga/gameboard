@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1514887396982" clover="3.2.0">
+  <project timestamp="1514887396982" name="All files">
+    <metrics statements="18" coveredstatements="12" conditionals="5" coveredconditionals="3" methods="10" coveredmethods="4" elements="33" coveredelements="19" complexity="0" loc="18" ncloc="18" packages="2" files="3" classes="3">
+      <package name="gameboard-app">
+        <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <file name="jest.setup.js" path="/Users/dave/repos/github/dwmkerr/gameboard-app/jest.setup.js">
+          <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+          <line num="3" count="2" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="14" count="2" type="stmt"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="24" count="2" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="gameboard-app.src.redux.sidemenu">
+        <metrics statements="9" coveredstatements="8" conditionals="5" coveredconditionals="3" methods="4" coveredmethods="4"/>
+        <file name="actions.js" path="/Users/dave/repos/github/dwmkerr/gameboard-app/src/redux/sidemenu/actions.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="21" count="2" type="stmt"/>
+        </file>
+        <file name="reducer.js" path="/Users/dave/repos/github/dwmkerr/gameboard-app/src/redux/sidemenu/reducer.js">
+          <metrics statements="6" coveredstatements="5" conditionals="5" coveredconditionals="3" methods="1" coveredmethods="1"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="15" count="3" type="cond" truecount="3" falsecount="1"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

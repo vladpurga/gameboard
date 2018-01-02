@@ -75,7 +75,9 @@ export function login(formData = {}, verifyEmail = false) {
     // When no credentials passed in, check AsyncStorage for existing details
     if (!email || !password) {
       const credsFromStorage = await getCredentialsFromStorage();
+      //  eslint-disable-next-line prefer-destructuring
       if (!email) email = credsFromStorage.email;
+      //  eslint-disable-next-line prefer-destructuring
       if (!password) password = credsFromStorage.password;
     }
 

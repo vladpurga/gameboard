@@ -142,7 +142,7 @@ class StyleGuide extends Component {
     */
   renderScene = ({ route }) => {
     switch (route.key) {
-      case '0' :
+      case '0':
         return (
           <View style={styles.tabContainer}>
             <ScrollView
@@ -169,47 +169,47 @@ class StyleGuide extends Component {
             </ScrollView>
           </View>
         );
-      case '1' :
+      case '1':
         return (
           <View style={styles.tabContainer}>
             <ScrollView
               automaticallyAdjustContentInsets={false}
               style={[AppStyles.container]}
             >
-              <Card title={'Buttons'}>
+              <Card title="Buttons">
                 <View>
                   <Button
                     large
-                    title={'Large'}
+                    title="Large"
                     onPress={Actions.comingSoon}
                   />
                   <Spacer size={10} />
 
                   <Button
                     large
-                    title={'W/ Icon'}
-                    backgroundColor={'#33BB76'}
+                    title="W/ Icon"
+                    backgroundColor="#33BB76"
                     icon={{ name: 'code' }}
                     onPress={Actions.comingSoon}
                   />
                   <Spacer size={10} />
 
                   <Button
-                    title={'Default'}
+                    title="Default"
                     onPress={Actions.comingSoon}
                   />
                   <Spacer size={10} />
 
                   <Button
-                    title={'Colored'}
-                    backgroundColor={'#FB6567'}
+                    title="Colored"
+                    backgroundColor="#FB6567"
                     onPress={Actions.comingSoon}
                   />
                   <Spacer size={10} />
 
                   <Button
                     small
-                    title={'Small'}
+                    title="Small"
                     onPress={Actions.comingSoon}
                   />
                   <Spacer size={10} />
@@ -218,7 +218,7 @@ class StyleGuide extends Component {
                     small
                     outlined
                     iconRight
-                    title={'Outlined'}
+                    title="Outlined"
                     icon={{ name: 'cached' }}
                     onPress={Actions.comingSoon}
                   />
@@ -229,14 +229,14 @@ class StyleGuide extends Component {
             </ScrollView>
           </View>
         );
-      case '2' :
+      case '2':
         return (
           <View style={styles.tabContainer}>
             <ScrollView
               automaticallyAdjustContentInsets={false}
               style={[AppStyles.container]}
             >
-              <Card title={'Typography'}>
+              <Card title="Typography">
                 <View>
                   <Text h1>Heading 1</Text>
                   <Text h2>Heading 2</Text>
@@ -247,8 +247,7 @@ class StyleGuide extends Component {
                   <Text p>
                     Mus ac nostra lobortis sapien a erat in risus purus odio
                     egestas a donec fringilla scelerisque congue parturient
-                    condimentum penatibus neque urna magna. <Text onPress={() => Alert.alert('hey')}>
-                    Leo dictumst</Text> senectus inceptos parturient pharetra.
+                    condimentum penatibus neque urna magna. <Text onPress={() => Alert.alert('hey')}> Leo dictumst</Text> senectus inceptos parturient pharetra.
                   </Text>
                   <Text p>
                     Mus ac nostra lobortis sapien a erat in risus purus odio
@@ -259,17 +258,17 @@ class StyleGuide extends Component {
                 </View>
               </Card>
 
-              <Card title={'Alerts'}>
+              <Card title="Alerts">
                 <Alerts
-                  status={'Something\'s happening...'}
-                  success={'Hello Success'}
-                  error={'Error hey'}
+                  status="Something\'s happening..."
+                  success="Hello Success"
+                  error="Error hey"
                 />
               </Card>
             </ScrollView>
           </View>
         );
-      case '3' :
+      case '3':
         return (
           <View style={styles.tabContainer}>
             <ScrollView
@@ -315,7 +314,7 @@ class StyleGuide extends Component {
             </ScrollView>
           </View>
         );
-      case '4' :
+      case '4':
         return (
           <View style={styles.tabContainer}>
             <ScrollView
@@ -334,7 +333,7 @@ class StyleGuide extends Component {
             </ScrollView>
           </View>
         );
-      default :
+      default:
         return (
           <View />
         );

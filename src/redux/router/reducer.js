@@ -14,7 +14,7 @@ const initialState = {
 export default function routerReducer(state = initialState, action) {
   switch (action.type) {
     // focus action is dispatched when a new screen comes into focus
-    case ActionConst.FOCUS :
+    case ActionConst.FOCUS:
       return {
         ...state,
         scene: action.scene,
@@ -22,7 +22,7 @@ export default function routerReducer(state = initialState, action) {
 
     // ...other actions
 
-    default :
+    default:
       return state;
   }
 }

@@ -10,7 +10,7 @@ import FormInput from '@ui/FormInput';
 
 it('FormInput renders correctly', () => {
   const tree = renderer.create(
-    <FormInput value={'John Smith'} />,
+    <FormInput value="John Smith" />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

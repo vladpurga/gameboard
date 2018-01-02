@@ -55,7 +55,12 @@ class AddScore extends Component {
   )
 
   render = () => {
-    const { handleSubmit, previousPage, game, players } = this.props;
+    const {
+      handleSubmit,
+      previousPage,
+      game,
+      players,
+    } = this.props;
 
     //  Rank the players, keeping track of thier index so that we can use a
     //  Field to edit the value.

@@ -11,9 +11,9 @@ import CardView from '@containers/recipes/Card/CardView';
 it('CardView renders correctly', () => {
   const tree = renderer.create(
     <CardView
-      image={'http://placehold.it/300x100'}
-      title={'A Cake'}
-      content={'It\'s so delicious!'}
+      image="http://placehold.it/300x100"
+      title="A Cake"
+      content="It\'s so delicious!"
     />,
   ).toJSON();
 

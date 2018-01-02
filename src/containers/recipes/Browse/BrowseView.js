@@ -51,7 +51,6 @@ class RecipeTabs extends Component {
   }
 
   static defaultProps = {
-    meals: [],
   }
 
   constructor(props) {

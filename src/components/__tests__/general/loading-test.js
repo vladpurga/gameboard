@@ -18,7 +18,7 @@ it('Loading renders correctly', () => {
 
 it('Loading w/ text renders correctly', () => {
   const tree = renderer.create(
-    <Loading text={'Checking for Updates'} />,
+    <Loading text="Checking for Updates" />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

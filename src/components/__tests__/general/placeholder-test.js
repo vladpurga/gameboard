@@ -18,7 +18,7 @@ it('Placeholder renders correctly', () => {
 
 it('Placeholder w/ Text renders correctly', () => {
   const tree = renderer.create(
-    <Placeholder text={'Hello world!'} />,
+    <Placeholder text="Hello world!" />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
