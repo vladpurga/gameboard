@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Body, Button, Card, CardItem, Icon, Text, Thumbnail } from 'native-base';
+import { Body, Card, CardItem, Text, Thumbnail } from 'native-base';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -14,17 +14,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+
+  bodyContainer: {
+    flex: 1,
+    paddingLeft: 8,
+    paddingRight: 8,
+    alignSelf: 'center',
+  },
+
+  childrenContainer: {
+    flex: 0,
+    paddingRight: 10,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
 });
 
 const Player = ({ player, hideIcon, children }) => (
   <Card key={player.id} style={styles.playerCard}>
     <CardItem style={styles.playerCardItem}>
-      { (!hideIcon) && <Thumbnail source={{ uri: player.imageUri }} style={{ flex: 0 }}/> }
-      <Body style={{ flex: 1, paddingLeft: 8, paddingRight: 8, alignSelf: 'center' }}>
+      { (!hideIcon) && <Thumbnail source={{ uri: player.imageUri }} style={{ flex: 0 }} /> }
+      <Body style={styles.bodyContainer}>
         <Text>{player.name}</Text>
         <Text note>{player.email}</Text>
       </Body>
-      <View style={{ flex: 0, paddingRight: 10, flexDirection: 'row', alignSelf: 'center' }}>
+      <View style={styles.childrenContainer}>
         {children}
       </View>
     </CardItem>
