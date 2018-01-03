@@ -12,6 +12,7 @@ import { reducer as formReducer } from 'redux-form';
 import friends from '@redux/friends/reducer';
 import login from '@redux/login/reducer';
 import gameStats from '@redux/game-stats/reducer';
+import history from '@redux/history/reducer';
 import router from '@redux/router/reducer';
 import sideMenu from '@redux/sidemenu/reducer';
 import user from '@redux/user/reducer';
@@ -23,6 +24,7 @@ const appReducer = combineReducers({
   friends,
   login,
   gameStats,
+  history,
   router,
   sideMenu,
   user,

@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import firebase from '@lib/firebase';
 import { setGame } from '../game-stats/actions';
 import * as FriendsActions from '../friends/actions';
+import * as HistoryActions from '../history/actions';
 
 export const login = () => (dispatch) => {
   //  Start logging in - we're busy.
@@ -63,6 +64,7 @@ export const googleLogin = idToken => async (dispatch) => {
   //  Also start watching online data.
   setGame('Grifters')(dispatch);
   FriendsActions.watchFriends()(dispatch);
+  HistoryActions.watchHistory()(dispatch);
 };
 
 export const resume = () => async (dispatch) => {

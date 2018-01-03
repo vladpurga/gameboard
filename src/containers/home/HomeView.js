@@ -74,6 +74,18 @@ class Home extends Component {
 
         <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
           <View style={[AppStyles.flex1]}>
+            <JumboButton
+              title="History"
+              subtitle="Log of all games"
+              onPress={Actions.History}
+            />
+          </View>
+        </View>
+
+        <Spacer size={10} />
+
+        <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
+          <View style={[AppStyles.flex1]}>
             <Button onPress={logout}>
               <Text>Logout</Text>
             </Button>

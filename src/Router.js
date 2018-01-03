@@ -8,6 +8,8 @@ import { AppConfig } from '@constants/';
 import AddFriend from '@containers/add-friend/AddFriendContainer';
 import Launch from '@containers/launch/LaunchContainer';
 import Login from '@containers/login/LoginContainer';
+import History from '@containers/history/HistoryContainer';
+import HistoryPlayedGame from '@containers/history/HistoryPlayedGame';
 import Home from '@containers/home/HomeContainer';
 import TrackScore from '@containers/track-score/TrackScoreContainer';
 import GameStats from '@containers/game-stats/GameStatsContainer';
@@ -43,29 +45,29 @@ const Index = (
       />
 
       <Scene
+        key="History"
+        title="HISTORY"
+        component={History}
+        icon={() => <Icon name="stats" {...AppConfig.icons} />}
+        {...AppConfig.navbarProps}
+      />
+
+      <Scene
+        key="HistoryPlayedGame"
+        title="HISTORY"
+        component={HistoryPlayedGame}
+        icon={() => <Icon name="stats" {...AppConfig.icons} />}
+        {...AppConfig.navbarProps}
+        clone
+      />
+
+      <Scene
         key="AddFriend"
         title="ADD FRIEND"
         component={AddFriend}
         icon={() => <Icon name="add" {...AppConfig.icons} />}
         {...AppConfig.navbarProps}
       />
-      { /* The Nav Bar is the element on the bottom of the screen which allows
-          fast switching between sections of the app.
-          <Stack>
-            <Scene hideNavBar>
-              <Tabs
-                key="tabbar"
-                swipeEnabled
-                type="replace"
-                showLabel={false}
-                {...AppConfig.tabProps}
-              >
-
-
-              </Tabs>
-            </Scene>
-          </Stack> */
-      }
     </Stack>
   </Router>
 );
