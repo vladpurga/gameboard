@@ -141,7 +141,7 @@ exports[`Alerts (Status) renders correctly 1`] = `
           ]
         }
       >
-        Something's happening...
+        Something\\'s happening...
       </Text>
     </View>
     <View

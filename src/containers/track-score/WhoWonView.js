@@ -62,11 +62,9 @@ class WhoWon extends Component {
     //  Get the next available rank from the set of players.
     const nextAvailableRank = rankings.nextFreeRank(players);
 
-    const rankedPlayers = players.reduce((acc, player, index) => {
+    const rankedPlayers = players.reduce((acc, player) => {
       acc[player.rank] = acc[player.rank] || [];
-      //  keep track of the original index, a fudge so that we can tell redux
-      //  form which element we are changing, even when we re-order them
-      acc[player.rank].push({ ...player, index });
+      acc[player.rank].push({ ...player });
       return acc;
     }, { [nextAvailableRank]: [] }); // the next available rank is shown
 

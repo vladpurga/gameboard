@@ -27,7 +27,16 @@ exports[`Error renders correctly 1`] = `
           "color": "#CCC",
           "fontSize": 50,
         },
-        undefined,
+        Array [
+          Object {
+            "color": "#000",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#000",
+            "fontSize": 30,
+          },
+        ],
         Object {
           "fontFamily": "Ionicons",
           "fontStyle": "normal",
@@ -35,6 +44,7 @@ exports[`Error renders correctly 1`] = `
         },
       ]
     }
+    virtual={undefined}
   >
     
   </Text>
@@ -116,7 +126,16 @@ exports[`Error w/ Try Again Button renders correctly 1`] = `
           "color": "#CCC",
           "fontSize": 50,
         },
-        undefined,
+        Array [
+          Object {
+            "color": "#000",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#000",
+            "fontSize": 30,
+          },
+        ],
         Object {
           "fontFamily": "Ionicons",
           "fontStyle": "normal",
@@ -124,6 +143,7 @@ exports[`Error w/ Try Again Button renders correctly 1`] = `
         },
       ]
     }
+    virtual={undefined}
   >
     
   </Text>
@@ -176,129 +196,44 @@ exports[`Error w/ Try Again Button renders correctly 1`] = `
     }
   />
   <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    collapsable={undefined}
+    hasTVPreferredFocus={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
     style={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-          "marginLeft": 15,
-          "marginRight": 15,
-        },
-        false,
-        Object {
-          "marginLeft": 0,
-          "marginRight": 0,
-        },
-      ]
-    }
-  >
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
+      Object {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "backgroundColor": "#007aff",
+        "borderBottomWidth": null,
+        "borderColor": "#007aff",
+        "borderLeftWidth": null,
+        "borderRadius": 5,
+        "borderRightWidth": null,
+        "borderTopWidth": null,
+        "elevation": 2,
+        "flexDirection": "row",
+        "height": 30,
+        "justifyContent": "space-between",
+        "opacity": 1,
+        "paddingBottom": 6,
+        "paddingTop": 6,
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#9E9E9E",
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "padding": 19,
-            },
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
-              "borderRadius": 2,
-            },
-            Object {
-              "padding": 12,
-            },
-            undefined,
-            undefined,
-            undefined,
-            Object {
-              "borderColor": "#0E4EF8",
-              "borderWidth": 1,
-              "padding": 8,
-            },
-            undefined,
-            undefined,
-          ]
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {},
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              Array [
-                Object {
-                  "color": "white",
-                  "fontSize": 20,
-                },
-                Object {
-                  "color": "#0E4EF8",
-                },
-                Object {
-                  "fontSize": 17.5,
-                },
-                Object {
-                  "fontSize": 12,
-                },
-                undefined,
-                Object {
-                  "fontWeight": "bold",
-                },
-                Object {
-                  "fontFamily": "HelveticaNeue",
-                },
-              ],
-            ]
-          }
-        >
-          Try again
-        </Text>
-      </View>
-    </View>
-  </View>
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
+  />
 </View>
 `;

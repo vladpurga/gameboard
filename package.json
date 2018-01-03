@@ -4,17 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "pretest": "./node_modules/.bin/eslint -c .eslintrc --ext .js src",
     "lint": "eslint src",
     "test": "jest"
   },
   "jest": {
     "preset": "react-native",
-    "setupFiles": [
-      "<rootDir>/jest.setup.js"
-    ],
     "transformIgnorePatterns": [
-      "node_modules/(?!react-native|tcomb-form-native|apsl-react-native-button,react-clone-referenced-element)"
+      "node_modules/(?!mobx-react|native-base|react-native|react-navigation|tcomb-form-native|apsl-react-native-button,react-clone-referenced-element)"
     ],
     "collectCoverage": true,
     "verbose": true
@@ -52,7 +48,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
-    "jest": "^20.0.4",
+    "jest": "^22.0.4",
     "jest-react-native": "^18.0.0",
     "react-test-renderer": "^16.2.0"
   }

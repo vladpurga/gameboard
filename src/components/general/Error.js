@@ -9,13 +9,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Button, Icon } from 'native-base';
 
 // Consts and Libs
 import { AppStyles } from '@theme/';
 
 // Components
-import { Spacer, Text, Button } from '@ui/';
+import { Spacer, Text } from '@ui/';
 
 /* Component ==================================================================== */
 const Error = ({ text, tryAgain }) => (

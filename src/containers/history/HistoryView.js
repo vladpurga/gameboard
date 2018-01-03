@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import { Body, Button, Content, Icon, Left, List, ListItem, Right, Separator } from 'native-base';
+import { Body, Content, Icon, Left, List, ListItem, Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
@@ -36,11 +36,13 @@ class History extends Component {
     return (
       <Content style={styles.content}>
         <List>
-          <Separator bordered>
-            <Text>TODAY</Text>
-          </Separator>
           {history.playedGames.map(pg => (
-            <ListItem key={pg.key} icon>
+            <ListItem
+              key={pg.key}
+              button
+              onPress={() => Actions.HistoryPlayedGame({ playedGame: pg })}
+              icon
+            >
               <Left>
                 <Icon name="podium" />
               </Left>
@@ -49,11 +51,7 @@ class History extends Component {
               </Body>
               <Right>
                 <Text>Details</Text>
-                <Button
-                  onPress={() => Actions.HistoryPlayedGame({ playedGame: pg })}
-                >
-                  <Icon name="arrow-forward" />
-                </Button>
+                <Icon name="arrow-forward" />
               </Right>
             </ListItem>
           ))
