@@ -51,8 +51,9 @@ export function setGame(game) {
 
 export function addPlayer(player) {
   //  Whenever we add a player, if we don't have an id, set one.
-  if (!player.id) player.id = player.email || player.name;
-  if (player.rank === undefined) player.rank = null;
+  if (!player.id) Object.assign(player, { id: (player.email || player.name) });
+  if (player.rank === undefined) Object.assign(player, { rank: null });
+
 
   return {
     type: 'TRACK_SCORE_ADD_PLAYER',

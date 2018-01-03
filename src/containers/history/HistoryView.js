@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import { Body, Content, Icon, Left, List, ListItem, Right, Separator } from 'native-base';
+import { Body, Button, Content, Icon, Left, List, ListItem, Right, Separator } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 const styles = StyleSheet.create({
   content: {
@@ -50,6 +51,7 @@ class History extends Component {
                 <Text>Details</Text>
                 <Button
                   onPress={() => Actions.HistoryPlayedGame({ playedGame: pg })}
+                >
                   <Icon name="arrow-forward" />
                 </Button>
               </Right>

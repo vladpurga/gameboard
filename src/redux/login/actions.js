@@ -40,8 +40,6 @@ export const googleLogin = idToken => async (dispatch) => {
   } catch (error) {
     const {
       errorCode,
-      errorMessage,
-      email,
     } = error;
     if (errorCode === 'auth/account-exists-with-different-credential') {
       // Email already associated with another account.

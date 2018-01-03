@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   StyleSheet,
-  Text,
 } from 'react-native';
-import { Body, Content, Icon, Left, List, ListItem, Right, Separator } from 'native-base';
+import { Content, H1 } from 'native-base';
 
 const styles = StyleSheet.create({
   content: {
