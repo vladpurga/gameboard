@@ -25,7 +25,7 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run: bundle install
-      - run: bundle exec fastlane test
+      - run: bundle exec fastlane android build
       - store_test_results:
           path: ~/project/android/reports
 
