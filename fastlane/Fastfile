@@ -1,9 +1,9 @@
 fastlane_version '2.72.0'
 
 before_all do
-  ensure_git_branch
-  ensure_git_status_clean
-  git_pull
+  # ensure_git_branch
+  # ensure_git_status_clean
+  # git_pull
 end
 
 platform :ios do
@@ -14,9 +14,13 @@ platform :ios do
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'appstore', readonly: true)
     end
 
-    lane :build do
-        gym
-    end
+	desc 'Build the iOS application.'
+	lane :build do
+      register_devices(devices_file: "./fastlane/devices.txt")
+      match(app_identifier: 'com.dwmkerr.gameboard', type: 'adhoc', force_for_new_devices: true)
+	  increment_build_number(xcodeproj: './ios/GameBoard.xcodeproj')
+	  gym(scheme: 'GameBoard', project: './ios/GameBoard.xcodeproj')
+	end
 end
 
 platform :android do

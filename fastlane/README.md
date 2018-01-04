@@ -27,7 +27,7 @@ Fetch certificates and provisioning profiles
 ```
 fastlane ios build
 ```
-
+Build the iOS application.
 
 ----
 
