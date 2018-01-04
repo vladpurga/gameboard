@@ -23,6 +23,12 @@ bundle update
 
 Fastlane certs keyphrase: `gameboard`
 
+## CircleCI
+
+Followed the docs at:
+
+https://circleci.com/docs/2.0/ios-codesigning/
+
 ## Social Accounts
 
 - Twitter: https://apps.twitter.com/app/14632367
