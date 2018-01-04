@@ -1,0 +1,21 @@
+fastlane_version '2.72.0'
+
+before_all do
+  ensure_git_branch
+  ensure_git_status_clean
+  git_pull
+end
+
+platform :ios do
+    desc 'Fetch certificates and provisioning profiles'
+    lane :certificates do
+      match(app_identifier: 'com.dwmkerr.gameboard', type: 'development', readonly: true)
+      match(app_identifier: 'com.dwmkerr.gameboard', type: 'appstore', readonly: true)
+    end
+end
+
+platform :android do
+  # Android Lanes
+end
+
+

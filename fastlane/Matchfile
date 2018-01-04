@@ -1,0 +1,11 @@
+git_url "git@github.com:dwmkerr/dwmkerr.git"
+git_branch "fastlane-match"
+clone_branch_directly true
+
+type "development" # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier ["com.dwmkerr.gameboard"]
+username "dwmkerr@gmail.com" # Your Apple Developer Portal username
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options

@@ -9,6 +9,18 @@
 
 # GameBoard
 
+## Setup
+
+You'll need to setup some tools on your dev machine:
+
+```bash
+brew cask install fastlane
+```
+
+## Credentials
+
+Fastlane certs keyphrase: `gameboard`
+
 ## Social Accounts
 
 - Twitter: https://apps.twitter.com/app/14632367
