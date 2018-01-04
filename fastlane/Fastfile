@@ -8,9 +8,14 @@ end
 
 platform :ios do
     desc 'Fetch certificates and provisioning profiles'
+
     lane :certificates do
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'development', readonly: true)
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'appstore', readonly: true)
+    end
+
+    lane :build do
+        gym
     end
 end
 

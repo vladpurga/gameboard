@@ -23,6 +23,11 @@ xcode-select --install
 fastlane ios certificates
 ```
 Fetch certificates and provisioning profiles
+### ios build
+```
+fastlane ios build
+```
+
 
 ----
 
