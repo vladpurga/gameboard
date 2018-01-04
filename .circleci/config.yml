@@ -34,6 +34,8 @@ jobs:
       xcode: "9.0"
     working_directory: /Users/distiller/project
     environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
       FL_OUTPUT_DIR: /Users/distiller/project/output
     shell: /bin/bash --login -o pipefail
     steps:
