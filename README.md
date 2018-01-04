@@ -14,7 +14,9 @@
 You'll need to setup some tools on your dev machine:
 
 ```bash
-brew cask install fastlane
+# Install a Ruby Bundler, so we can grab Ruby dependencies like Fastlane.
+sudo gem install bundler
+bundle update
 ```
 
 ## Credentials
