@@ -52,8 +52,24 @@ platform :android do
   desc 'Build the Android application.'
   lane :build do
     download_keystore
-    gradle(task: 'clean', project_dir: 'android/')
-    gradle(task: 'assembleRelease', project_dir: 'android/')
+    gradle(
+      task: 'clean',
+      project_dir: 'android/',
+      properties: {
+        "GAMEBOARD_RELEASE_KEY_PASSWORD" => ENV["GAMEBOARD_RELEASE_KEY_PASSWORD"],
+        "GAMEBOARD_RELEASE_STORE_PASSWORD" => ENV["GAMEBOARD_RELEASE_STORE_PASSWORD"]
+      },
+      print_command: false
+    )
+    gradle(
+      task: 'assembleRelease',
+      project_dir: 'android/',
+      properties: {
+        "GAMEBOARD_RELEASE_KEY_PASSWORD" => ENV["GAMEBOARD_RELEASE_STORE_PASSWORD"],
+        "GAMEBOARD_RELEASE_STORE_PASSWORD" => ENV["GAMEBOARD_RELEASE_STORE_PASSWORD"]
+      },
+      print_command: false
+    )
 
     # Move our apk into the artifacts.
     sh("mkdir -p ../artifacts/android")

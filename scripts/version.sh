@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -e
+#!/usr/bin/env bash
 
 # Get the version from the package.json.
 version=$(cat package.json | grep version | cut -d'"' -f4)
