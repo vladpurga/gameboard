@@ -110,9 +110,9 @@ android {
     signingConfigs {
         release {
             storeFile file("gameboard.keystore")
-            storePassword System.getenv('GAMEBOARD_RELEASE_STORE_PASSWORD')
+            storePassword GAMEBOARD_RELEASE_STORE_PASSWORD
             keyAlias "gameboard"
-            keyPassword System.getenv('GAMEBOARD_RELEASE_STORE_FILE')
+            keyPassword GAMEBOARD_RELEASE_STORE_FILE
         }
     }
     splits {

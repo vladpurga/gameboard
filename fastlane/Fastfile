@@ -40,7 +40,11 @@ platform :android do
   lane :build do
     download_keystore
     gradle(task: 'clean', project_dir: 'android/')
-    gradle(task: 'assemble', build_type: 'Release', project_dir: 'android/')
+    gradle(task: 'assembleRelease', project_dir: 'android/')
+
+    # Move our apk into the artifacts.
+    sh("mkdir -p ../artifacts/android")
+    sh("cp ../android/app/build/outputs/apk/app-release.apk ../artifacts/android/GameBoard.apk")
   end
 end
 
