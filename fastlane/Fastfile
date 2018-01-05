@@ -25,9 +25,20 @@ platform :ios do
 end
 
 platform :android do
+
+  # Clones the dwmkerr repo to grab the android keystore.
+  desc 'Download gameboard.keystore'
+  lane :download_keystore do
+    sh("rm -rf ./dwmkerr")
+    sh("git clone --depth=1 -b fastlane-match git@github.com:dwmkerr/dwmkerr.git")
+    sh("cp -f dwmkerr/keystores/gameboard.keystore ../android/app/gameboard.keystore")
+    sh("rm -rf ./dwmkerr")
+  end
+
   # Android Lanes
   desc 'Build the Android application.'
   lane :build do
+    download_keystore
     gradle(task: 'clean', project_dir: 'android/')
     gradle(task: 'assemble', build_type: 'Release', project_dir: 'android/')
   end

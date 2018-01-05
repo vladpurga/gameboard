@@ -32,6 +32,11 @@ Build the iOS application.
 ----
 
 ## Android
+### android download_keystore
+```
+fastlane android download_keystore
+```
+Download gameboard.keystore
 ### android build
 ```
 fastlane android build
