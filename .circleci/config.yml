@@ -51,6 +51,7 @@ jobs:
           command:  echo "ruby-2.4" > ~/.ruby-version
       # Not using a workspace here as Node and Yarn versions
       # differ between the macOS image and the Docker containers above.
+      - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: yarn
       - run: bundle install
       - run: bundle exec fastlane ios build
