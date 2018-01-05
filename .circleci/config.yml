@@ -54,9 +54,10 @@ jobs:
       - run: yarn
       - run: bundle install
       - run: bundle exec fastlane ios build
-      - run:
-          command: cp $FL_OUTPUT_DIR/scan/report.junit $FL_OUTPUT_DIR/scan/results.xml || true
-          when: always
+      # Disabling test report stuff for now.
+      # - run:
+      #  command: cp $FL_OUTPUT_DIR/scan/report.junit $FL_OUTPUT_DIR/scan/results.xml || true
+      #  when: always
       - store_artifacts:
           path: /Users/distiller/project/artifacts/ios
       - store_test_results:

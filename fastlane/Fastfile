@@ -4,19 +4,29 @@ before_all do
   # ensure_git_branch
   # ensure_git_status_clean
   # git_pull
-
-  # Setup CircleCI (if needed!)
-  setup_circle_ci
 end
 
 platform :ios do
-    desc 'Fetch certificates and provisioning profiles'
 
+    before_all do
+      # Setup CircleCI (if needed!)
+      setup_circle_ci
+    end
+
+    # Runs the tests.
+    desc 'Run tests'
+    lane :test do
+      scan(project: "./ios/GameBoard.xcodeproj", scheme: "GameBoard")
+    end
+
+    # Setup certificates.
+    desc 'Fetch certificates and provisioning profiles'
     lane :certificates do
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'development', readonly: true)
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'appstore', readonly: true)
     end
 
+    # Build the app.
 	desc 'Build the iOS application.'
 	lane :build do
       register_devices(username: "dwmkerr@gmail.com", devices_file: "./fastlane/devices.txt")

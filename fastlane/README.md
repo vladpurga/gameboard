@@ -18,6 +18,11 @@ xcode-select --install
 
 # Available Actions
 ## iOS
+### ios test
+```
+fastlane ios test
+```
+Run tests
 ### ios certificates
 ```
 fastlane ios certificates
