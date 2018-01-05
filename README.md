@@ -21,6 +21,8 @@ bundle update
 
 ## Credentials
 
+Most sensitive data is stored in: `git@github.com:dwmkerr/dwmkerr.git` in the `fastlane-match` branch. This branch contains the Android Keystore, Provisioning Profiles, Certs etc.
+
 Fastlane certs keyphrase: `gameboard`
 
 ## CircleCI
