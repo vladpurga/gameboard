@@ -4,6 +4,9 @@ before_all do
   # ensure_git_branch
   # ensure_git_status_clean
   # git_pull
+
+  # Setup CircleCI (if needed!)
+  setup_circle_ci
 end
 
 platform :ios do
