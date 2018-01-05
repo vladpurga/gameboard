@@ -24,8 +24,8 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
-      - run: echo "GAMEBOARD_RELEASE_KEY_PASSWORD="${GAMEBOARD_RELEASE_KEY_PASSWORD}" >> ./android/gradle.properties
-      - run: echo "GAMEBOARD_RELEASE_STORE_PASSWORD="${GAMEBOARD_RELEASE_STORE_PASSWORD}" >> ./android/gradle.properties
+      - run: echo "GAMEBOARD_RELEASE_KEY_PASSWORD=${GAMEBOARD_RELEASE_KEY_PASSWORD}" >> ./android/gradle.properties
+      - run: echo "GAMEBOARD_RELEASE_KEY_PASSWORD=${GAMEBOARD_RELEASE_KEY_PASSWORD}" >> ./android/gradle.properties
       - run: bundle install
       - run: bundle exec fastlane android build
       - store_artifacts:
