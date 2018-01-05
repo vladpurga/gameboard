@@ -18,3 +18,10 @@ else
     echo "Updating build num '${currentBuild}' to '${BUILD_NUM}'..."
     /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${BUILD_NUM}" ./ios/GameBoard/Info.plist
 fi
+
+# Set the version.
+cat ./android/app/build.gradle | sed -E "s/versionName .*$/versionName \"${version}\"/" > ./android/app/build.gradle.tmp
+
+# Set the build number.
+cat ./android/app/build.gradle.tmp | sed -E "s/versionCode [0-9]+$/versionCode ${BUILD_NUM}/" > ./android/app/build.gradle
+rm ./android/app/build.gradle.tmp
