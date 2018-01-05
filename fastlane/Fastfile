@@ -33,7 +33,11 @@ platform :ios do
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'adhoc', force_for_new_devices: true)
 	  increment_build_number(xcodeproj: './ios/GameBoard.xcodeproj')
       
-	  gym(scheme: 'GameBoard', project: './ios/GameBoard.xcodeproj')
+	  gym(
+        scheme: 'GameBoard',
+        project: './ios/GameBoard.xcodeproj',
+        output_directory: './artifacts/ios'
+      )
 	end
 end
 
