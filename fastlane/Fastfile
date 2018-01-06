@@ -31,7 +31,6 @@ platform :ios do
 	lane :build do
       register_devices(username: "dwmkerr@gmail.com", devices_file: "./fastlane/devices.txt")
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'adhoc', force_for_new_devices: true)
-	  increment_build_number(xcodeproj: './ios/GameBoard.xcodeproj')
       
 	  gym(
         scheme: 'GameBoard',
