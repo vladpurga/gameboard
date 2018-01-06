@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run: yarn
       - run: yarn run test
+      - run: cd ~/project/artifacts/coverage && bash <(curl -s https://codecov.io/bash)
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -68,6 +69,10 @@ jobs:
     docker:
       - image: circleci/node:8
     steps:
+      - checkout:
+          path: ~/project
+      - attach_workspace:
+          at: ~/project
       - run: ./scripts/testfairy-upload.sh
       - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
       - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.ipa
