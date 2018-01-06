@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run: yarn
       - run: yarn run test
+      - run: cd ~/project/artifacts/coverage && bash <(curl -s https://codecov.io/bash)
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -27,6 +28,10 @@ jobs:
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: bundle install
       - run: bundle exec fastlane android build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./artifacts/android
       - store_artifacts:
           path: ~/project/artifacts/android
       - store_test_results:
@@ -44,6 +49,8 @@ jobs:
     steps:
       - checkout:
           path: /Users/distiller/project
+      - attach_workspace:
+          at: /Users/distiller/project
       - run:
           name: Set Ruby Version
           command:  echo "ruby-2.4" > ~/.ruby-version
@@ -57,10 +64,27 @@ jobs:
       # - run:
       #  command: cp $FL_OUTPUT_DIR/scan/report.junit $FL_OUTPUT_DIR/scan/results.xml || true
       #  when: always
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./artifacts/ios
       - store_artifacts:
           path: /Users/distiller/project/artifacts/ios
       - store_test_results:
           path: /Users/distiller/project/output/scan
+
+  # Pushes the built app artifacts to testfairy.
+  release-testfairy:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout:
+          path: ~/project
+      - attach_workspace:
+          at: ~/project
+      - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
+      - run: ./scripts/testfairy-upload.sh ./artifacts/ios/GameBoard.ipa
 
 workflows:
   version: 2
@@ -73,3 +97,7 @@ workflows:
       - ios:
           requires:
             - build
+      - release-testfairy:
+          requires:
+            - ios
+            - android
