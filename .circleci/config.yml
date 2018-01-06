@@ -28,6 +28,10 @@ jobs:
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: bundle install
       - run: bundle exec fastlane android build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./artifacts/android
       - store_artifacts:
           path: ~/project/artifacts/android
       - store_test_results:
@@ -45,6 +49,8 @@ jobs:
     steps:
       - checkout:
           path: /Users/distiller/project
+      - attach_workspace:
+          at: /Users/distiller/project
       - run:
           name: Set Ruby Version
           command:  echo "ruby-2.4" > ~/.ruby-version
@@ -58,6 +64,10 @@ jobs:
       # - run:
       #  command: cp $FL_OUTPUT_DIR/scan/report.junit $FL_OUTPUT_DIR/scan/results.xml || true
       #  when: always
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./artifacts/ios
       - store_artifacts:
           path: /Users/distiller/project/artifacts/ios
       - store_test_results:
@@ -73,9 +83,8 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
-      - run: ./scripts/testfairy-upload.sh
       - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
-      - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.ipa
+      - run: ./scripts/testfairy-upload.sh ./artifacts/ios/GameBoard.ipa
 
 workflows:
   version: 2
