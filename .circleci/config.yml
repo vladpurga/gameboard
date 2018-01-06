@@ -62,6 +62,16 @@ jobs:
       - store_test_results:
           path: /Users/distiller/project/output/scan
 
+  # Pushes the built app artifacts to testfairy.
+  release-testfairy:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:8
+    steps:
+      - run: ./scripts/testfairy-upload.sh
+      - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
+      - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.ipa
+
 workflows:
   version: 2
   node-android-ios:
@@ -73,3 +83,7 @@ workflows:
       - ios:
           requires:
             - build
+      - release-testfairy:
+          requires:
+            - ios
+            - android
