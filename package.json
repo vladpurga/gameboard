@@ -1,6 +1,6 @@
 {
   "name": "GameBoard",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -15,10 +15,10 @@
     "collectCoverage": true,
     "coverageDirectory": "./artifacts/coverage",
     "verbose": true,
-	"testResultsProcessor": "jest-junit"
+    "testResultsProcessor": "jest-junit"
   },
   "jest-junit": {
-	"output": "./artifacts/tests/junit.xml"
+    "output": "./artifacts/tests/junit.xml"
   },
   "dependencies": {
     "firebase": "^4.8.1",
