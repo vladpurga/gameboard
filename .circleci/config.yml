@@ -105,3 +105,5 @@ workflows:
             tags:
               # We release to testfairy if we have any new semver tag.
               only: /^[v]?\d+.\d+.\d+/
+            branches:
+              ignore: /.*/
