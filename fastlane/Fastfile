@@ -16,7 +16,7 @@ platform :ios do
     # Runs the tests.
     desc 'Run tests'
     lane :test do
-      scan(project: "./ios/GameBoard.xcodeproj", scheme: "GameBoard")
+      scan(workspace: "./ios/GameBoard.cxworkspace", scheme: "GameBoard")
     end
 
     # Setup certificates.
@@ -34,7 +34,7 @@ platform :ios do
       
 	  gym(
         scheme: 'GameBoard',
-        project: './ios/GameBoard.xcodeproj',
+        workspace: './ios/GameBoard.xcworkspace',
         output_directory: './artifacts/ios'
       )
 	end

@@ -28,6 +28,7 @@
     "prop-types": "^15.6.0",
     "react": "16.0.0",
     "react-native": "0.51.0",
+    "react-native-firebase": "^3.2.2",
     "react-native-google-analytics-bridge": "^5.4.1",
     "react-native-google-signin": "^0.12.0",
     "react-native-rename": "^2.2.2",

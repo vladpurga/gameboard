@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
-import firebase from '@lib/firebase';
+import firebase from 'react-native-firebase';
 import { setGame } from '../game-stats/actions';
 import * as FriendsActions from '../friends/actions';
 import * as HistoryActions from '../history/actions';
@@ -70,7 +70,10 @@ export const resume = () => async (dispatch) => {
   const rawCredentials = await AsyncStorage.getItem('login/credentials');
   const credentials = JSON.parse(rawCredentials);
 
+
+  //  TODO: fake no persistent login
   //  If we have no credentials in storage, we cannot resume and we are done.
+  return false;
   if (!credentials) {
     return false;
   }
