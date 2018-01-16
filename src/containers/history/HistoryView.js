@@ -24,13 +24,14 @@ class History extends Component {
 
   static propTypes = {
     history: PropTypes.shape({}).isRequired,
+    gameStatsSetGame: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
   }
 
   render = () => {
-    const { history } = this.props;
+    const { history, gameStatsSetGame } = this.props;
     (() => {})(history);
 
     return (
@@ -40,7 +41,10 @@ class History extends Component {
             <ListItem
               key={pg.key}
               button
-              onPress={() => Actions.HistoryPlayedGame({ playedGame: pg })}
+              onPress={() => Actions.HistoryPlayedGame({
+                playedGame: pg,
+                gameStatsSetGame,
+              })}
               icon
             >
               <Left>

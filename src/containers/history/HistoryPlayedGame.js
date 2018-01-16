@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import {
   Body,
+  Button,
   Content,
   H1,
   List,
@@ -13,6 +14,7 @@ import {
   Right,
   Text,
 } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 import moment from 'moment';
 
 import rankings from '@lib/rankings';
@@ -30,9 +32,15 @@ class HistoryPlayedGame extends Component {
 
   static propTypes = {
     playedGame: PropTypes.shape({}).isRequired,
+    gameStatsSetGame: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
+  }
+
+  gameStats = (game) => {
+    this.props.gameStatsSetGame(game);
+    Actions.gameStats();
   }
 
   render = () => {
@@ -70,7 +78,7 @@ class HistoryPlayedGame extends Component {
                 <Text>{rankings.rankName(key)}</Text>
               </ListItem>
               { rankedPlayers[key].map(player => (
-                <ListItem key={player.key}>
+                <ListItem key={player.id}>
                   <Body><Text>{player.name}</Text></Body>
                   <Right><Text>{player.score}</Text></Right>
                 </ListItem>
@@ -79,6 +87,10 @@ class HistoryPlayedGame extends Component {
             </View>
           ))
           }
+          <Spacer size={30} />
+          <Button onPress={() => this.gameStats(game)}>
+            <Text>{game} Stats</Text>
+          </Button>
         </List>
       </Content>
     );

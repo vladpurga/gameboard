@@ -56,6 +56,7 @@ class GameStats extends Component {
 
   static propTypes = {
     gameStats: PropTypes.shape({}).isRequired,
+    user: PropTypes.shape({}).isRequired,
   }
 
   static defaultProps = {
@@ -72,8 +73,8 @@ class GameStats extends Component {
   )
 
   render = () => {
-    const { gameStats: { game, playedGames } } = this.props;
-    const stats = gameStats(playedGames);
+    const { user, gameStats: { game, playedGames } } = this.props;
+    const stats = gameStats(user.uid, playedGames);
 
     return (
       <View style={styles.tabContainer}>
@@ -95,8 +96,8 @@ class GameStats extends Component {
 
           <H2>Nemesis</H2>
           {this.renderStat({ name: 'Beaten most by', value: stats.nemesisName })}
-          {this.renderStat({ name: 'Beaten by Sarah', value: stats.nemesisWins })}
-          {this.renderStat({ name: 'Beat Sarah', value: stats.nemesisBeat })}
+          {this.renderStat({ name: `Beaten by ${stats.nemesisName}`, value: stats.nemesisWins })}
+          {this.renderStat({ name: `Beat ${stats.nemesisName}`, value: stats.nemesisBeat })}
           <Spacer size={20} />
           <Spacer size={20} />
         </WizardPage>
