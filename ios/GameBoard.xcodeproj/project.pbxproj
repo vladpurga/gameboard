@@ -40,6 +40,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* GameBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GameBoardTests.m */; };
 		36E6EBAF8B0D423F9EC1F1D3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CAD5BFA1924E2E8D5EF5F4 /* libz.tbd */; };
 		41B33218C64E4FCE8D224E25 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6029978830A4676AFA47A0F /* MaterialCommunityIcons.ttf */; };
+		551781E9200DCE3500DF452A /* libReactNativeTestFairy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C036DC200D9303002999DB /* libReactNativeTestFairy.a */; };
 		55D7D7121FF7EDD500295755 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D7D70F1FF7EDD500295755 /* GoogleSignIn.framework */; };
 		55D7D7161FF7EDD500295755 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 55D7D7101FF7EDD500295755 /* GoogleSignIn.bundle */; };
 		55D7D71A1FF7EDD500295755 /* GoogleSignInDependencies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55D7D7111FF7EDD500295755 /* GoogleSignInDependencies.framework */; };
@@ -228,6 +229,20 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		551781EA200DCE6D00DF452A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DE2A164342D4FD5A58068FA /* ReactNativeTestFairy.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 42108ECD1FE1AD83008DF6BD;
+			remoteInfo = ReactNativeTestFairy;
+		};
+		55C036DB200D9303002999DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DE2A164342D4FD5A58068FA /* ReactNativeTestFairy.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 42108ECE1FE1AD83008DF6BD;
+			remoteInfo = ReactNativeTestFairy;
+		};
 		55D583661FFDDC9F004AE790 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -381,6 +396,7 @@
 		55D7D7101FF7EDD500295755 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		55D7D7111FF7EDD500295755 /* GoogleSignInDependencies.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignInDependencies.framework; sourceTree = "<group>"; };
 		55D7D71E1FF7EFF100295755 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5DE2A164342D4FD5A58068FA /* ReactNativeTestFairy.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeTestFairy.xcodeproj; path = "../node_modules/react-native-testfairy/ios/ReactNativeTestFairy.xcodeproj"; sourceTree = "<group>"; };
 		5E73932FD4714884B49CC867 /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		605D518CE5184AA29A3A18DF /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -400,6 +416,7 @@
 		A0B700180D6F44EC996402F5 /* SafariServices.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		AB755B283BB240298916C6C4 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		B3E37461BCB14A949FFEA7D1 /* libReactNativeTestFairy.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeTestFairy.a; sourceTree = "<group>"; };
 		C6029978830A4676AFA47A0F /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		D443D8C58A724B9EB7878306 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		F32D0DE2C26F4AE9BA1DE93D /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
@@ -444,6 +461,7 @@
 				D2F8D6F3409D4445B11DFE24 /* SafariServices.framework in Frameworks */,
 				E6F8F1BEF9D74C28A98289B9 /* AddressBook.framework in Frameworks */,
 				B6721DF064204B8C98951ECE /* libRNVectorIcons.a in Frameworks */,
+				551781E9200DCE3500DF452A /* libReactNativeTestFairy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,12 +621,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		55C036D8200D9303002999DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55C036DC200D9303002999DB /* libReactNativeTestFairy.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		55D7D6E41FF7EDA800295755 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
 				73EFBEA8A63942DF9BACA4FF /* libRCTGoogleAnalyticsBridge.a */,
 				5E73932FD4714884B49CC867 /* libRNGoogleSignin.a */,
 				48F3A5FAF4A84E8284854076 /* libRNVectorIcons.a */,
+				B3E37461BCB14A949FFEA7D1 /* libReactNativeTestFairy.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -694,6 +721,7 @@
 				F5241EA331BB453E8B6F0EEE /* RCTGoogleAnalyticsBridge.xcodeproj */,
 				FE3B0CB167854FB5804B83EF /* RNGoogleSignin.xcodeproj */,
 				0AE76C78DDF748D997A278EF /* RNVectorIcons.xcodeproj */,
+				5DE2A164342D4FD5A58068FA /* ReactNativeTestFairy.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -776,6 +804,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				551781EB200DCE6D00DF452A /* PBXTargetDependency */,
 			);
 			name = GameBoard;
 			productName = "Hello World";
@@ -909,6 +938,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 55C036D8200D9303002999DB /* Products */;
+					ProjectRef = 5DE2A164342D4FD5A58068FA /* ReactNativeTestFairy.xcodeproj */;
 				},
 				{
 					ProductGroup = 55D7D7021FF7EDA900295755 /* Products */;
@@ -1075,6 +1108,13 @@
 			fileType = archive.ar;
 			path = libjschelpers.a;
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55C036DC200D9303002999DB /* libReactNativeTestFairy.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativeTestFairy.a;
+			remoteRef = 55C036DB200D9303002999DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		55D583671FFDDC9F004AE790 /* libthird-party.a */ = {
@@ -1327,6 +1367,11 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* GameBoard-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
+		551781EB200DCE6D00DF452A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ReactNativeTestFairy;
+			targetProxy = 551781EA200DCE6D00DF452A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1359,12 +1404,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 				);
 				INFOPLIST_FILE = GameBoardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1392,12 +1439,14 @@
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 				);
 				INFOPLIST_FILE = GameBoardTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1429,6 +1478,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 				);
 				INFOPLIST_FILE = GameBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1461,6 +1511,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 				);
 				INFOPLIST_FILE = GameBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1497,11 +1548,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 				);
 				INFOPLIST_FILE = "GameBoard-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1539,11 +1592,13 @@
 					"$(SRCROOT)/../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/**",
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-testfairy/ios",
 				);
 				INFOPLIST_FILE = "GameBoard-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1582,6 +1637,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.GameBoard-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1610,6 +1666,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

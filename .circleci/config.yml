@@ -25,6 +25,7 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
+      - run: sudo apt-get install -y imagemagick
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: bundle install
       - run: bundle exec fastlane android build
@@ -56,6 +57,7 @@ jobs:
           command:  echo "ruby-2.4" > ~/.ruby-version
       # Not using a workspace here as Node and Yarn versions
       # differ between the macOS image and the Docker containers above.
+      - run: brew install imagemagick
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: yarn
       - run: bundle install
@@ -74,7 +76,7 @@ jobs:
           path: /Users/distiller/project/output/scan
 
   # Pushes the built app artifacts to testfairy.
-  release-testfairy:
+  release-alpha:
     working_directory: ~/project
     docker:
       - image: circleci/node:8
@@ -97,13 +99,20 @@ workflows:
       - ios:
           requires:
             - build
-      - release-testfairy:
+      - release-alpha:
           requires:
             - ios
             - android
           filters:
-            tags:
-              # We release to testfairy if we have any new semver tag.
-              only: /^[v]?\d+.\d+.\d+/
             branches:
-              ignore: /.*/
+              only: master
+      # - release-beta:
+          # requires:
+            # - ios
+            # - android
+          # filters:
+            # tags:
+              # # We release to testfairy if we have any new semver tag.
+              # only: /^[v]?\d+.\d+.\d+/
+            # branches:
+              # ignore: /.*/
