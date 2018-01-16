@@ -6,6 +6,7 @@ import GameStats from './GameStatsView';
 // What data from the store shall we send to the component?
 const mapStateToProps = state => ({
   gameStats: state.gameStats,
+  user: state.login.user,
 });
 
 // Any actions to map to the component?
