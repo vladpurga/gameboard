@@ -1,34 +1,11 @@
 import { AsyncStorage } from 'react-native';
 import { GoogleSignin } from 'react-native-google-signin';
-import { Actions } from 'react-native-router-flux';
-import firebase from '@lib/firebase';
-import { setGame } from '../game-stats/actions';
-import * as FriendsActions from '../friends/actions';
-import * as HistoryActions from '../history/actions';
+import firebase from 'react-native-firebase';
 
-export const login = () => (dispatch) => {
-  //  Start logging in - we're busy.
-  dispatch({
-    type: 'LOGIN_BUSY',
-    data: true,
-  });
-
-  //  Connect to Firebase.
-  firebase.auth()
-    .signInAnonymously()
-    .then(() => {
-      //  We're no longer busy!
-      dispatch({
-        type: 'LOGIN_BUSY',
-        data: false,
-      });
-
-      //  Load stats for Grifters for now...
-      //  Also start watching online data.
-      setGame('Grifters')(dispatch);
-      FriendsActions.watchFriends()(dispatch);
-    });
-};
+export const setUser = user => ({
+  type: 'LOGIN_SET_USER',
+  data: user,
+});
 
 export const googleLogin = idToken => async (dispatch) => {
   //  Create a google credential from the id token.
@@ -53,16 +30,6 @@ export const googleLogin = idToken => async (dispatch) => {
     type: 'google',
     token: idToken,
   }));
-  dispatch({
-    type: 'LOGIN_FIREBASE',
-    data: firebase.auth().currentUser,
-  });
-
-  //  Load stats for Grifters for now...
-  //  Also start watching online data.
-  setGame('Grifters')(dispatch);
-  FriendsActions.watchFriends()(dispatch);
-  HistoryActions.watchHistory()(dispatch);
 };
 
 export const resume = () => async (dispatch) => {
@@ -90,8 +57,4 @@ export const logout = () => async (dispatch) => {
   await AsyncStorage.removeItem('login/credentials');
   await firebase.auth().signOut();
   await GoogleSignin.signOut();
-  Actions.launch({ type: 'reset' });
-  dispatch({
-    type: 'LOGIN_LOGOUT',
-  });
 };

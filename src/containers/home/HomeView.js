@@ -10,8 +10,8 @@ import { Actions } from 'react-native-router-flux';
 import { AppStyles, AppSizes, AppColors } from '@theme/';
 
 // Components
-import { Button } from 'native-base';
-import { JumboButton, Spacer, Text } from '@ui/';
+import { Button, Text } from 'native-base';
+import { JumboButton, Spacer } from '@ui/';
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   },
   whiteText: {
     color: '#FFF',
+    textAlign: 'center',
   },
 });
 
@@ -82,12 +83,12 @@ class Home extends Component {
           </View>
         </View>
 
-        <Spacer size={10} />
+        <Spacer size={50} />
 
         <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
           <View style={[AppStyles.flex1]}>
-            <Button onPress={logout}>
-              <Text>Logout</Text>
+            <Button onPress={logout} style={{ justifyContent: 'center', width: 120, alignSelf: 'center' }}>
+              <Text style={styles.whiteText}>Logout</Text>
             </Button>
           </View>
         </View>

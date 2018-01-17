@@ -20,6 +20,10 @@ sudo gem install bundler
 bundle update
 ```
 
+## Guide
+
+The main application lifecycle, login state and connected state is managed in the `App` component.
+
 ## Credentials
 
 Most sensitive data is stored in: `git@github.com:dwmkerr/dwmkerr.git` in the `fastlane-match` branch. This branch contains the Android Keystore, Provisioning Profiles, Certs etc.

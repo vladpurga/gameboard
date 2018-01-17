@@ -1,4 +1,4 @@
-import firebase from '@lib/firebase';
+import firebase from 'react-native-firebase';
 
 export const watchFriends = () => (dispatch) => {
   const { uid } = firebase.auth().currentUser;

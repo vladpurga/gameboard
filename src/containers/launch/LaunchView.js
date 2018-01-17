@@ -1,48 +1,20 @@
-/**
- * Launch Screen
- *  - Shows a nice loading screen whilst:
- *    - Preloading any specified app content
- *    - Checking if user is logged in, and redirects from there
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   View,
   Image,
   StatusBar,
 } from 'react-native';
 import { Spinner, Text } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 
-class AppLaunch extends Component {
-  static componentName = 'AppLaunch';
+class Launch extends Component {
+  static componentName = 'Launch';
 
   static propTypes = {
-    resume: PropTypes.func.isRequired,
-  }
-
-  constructor() {
-    super();
-    console.ignoredYellowBox = ['Setting a timer'];
   }
 
   componentDidMount = () => {
     // Show status bar on app launch
     StatusBar.setHidden(false, true);
-
-    //  First, see if we can resume the user's logged in session. If we can, we
-    //  can go straight to the home screen.
-    this.props.resume().then((resumed) => {
-      if (resumed) {
-        //  Move to the home scene, completely resetting the nav stack.
-        Actions.home({ type: 'reset' });
-      } else {
-        Actions.login({ type: 'reset' });
-      }
-    });
   }
 
   render = () => (
@@ -83,5 +55,4 @@ class AppLaunch extends Component {
   );
 }
 
-/* Export Component ==================================================================== */
-export default AppLaunch;
+export default Launch;

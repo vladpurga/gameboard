@@ -2,6 +2,13 @@ import initialState from './store';
 
 export default function loginReducer(state = initialState, action) {
   switch (action.type) {
+    case 'LOGIN_SET_USER': {
+      return {
+        ...state,
+        user: action.data,
+      };
+    }
+
     case 'LOGIN_BUSY': {
       return {
         ...state,

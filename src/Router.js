@@ -6,7 +6,7 @@ import { AppConfig } from '@constants/';
 
 // Scenes
 import AddFriend from '@containers/add-friend/AddFriendContainer';
-import Launch from '@containers/launch/LaunchContainer';
+import Launch from '@containers/launch/LaunchView';
 import Login from '@containers/login/LoginContainer';
 import History from '@containers/history/HistoryContainer';
 import HistoryPlayedGame from '@containers/history/HistoryPlayedGame';
