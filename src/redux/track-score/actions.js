@@ -1,4 +1,4 @@
-import firebase from '@lib/firebase';
+import firebase from 'react-native-firebase';
 
 export function start(game) {
   //  When we start tracking the score for a game, we'll create an initial set

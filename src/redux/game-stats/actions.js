@@ -1,4 +1,4 @@
-import firebase from '@lib/firebase';
+import firebase from 'react-native-firebase';
 
 //  Sets the game we are currently viewing stats for.
 export const setGame = game => (dispatch) => {

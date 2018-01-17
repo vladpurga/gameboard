@@ -15,8 +15,6 @@ import gameStats from '@redux/game-stats/reducer';
 import history from '@redux/history/reducer';
 import router from '@redux/router/reducer';
 import sideMenu from '@redux/sidemenu/reducer';
-import user from '@redux/user/reducer';
-import recipe from '@redux/recipes/reducer';
 import trackScore from '@redux/track-score/reducer';
 
 // Combine all
@@ -27,8 +25,6 @@ const appReducer = combineReducers({
   history,
   router,
   sideMenu,
-  user,
-  recipe,
   form: formReducer,
   trackScore,
 });
