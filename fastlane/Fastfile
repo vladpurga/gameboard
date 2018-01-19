@@ -38,7 +38,6 @@ platform :ios do
     # Build the app.
 	desc 'Build the iOS application.'
 	lane :build do
-      cocoapods
       certificates
       
 	  gym(
