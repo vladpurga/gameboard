@@ -1,5 +1,9 @@
 fastlane_version '2.72.0'
 
+# Constants
+TEAM_ID = 'D2TKYQF77R'
+USERNAME = 'dwmkerr@gmail.com'
+
 before_all do
   # ensure_git_branch
   # ensure_git_status_clean
@@ -19,18 +23,22 @@ platform :ios do
       scan(workspace: "./ios/GameBoard.cxworkspace", scheme: "GameBoard")
     end
 
-    # Setup certificates.
+    # Setup certificates, provisioning profiles etc.
     desc 'Fetch certificates and provisioning profiles'
     lane :certificates do
-      match(app_identifier: 'com.dwmkerr.gameboard', type: 'development', readonly: true)
+      register_devices(
+        username: USERNAME,
+        team_id: TEAM_ID,
+        devices_file: './fastlane/devices.txt'
+      )
+      match(app_identifier: 'com.dwmkerr.gameboard', type: 'development', force_for_new_devices: true)
       match(app_identifier: 'com.dwmkerr.gameboard', type: 'appstore', readonly: true)
     end
 
     # Build the app.
 	desc 'Build the iOS application.'
 	lane :build do
-      register_devices(username: "dwmkerr@gmail.com", devices_file: "./fastlane/devices.txt")
-      match(app_identifier: 'com.dwmkerr.gameboard', type: 'adhoc', force_for_new_devices: true)
+      certificates
       
 	  gym(
         scheme: 'GameBoard',
