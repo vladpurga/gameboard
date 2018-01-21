@@ -1,7 +1,7 @@
 fastlane_version '2.72.0'
 
 # Constants
-TEAM_ID = '5TTNE9J58F'
+TEAM_ID = 'D2TKYQF77R'
 USERNAME = 'dwmkerr@gmail.com'
 
 before_all do
