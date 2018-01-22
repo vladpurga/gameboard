@@ -1,5 +1,4 @@
 ios:
-	cd ./ios && pod install
 	bundle exec fastlane ios build
 
 android:
