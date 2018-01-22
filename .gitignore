@@ -56,4 +56,3 @@ artifacts
 ./fastlane/screenshots
 fastlane/report.xml
 icon.labelled.png
-Pods/
