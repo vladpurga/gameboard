@@ -1,7 +1,7 @@
 fastlane_version '2.72.0'
 
 # Constants
-TEAM_ID = 'D2TKYQF77R'
+APP_ID = 'com.dwmkerr.gameboard'
 USERNAME = 'dwmkerr@gmail.com'
 
 before_all do
@@ -26,13 +26,8 @@ platform :ios do
     # Setup certificates, provisioning profiles etc.
     desc 'Fetch certificates and provisioning profiles'
     lane :certificates do
-      register_devices(
-        username: USERNAME,
-        team_id: TEAM_ID,
-        devices_file: './fastlane/devices.txt'
-      )
-      match(app_identifier: 'com.dwmkerr.gameboard', type: 'development', force_for_new_devices: true)
-      match(app_identifier: 'com.dwmkerr.gameboard', type: 'appstore', readonly: true)
+      register_devices(username: USERNAME, devices_file: './fastlane/devices.txt')
+      match(app_identifier: APP_ID, type: 'adhoc', force_for_new_devices: true)
     end
 
     # Build the app.
