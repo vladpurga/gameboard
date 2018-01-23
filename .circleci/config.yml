@@ -6,8 +6,8 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
-      - run: yarn
-      - run: yarn run test
+      - run: npm install
+      - run: npm test
       - run: cd ~/project/artifacts/coverage && bash <(curl -s https://codecov.io/bash)
       - persist_to_workspace:
           root: ~/project
@@ -59,8 +59,6 @@ jobs:
       # differ between the macOS image and the Docker containers above.
       - run: brew install imagemagick
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
-      - run: yarn
-      - run: bundle install
       - run: make ios
       # Disabling test report stuff for now.
       # - run:
