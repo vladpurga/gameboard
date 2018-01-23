@@ -83,8 +83,7 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
-      - run: ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
-      - run: ./scripts/testfairy-upload.sh ./artifacts/ios/GameBoard.ipa
+      - run: make upload-alpha
 
 workflows:
   version: 2
