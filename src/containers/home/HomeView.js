@@ -38,9 +38,9 @@ class Home extends Component {
     logout: PropTypes.func.isRequired,
   }
 
-  trackScore = () => {
+  trackScore = async () => {
     //  Blat the state for the track score flow, then move to the screen.
-    this.props.trackScoreStart('Champions of Midgard');
+    await this.props.trackScoreStart();
     Actions.trackScore();
   }
 

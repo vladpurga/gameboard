@@ -1,6 +1,6 @@
 import firebase from 'react-native-firebase';
 
-export function start(game) {
+export const start = () => async (dispatch) => {
   //  When we start tracking the score for a game, we'll create an initial set
   //  of players which include the current user.
   const {
@@ -9,6 +9,11 @@ export function start(game) {
     email,
     photoURL,
   } = firebase.auth().currentUser;
+
+  //  Get the last played game.
+  const lastGame = await firebase.database().ref(`/users/${uid}`).once('value');
+  const lastGameName = (lastGame.val() && lastGame.val().lastTrackedGameName) || '';
+
   const initialPlayers = [{
     id: uid,
     name: displayName,
@@ -17,24 +22,34 @@ export function start(game) {
     rank: null,
   }];
 
-  return {
+  dispatch({
     type: 'TRACK_SCORE_START',
     data: {
-      game,
+      game: lastGameName,
       players: initialPlayers,
     },
-  };
-}
+  });
+};
 
 export function submit(gameResult) {
+  const { uid } = firebase.auth().currentUser;
+
   const playedGame = {
     ...gameResult,
-    scorerUid: firebase.auth().currentUser.uid,
+    scorerUid: uid,
     createdAt: firebase.database.ServerValue.TIMESTAMP,
   };
   firebase.database()
     .ref('played-games')
     .push(playedGame);
+
+  //  Update the last tracked game - which means we'll default to this next
+  //  time.
+  firebase.database()
+    .ref(`/users/${uid}`)
+    .update({
+      lastTrackedGameName: gameResult.game,
+    });
 
   return {
     type: 'TRACK_SCORE_SUBMIT',

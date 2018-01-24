@@ -3,15 +3,6 @@
     ".read": false,
     ".write": false,
 
-    "meals": {
-      ".read": true
-    },
-
-    "recipes": {
-      ".read": true,
-    	".indexOn": ["category"]
-    },
-
     "played-games": {
       ".read": true,
       ".write": true,
@@ -37,7 +28,9 @@
         "signedUp": { ".validate": "newData.val() <= now" },
         "role": {
           ".validate": "(root.child('users/'+auth.uid+'/role').val() === 'admin' && newData.val() === 'admin') || newData.val() === 'user'"
-        }
+        },
+
+        "lastTrackedGameName": { ".validate": "newData.isString() && newData.val().length > 0" },
       }
     },
 
