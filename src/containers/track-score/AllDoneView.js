@@ -6,6 +6,7 @@
 import React from 'react';
 import { H1 } from 'native-base';
 import PropTypes from 'prop-types';
+import { Actions } from 'react-native-router-flux';
 
 import { JumboButton, Spacer, WizardPage } from '@components/ui/';
 
@@ -18,6 +19,14 @@ const AllDone = ({ game, gameStatsHandler }) => (
       subtitle={`View your stats for ${game}`}
       onPress={() => gameStatsHandler(game)}
     />
+
+    <Spacer size={20} />
+    <JumboButton
+      title="Home"
+      subtitle="Back to the Home Screen"
+      onPress={() => Actions.home({ type: 'reset' })}
+    />
+
   </WizardPage>
 );
 

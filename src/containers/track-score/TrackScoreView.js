@@ -65,7 +65,7 @@ class TrackScore extends Component {
   onGameStats = (game) => {
     //  Set the game for game stats, then move to the game stats scene.
     this.props.gameStatsSetGame(game);
-    Actions.gameStats();
+    Actions.gameStats({ type: 'replace' });
   }
 
   handleDone = () => {
