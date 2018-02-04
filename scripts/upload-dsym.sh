@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 TESTFAIRY_ENDPOINT="http://app.testfairy.com/upload/dsym/"
 
