@@ -18,17 +18,14 @@ jobs:
 
   android:
     working_directory: ~/project
-    # Explicitly limit gradle heap size, otherwise docker might kill the
-    # container leading to annoying '137' errors. See:
-    # https://discuss.circleci.com/t/circle-ci-v2-and-android-memory-issues/11207/20
     environment:
-      _JAVA_OPTIONS: "-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
-      GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx2048m"'
+      JVM_OPTS: -Xmx3200m
     docker:
       - image: circleci/android:api-27-node8-alpha
     steps:
       - checkout:
-          path: ~/project
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - attach_workspace:
           at: ~/project
       - run: sudo apt-get install -y imagemagick
@@ -36,6 +33,10 @@ jobs:
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: bundle install
       - run: bundle exec fastlane android build
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - persist_to_workspace:
           root: ~/project
           paths:
