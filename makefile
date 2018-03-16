@@ -12,4 +12,9 @@ upload-alpha:
 	./scripts/testfairy-upload.sh ./artifacts/ios/GameBoard.ipa
 	./scripts/upload-dsym.sh -f ${TESTFAIRY_API_KEY} -p ./artifacts/ios
 
+# Run the CircleCI build locally.
+circleci_android:
+	circleci config validate -c .circleci/config.yml
+	circleci build --job android
+
 .PHONY: ios android
