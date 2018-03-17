@@ -28,7 +28,8 @@ jobs:
           key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/app/build.gradle" }}
       - attach_workspace:
           at: ~/project
-      - run: sudo apt-get install -y imagemagick
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y --fix-missing imagemagick 
       - run: npm install
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: bundle install
