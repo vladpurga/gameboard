@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Get the version from the package.json.
-version=$(cat package.json | grep version | cut -d'"' -f4)
+version=$(cat package.json | jq -r .version)
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # Get the current version and current build.
