@@ -97,6 +97,9 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    //  Required to support old HTTP client when building against v23.
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.dwmkerr.gameboard"
         minSdkVersion 16
