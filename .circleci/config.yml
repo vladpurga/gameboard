@@ -21,7 +21,7 @@ jobs:
     environment:
       JVM_OPTS: -Xmx3200m
     docker:
-      - image: circleci/android:api-25-node8-alpha
+      - image: circleci/android:api-27-node8-alpha
     steps:
       - checkout
       - restore_cache:
