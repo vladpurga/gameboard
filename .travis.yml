@@ -3,6 +3,7 @@
 language: android
 before_install:
 - nvm install 8
+- npm i -g npm@5.7
 - node --version
 install:
 - npm install
