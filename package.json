@@ -25,7 +25,7 @@
     "moment": "^2.20.1",
     "native-base": "^2.3.0",
     "prop-types": "^15.6.0",
-    "react": "16.2.0",
+    "react": "16.3.0",
     "react-native": "0.52.2",
     "react-native-firebase": "^3.2.2",
     "react-native-google-analytics-bridge": "^5.4.1",
