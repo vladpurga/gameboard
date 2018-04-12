@@ -123,7 +123,7 @@ workflows:
       - release-alpha:
           requires:
             - ios
-            - android
+            # - android
           filters:
             branches:
               only: master
