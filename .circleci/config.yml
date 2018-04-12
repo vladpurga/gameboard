@@ -111,9 +111,12 @@ workflows:
   node-android-ios:
     jobs:
       - build
-      - android:
-          requires:
-            - build
+      # Currently Android builds will fail due to memory limitations on the
+      # CircleCI runners. They are disabled for now.
+      # See: https://github.com/dwmkerr/gameboard/issues/27
+      # - android:
+          # requires:
+            # - build
       - ios:
           requires:
             - build
