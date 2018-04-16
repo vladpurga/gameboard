@@ -27,7 +27,7 @@
     "prop-types": "^15.6.0",
     "react": "16.2.0",
     "react-native": "0.52.2",
-    "react-native-firebase": "^3.2.2",
+    "react-native-firebase": "^4.0.0",
     "react-native-google-analytics-bridge": "^5.4.1",
     "react-native-google-signin": "git+https://github.com/invertase/react-native-google-signin.git#v0.12.1",
     "react-native-rename": "^2.2.2",
