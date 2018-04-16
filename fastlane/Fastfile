@@ -74,7 +74,8 @@ platform :android do
         "GAMEBOARD_RELEASE_KEY_PASSWORD" => ENV["GAMEBOARD_RELEASE_STORE_PASSWORD"],
         "GAMEBOARD_RELEASE_STORE_PASSWORD" => ENV["GAMEBOARD_RELEASE_STORE_PASSWORD"]
       },
-      print_command: false
+      print_command: false,
+      flags: '--console plain --no-daemon --max-workers 2'
     )
 
     # Move our apk into the artifacts.
