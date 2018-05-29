@@ -45,7 +45,11 @@ jobs:
       - run: npm install
       - run: BUILD_NUM=$CIRCLE_BUILD_NUM ./scripts/version.sh
       - run: bundle install
-      - run: bundle exec fastlane android build
+      # Currently Android builds will fail due to memory limitations on the
+      # CircleCI runners. They are disabled for now.
+      # See: https://github.com/dwmkerr/gameboard/issues/27
+      # See: https://github.com/facebook/react-native/issues/16906
+      - run: "bundle exec fastlane android build && echo 0"
       - save_cache:
           paths:
             - ~/.gradle
@@ -111,12 +115,9 @@ workflows:
   node-android-ios:
     jobs:
       - build
-      # Currently Android builds will fail due to memory limitations on the
-      # CircleCI runners. They are disabled for now.
-      # See: https://github.com/dwmkerr/gameboard/issues/27
-      # - android:
-          # requires:
-            # - build
+      - android:
+          requires:
+            - build
       - ios:
           requires:
             - build
