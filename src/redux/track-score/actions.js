@@ -22,7 +22,7 @@ export const start = () => async (dispatch) => {
     rank: null,
   }];
 
-  dispatch({
+  return dispatch({
     type: 'TRACK_SCORE_START',
     data: {
       game: lastGameName,
@@ -97,3 +97,9 @@ export function setPlayerScore(id, score) {
   };
 }
 
+export function setPlayerOrder(id, order) {
+  return {
+    type: 'TRACK_SCORE_UPDATE_PLAYER',
+    data: { id, changes: { order } },
+  };
+}
