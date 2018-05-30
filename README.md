@@ -73,4 +73,11 @@ npm run release
 - Setup following this: https://github.com/devfd/react-native-google-signin
 - Then set up signing following this: https://developers.google.com/android/guides/client-auth
 
-##
+## TODO
+
+Current key tasks:
+
+- [ ] Loading screen for home page, or push main content loading to main loader.
+- [ ] Ensure that when we are tracking a score, the buttons move up as the keyboard comes out.
+- [ ] Allow the image of the game to be shown.
+- [ ] Add tests which demonstrate the correct date behaviour (which currently does not seem to use the *local* date when working out how to show the times)
