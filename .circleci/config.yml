@@ -130,11 +130,12 @@ workflows:
               only: master
       - release-alpha:
           requires:
+            - build
             - ios
-            # - android
           filters:
+            branches:
+              ignore: /.*/
             tags:
               # We release to testfairy if we have any new semver tag.
               only: /^[v]?\d+.\d+.\d+/
-            branches:
-              ignore: /.*/
+              only: /^v.*/
