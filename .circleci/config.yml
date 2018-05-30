@@ -114,13 +114,19 @@ workflows:
   version: 2
   node-android-ios:
     jobs:
-      - build
-      # - android:
-          # requires:
-            # - build
+      - build:
+        filters:
+          tags:
+            only: /^v.*/
       - ios:
           requires:
             - build
+        filters:
+          tags:
+            only: /^v.*/
+    # - android:
+        # requires:
+          # - build
       - release-alpha:
           requires:
             # - android
