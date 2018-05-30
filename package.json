@@ -6,7 +6,7 @@
     "lint": "eslint src",
     "test": "jest",
     "test:watch": "jest --watch",
-    "release": "npm lint && npm test && standard-version",
+    "release": "npm run lint && npm test && standard-version",
     "preversion": "echo 'Version with \"npm run release\"' && exit 1"
   },
   "jest": {

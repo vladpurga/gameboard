@@ -7,7 +7,7 @@ export const setUser = user => ({
   data: user,
 });
 
-export const googleLogin = idToken => async (dispatch) => {
+export const googleLogin = idToken => async () => {
   //  Create a google credential from the id token.
   const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
 
@@ -53,7 +53,7 @@ export const resume = () => async (dispatch) => {
   }
 };
 
-export const logout = () => async (dispatch) => {
+export const logout = () => async () => {
   await AsyncStorage.removeItem('login/credentials');
   await firebase.auth().signOut();
   await GoogleSignin.signOut();

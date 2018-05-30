@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Actions, Router, Scene, Stack } from 'react-native-router-flux';
 import { Button, Icon } from 'native-base';
 

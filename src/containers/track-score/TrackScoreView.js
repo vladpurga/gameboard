@@ -59,14 +59,6 @@ class TrackScore extends Component {
     };
   }
 
-  componentWillMount() {
-    console.log("***track score view mount")
-
-  }
-
-  componentWillReceiveProps() {
-  }
-
   onGameStats = (game) => {
     //  Set the game for game stats, then move to the game stats scene.
     this.props.gameStatsSetGame(game);

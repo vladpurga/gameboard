@@ -94,12 +94,12 @@ class HistoryPlayedGame extends Component {
         { createdAt && <Text>{moment.unix(createdAt / 1000).format('LLLL')}</Text>}
         <Spacer size={30} />
         <List>
-          { Object.keys(rankedPlayers).map(key => (
-            <View key={key}>
+          { Object.keys(rankedPlayers).map(playerKey => (
+            <View key={playerKey}>
               <ListItem itemDivider>
-                <Text>{rankings.rankName(key)}</Text>
+                <Text>{rankings.rankName(playerKey)}</Text>
               </ListItem>
-              { rankedPlayers[key].map(player => (
+              { rankedPlayers[playerKey].map(player => (
                 <ListItem key={player.id}>
                   <Body><Text>{player.name}</Text></Body>
                   <Right><Text>{player.score}</Text></Right>
@@ -115,10 +115,10 @@ class HistoryPlayedGame extends Component {
           </Button>
           <Spacer size={30} />
           { enableDelete &&
-              <Button iconLeft danger onPress={() => this.deleteGame(key)}>
-                <Icon name="trash" />
-                <Text>Delete</Text>
-              </Button>
+            <Button iconLeft danger onPress={() => this.deleteGame(key)}>
+              <Icon name="trash" />
+              <Text>Delete</Text>
+            </Button>
           }
         </List>
       </Content>
