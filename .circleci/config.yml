@@ -115,15 +115,17 @@ workflows:
   node-android-ios:
     jobs:
       - build:
-        filters:
-          tags:
-            only: /^v.*/
+          # All branches, all tags.
+          filters:
+            tags:
+              only: /.*/
       - ios:
           requires:
             - build
-        filters:
-          tags:
-            only: /^v.*/
+          # All branches, all tags.
+          filters:
+            tags:
+              only: /.*/
     # - android:
         # requires:
           # - build
@@ -132,8 +134,8 @@ workflows:
             # - android
             - ios
           filters:
+            # No branches, version tags only.
             branches:
               ignore: /.*/
             tags:
-              # We release to testfairy if we have any new semver tag.
               only: /^v.*/
