@@ -20,6 +20,14 @@ bundle update
 
 The main application lifecycle, login state and connected state is managed in the `App` component.
 
+The app interacts with Firebase in the following way:
+
+1. In the XXX component, we register references to a set of key collections.
+2. While we are waiting for the data from our collections to arrive, the app shows a loading spinner.
+3. Once we have the collection data, we wire it up to Redux. From this point onwards, changes to the collections automatically update the store.
+
+This makes interfacing with the data very easy. Just interact with Firebase, the appropriate collections will be updated and the store will change as a result of that.
+
 ### Credentials
 
 Most sensitive data is stored in: `git@github.com:dwmkerr/dwmkerr.git` in the `fastlane-match` branch. This branch contains the Android Keystore, Provisioning Profiles, Certs etc.

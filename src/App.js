@@ -6,10 +6,9 @@ import firebase from 'react-native-firebase';
 import { Actions } from 'react-native-router-flux';
 
 import * as LoginActions from '@redux/login/actions';
-import * as GameStatsActions from '@redux/game-stats/actions';
+import * as GamesActions from '@redux/games/actions';
 import * as FriendsActions from '@redux/friends/actions';
 import * as HistoryActions from '@redux/history/actions';
-
 
 import store from './store';
 import createRouter from './Router';
@@ -17,7 +16,18 @@ import createRouter from './Router';
 class App extends Component {
   constructor() {
     super();
-    this.onAuthStateChangedUnsubscribe = null;
+
+    //  These booleans track whether we have the data needed to actually run
+    //  the main app.
+    this.user = null;
+    this.userReady = null;
+    this.gamesReady = null;
+    this.historyReady = null;
+    this.friendsReady = null;
+
+    //  This is an array of unsubscribe functions which will be called when the
+    //  component is unmounted.
+    this.unsubscribeFunctions = [];
   }
 
   componentWillMount = () => {
@@ -25,29 +35,107 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.onAuthStateChangedUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       const { dispatch } = store;
+
+      //  Update the state of the user, and update the user in the store.
+      this.userReady = !!user;
       dispatch(LoginActions.setUser(user));
 
-      //  If we have a user, we go to the home page, otherwise the login page.
-      if (user) {
-        Actions.home({ type: 'reset' });
+      //  Navigate if required.
+      this.navigateIfRequired();
 
+      //  If we've just got the user, we can now start watching our collections.
+      if (user) {
+        this.watchCollections(user);
+
+        //  TODO: game stats don't really work at the moment, so disabling them.
         //  Load stats for Grifters for now...
         //  Also start watching online data.
-        GameStatsActions.setGame('Grifters')(dispatch);
-        FriendsActions.watchFriends()(dispatch);
-        HistoryActions.watchHistory()(dispatch);
-      } else {
-        Actions.login({ type: 'reset' });
+        // GameStatsActions.setGame('Grifters')(dispatch);
       }
     });
+    this.unsubscribeFunctions.push(unsubscribe);
   }
 
   componentWillUnmount() {
-    if (this.onAuthStateChangedUnsubscribe) {
-      this.onAuthStateChangedUnsubscribe();
+    this.unsubscribeFunctions.forEach(u => u());
+  }
+
+  navigateIfRequired = () => {
+    //  If we have identified we have *no* user, we need to login.
+    if (this.user === false) {
+      Actions.login({ type: 'reset' });
+      return;
     }
+
+    //  If we have loaded all data, we can go to the home page.
+    if (this.userReady && this.gamesReady && this.historyReady && this.friendsReady) {
+      Actions.home({ type: 'reset' });
+    }
+  }
+
+  /**
+   * This function starts watching the key Cloud Firestore and Real Time
+   * database colelctions, updating the Redux store as needed.
+   */
+  watchCollections = (user) => {
+    const { dispatch } = store;
+
+    //  Get the games collection.
+    const gamesRef = firebase.firestore().collection('games');
+    const unsubscribe = gamesRef.onSnapshot((gamesSnapshot) => {
+      const games = [];
+      gamesSnapshot.forEach((game) => {
+        const { name, thumbnailUrl } = game.data();
+        games.push({
+          key: game.id,
+          name,
+          thumbnailUrl,
+        });
+      });
+      dispatch(GamesActions.updateGames(games));
+      this.gamesReady = true;
+      this.navigateIfRequired();
+    }, (error) => {
+      throw new Error(`An error occurred watching games: ${error.message}`);
+    });
+    this.unsubscribeFunctions.push(unsubscribe);
+
+    //  Watch the history for the user.
+    firebase.database()
+      .ref('played-games')
+      .orderByChild('createdAt')
+      .on('value', (snapshot) => {
+        const playedGames = [];
+        snapshot.forEach((child) => {
+          const item = child.val();
+          item.key = child.key;
+          playedGames.splice(0, 0, item);
+        });
+        dispatch(HistoryActions.updateHistory(playedGames));
+        this.historyReady = true;
+        this.navigateIfRequired();
+      }, (error) => {
+        throw new Error(`An error occurred watching games: ${error.message}`);
+      });
+
+    //  Watch the friends for the user.
+    firebase.database()
+      .ref(`friends/${user.uid}`)
+      .on('value', (snapshot) => {
+        const friends = [];
+        snapshot.forEach((child) => {
+          const item = child.val();
+          item.key = child.key;
+          friends.push(item);
+        });
+        dispatch(FriendsActions.updateFriends(friends));
+        this.friendsReady = true;
+        this.navigateIfRequired();
+      }, (error) => {
+        throw new Error(`An error occurred watching games: ${error.message}`);
+      });
   }
 
   render = () => {
