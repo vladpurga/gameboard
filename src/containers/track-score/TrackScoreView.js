@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 // Containers
@@ -87,7 +87,7 @@ class TrackScore extends Component {
     const { done, game, page } = this.state;
 
     return (
-      <View style={styles.tabContainer}>
+      <KeyboardAvoidingView style={styles.tabContainer} behavior="padding">
         { done === true &&
         <AllDone game={game} gameStatsHandler={this.onGameStats} />
         }
@@ -115,7 +115,7 @@ class TrackScore extends Component {
           previousPage={this.previousPage}
         />
         }
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
