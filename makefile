@@ -10,7 +10,8 @@ android:
 	bundle exec fastlane android build
 
 upload-alpha:
-	./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
+	# Android currently disabled...
+	# ./scripts/testfairy-upload.sh ./artifacts/android/GameBoard.apk
 	./scripts/testfairy-upload.sh ./artifacts/ios/GameBoard.ipa
 	./scripts/upload-dsym.sh -f ${TESTFAIRY_API_KEY} -p ./artifacts/ios
 
