@@ -1,0 +1,5 @@
+# Silver Searcher ignores...
+Pods/*
+Podfile.lock
+package-lock.json
+*.pbxproj

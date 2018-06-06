@@ -7,10 +7,11 @@ target 'GameBoard' do
 
   # Pods for GameBoard
 
-  # Required by RNFirebase
+  # RNFirebase Modules.
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
   pod 'GoogleSignIn'
 
   target 'GameBoardTests' do

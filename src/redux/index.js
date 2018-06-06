@@ -11,6 +11,7 @@ import { reducer as formReducer } from 'redux-form';
 // Our custom reducers
 import friends from '@redux/friends/reducer';
 import login from '@redux/login/reducer';
+import games from '@redux/games/reducer';
 import gameStats from '@redux/game-stats/reducer';
 import history from '@redux/history/reducer';
 import router from '@redux/router/reducer';
@@ -21,6 +22,7 @@ import trackScore from '@redux/track-score/reducer';
 const appReducer = combineReducers({
   friends,
   login,
+  games,
   gameStats,
   history,
   router,
