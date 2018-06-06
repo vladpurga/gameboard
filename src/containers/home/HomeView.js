@@ -71,6 +71,7 @@ class Home extends Component {
               })}
               players={pg.players}
               game={pg.game}
+              thumbnailUrl={pg.thumbnailUrl}
             />
           ))
           }

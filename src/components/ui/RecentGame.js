@@ -54,6 +54,7 @@ const renderRight = timePlayed => (
 
 const RecentGame = ({
   game,
+  thumbnailUrl,
   timePlayed,
   players,
   onPress,
@@ -64,7 +65,7 @@ const RecentGame = ({
     onPress={onPress}
   >
     <Left>
-      <Thumbnail source={require('../../images/starrealms.jpg')} />
+      <Thumbnail source={{ uri: thumbnailUrl }} />
     </Left>
     <Body>
       <Text>{game}</Text>
@@ -79,12 +80,14 @@ const RecentGame = ({
 
 RecentGame.propTypes = {
   game: PropTypes.string.isRequired,
+  thumbnailUrl: PropTypes.string,
   timePlayed: PropTypes.number.isRequired,
   players: PropTypes.arrayOf(PropTypes.object).isRequired,
   onPress: PropTypes.func,
 };
 
 RecentGame.defaultProps = {
+  thumbnailUrl: 'https://cf.geekdo-images.com/medium/img/KsxtBeo64NomOMdMcIBhydHTgHo=/fit-in/500x500/filters:no_upscale()/pic1903816.jpg',
   onPress: null,
 };
 
