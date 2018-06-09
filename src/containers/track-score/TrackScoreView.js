@@ -1,5 +1,4 @@
-/*
- * Track Score View
+/* Track Score View
  *  - Contains a multi-screen form to let the user track the score for a game.
  */
 import React, { Component } from 'react';
@@ -87,7 +86,11 @@ class TrackScore extends Component {
     const { done, game, page } = this.state;
 
     return (
-      <KeyboardAvoidingView style={styles.tabContainer} behavior="padding">
+      <KeyboardAvoidingView
+        style={styles.tabContainer}
+        behavior="padding"
+        keyboardVerticalOffset={60}
+      >
         { done === true &&
         <AllDone game={game} gameStatsHandler={this.onGameStats} />
         }
