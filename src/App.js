@@ -19,8 +19,6 @@ class App extends Component {
 
     //  These booleans track whether we have the data needed to actually run
     //  the main app.
-    this.user = null;
-    this.userReady = null;
     this.gamesReady = null;
     this.historyReady = null;
     this.friendsReady = null;
@@ -39,20 +37,15 @@ class App extends Component {
       const { dispatch } = store;
 
       //  Update the state of the user, and update the user in the store.
-      this.userReady = !!user;
       dispatch(LoginActions.setUser(user));
-
-      //  Navigate if required.
-      this.navigateIfRequired();
-
-      //  If we've just got the user, we can now start watching our collections.
-      if (user) {
-        this.watchCollections(user);
-
+      if (!user) {
+        Actions.login({ type: 'reset' });
+      } else {
         //  TODO: game stats don't really work at the moment, so disabling them.
         //  Load stats for Grifters for now...
         //  Also start watching online data.
         // GameStatsActions.setGame('Grifters')(dispatch);
+        this.watchCollections(user);
       }
     });
     this.unsubscribeFunctions.push(unsubscribe);
@@ -63,14 +56,8 @@ class App extends Component {
   }
 
   navigateIfRequired = () => {
-    //  If we have identified we have *no* user, we need to login.
-    if (this.user === false) {
-      Actions.login({ type: 'reset' });
-      return;
-    }
-
     //  If we have loaded all data, we can go to the home page.
-    if (this.userReady && this.gamesReady && this.historyReady && this.friendsReady) {
+    if (this.gamesReady && this.historyReady && this.friendsReady) {
       Actions.home({ type: 'reset' });
     }
   }
