@@ -9,7 +9,9 @@ import * as LoginActions from '@redux/login/actions';
 import * as GamesActions from '@redux/games/actions';
 import * as FriendsActions from '@redux/friends/actions';
 import * as HistoryActions from '@redux/history/actions';
+import * as UserActions from '@redux/user/actions';
 
+import config from './config';
 import store from './store';
 import createRouter from './Router';
 
@@ -29,7 +31,7 @@ class App extends Component {
   }
 
   componentWillMount = () => {
-    TestFairy.begin('eb518cbf74f80a4341651020de4c57fdad0749d0');
+    TestFairy.begin(config.testFairyApiKey);
   }
 
   componentDidMount() {
@@ -89,16 +91,23 @@ class App extends Component {
     });
     this.unsubscribeFunctions.push(unsubscribe);
 
+    //  Watch the user.
+    firebase.firestore().collection('users').doc(user.uid).onSnapshot((doc) => {
+      dispatch(UserActions.updateUser(doc.data()));
+    });
+
     //  Watch the history for the user.
-    firebase.database()
-      .ref('played-games')
-      .orderByChild('createdAt')
-      .on('value', (snapshot) => {
+    firebase.firestore()
+      .collection('played-games')
+      .where('scorerUid', '==', user.uid)
+      .orderBy('createdAt', 'desc')
+      .limit(20)
+      .onSnapshot((snapshot) => {
         const playedGames = [];
         snapshot.forEach((child) => {
-          const item = child.val();
-          item.key = child.key;
-          playedGames.splice(0, 0, item);
+          const item = child.data();
+          item.key = child.id;
+          playedGames.push(item);
         });
         dispatch(HistoryActions.updateHistory(playedGames));
         this.historyReady = true;
@@ -108,13 +117,13 @@ class App extends Component {
       });
 
     //  Watch the friends for the user.
-    firebase.database()
-      .ref(`friends/${user.uid}`)
-      .on('value', (snapshot) => {
+    firebase.firestore()
+      .collection(`users/${user.uid}/friends`)
+      .onSnapshot((snapshot) => {
         const friends = [];
         snapshot.forEach((child) => {
-          const item = child.val();
-          item.key = child.key;
+          const item = child.data();
+          item.key = child.id;
           friends.push(item);
         });
         dispatch(FriendsActions.updateFriends(friends));

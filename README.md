@@ -28,6 +28,11 @@ The app interacts with Firebase in the following way:
 
 This makes interfacing with the data very easy. Just interact with Firebase, the appropriate collections will be updated and the store will change as a result of that.
 
+#### Navigation
+
+- Handled via [`react-native-router-flux`](https://github.com/aksonov/react-native-router-flux)
+- All routes are defined in [`Router.js`](./src/Router.js)
+
 ### Credentials
 
 Most sensitive data is stored in: `git@github.com:dwmkerr/dwmkerr.git` in the `fastlane-match` branch. This branch contains the Android Keystore, Provisioning Profiles, Certs etc.
@@ -83,9 +88,10 @@ npm run release
 
 ## TODO
 
-Current key tasks:
-
-- [ ] Loading screen for home page, or push main content loading to main loader.
-- [ ] Ensure that when we are tracking a score, the buttons move up as the keyboard comes out.
-- [ ] Allow the image of the game to be shown.
-- [ ] Add tests which demonstrate the correct date behaviour (which currently does not seem to use the *local* date when working out how to show the times)
+- [ ] Navbar buttons: use nativebase header
+- [X] Edit Game
+- [X] Edit Time
+- [ ] Format Game History Page
+- [ ] Move logout to side menu
+- [ ] Move user account to firestore
+- [ ] Game History auto refresh

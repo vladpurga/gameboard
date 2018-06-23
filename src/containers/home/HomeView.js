@@ -12,7 +12,7 @@ import { AppStyles, AppSizes, AppColors } from '@theme/';
 
 // Components
 import { Button, Content, List, Text } from 'native-base';
-import { JumboButton, RecentGame, Spacer } from '@ui/';
+import { RecentGame, Spacer } from '@ui/';
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -71,25 +71,12 @@ class Home extends Component {
               })}
               players={pg.players}
               game={pg.game}
-              thumbnailUrl={pg.thumbnailUrl}
             />
           ))
           }
         </List>
 
         <Spacer size={10} />
-
-        <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
-          <View style={[AppStyles.flex1]}>
-            <JumboButton
-              title="History"
-              subtitle="Log of all games"
-              onPress={Actions.History}
-            />
-          </View>
-        </View>
-
-        <Spacer size={50} />
 
         <View style={[AppStyles.row, AppStyles.paddingHorizontal]}>
           <View style={[AppStyles.flex1]}>
