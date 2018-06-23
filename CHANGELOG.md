@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/dwmkerr/gameboard/compare/v0.2.1...v0.3.0) (2018-06-23)
+
+
+### Bug Fixes
+
+* **package:** update react to version 16.4.1 ([f752a4d](https://github.com/dwmkerr/gameboard/commit/f752a4d))
+
+
+### Features
+
+* link games to boardgamegeek ([#49](https://github.com/dwmkerr/gameboard/issues/49)) ([2945fef](https://github.com/dwmkerr/gameboard/commit/2945fef))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/dwmkerr/gameboard/compare/v0.2.0...v0.2.1) (2018-06-06)
 
