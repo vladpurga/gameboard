@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/dwmkerr/gameboard/compare/v0.3.0...v0.4.0) (2018-06-25)
+
+
+### Features
+
+* games other people have scored you in are shown in your history ([#59](https://github.com/dwmkerr/gameboard/issues/59)) ([b3447c0](https://github.com/dwmkerr/gameboard/commit/b3447c0)), closes [#55](https://github.com/dwmkerr/gameboard/issues/55)
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/dwmkerr/gameboard/compare/v0.2.1...v0.3.0) (2018-06-23)
 
