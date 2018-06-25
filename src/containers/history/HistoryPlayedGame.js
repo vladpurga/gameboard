@@ -173,7 +173,7 @@ class HistoryPlayedGame extends Component {
         <Spacer size={10} />
         <List>
           { rankedPlayers.map(p => (
-            <ListItem key={p.id} icon>
+            <ListItem key={p.uid} icon>
               <Left>
                 <ThumbnailLink
                   uri={p.imageUri}
