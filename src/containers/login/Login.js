@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import {
   View,
   Image,
   Platform,
   StyleSheet,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-// Consts and Libs
 import { AppStyles, AppSizes, AppColors } from '@theme/';
 import log from '@lib/log';
+import * as AuthCommands from '../../commands/auth';
 import config from '../../config';
 
 /* Styles ==================================================================== */
@@ -32,12 +30,6 @@ const styles = StyleSheet.create({
 
 /* Component ==================================================================== */
 class Login extends Component {
-  static componentName = 'Login';
-
-  static propTypes = {
-    googleLogin: PropTypes.func.isRequired,
-  }
-
   async componentDidMount() {
     //  Platform specific Google Signin configuration.
     if (Platform.OS === 'ios') {
@@ -66,8 +58,7 @@ class Login extends Component {
     const currentUser = await GoogleSignin.currentUserAsync();
     if (currentUser) {
       console.log('User already available!', currentUser);
-      await this.props.googleLogin(currentUser.idToken);
-      Actions.home({ type: 'reset' });
+      await AuthCommands.googleLogin(currentUser.idToken);
       return;
     }
 
@@ -75,8 +66,7 @@ class Login extends Component {
     try {
       const user = await GoogleSignin.signIn();
       console.log('User signed in!', user);
-      await this.props.googleLogin(user.idToken);
-      Actions.home({ type: 'reset' });
+      await AuthCommands.googleLogin(user.idToken);
       return;
     } catch (err) {
       if (err.code === -5) {
