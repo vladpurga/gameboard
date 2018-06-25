@@ -3,7 +3,6 @@ import { reducer as formReducer } from 'redux-form';
 
 // Our custom reducers
 import friends from '@redux/friends/reducer';
-import login from '@redux/login/reducer';
 import games from '@redux/games/reducer';
 import history from '@redux/history/reducer';
 import router from '@redux/router/reducer';
@@ -14,7 +13,6 @@ import user from '@redux/user/reducer';
 // Combine all
 const appReducer = combineReducers({
   friends,
-  login,
   games,
   history,
   router,

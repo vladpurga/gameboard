@@ -12,8 +12,8 @@ import { Button, Icon, Right, Text } from 'native-base';
 
 // Scenes
 import AddFriend from '@containers/add-friend/AddFriendContainer';
-import Launch from '@containers/launch/LaunchView';
-import Login from '@containers/login/LoginContainer';
+import Launch from '@containers/launch/Launch';
+import Login from '@containers/login/Login';
 import HistoryPlayedGame from '@containers/history/HistoryPlayedGame';
 import Home from '@containers/home/HomeContainer';
 import GameStats from '@containers/game-stats/GameStatsContainer';
@@ -62,6 +62,7 @@ async function completeTrackScore(store) {
   firebase.firestore()
     .collection('played-games')
     .add(playedGame);
+  Actions.home({ type: 'reset' });
 }
 
 const reducerCreate = (params) => {

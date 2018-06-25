@@ -43,7 +43,7 @@ class WhoPlayed extends Component {
     Actions.CreateFriend({
       onCreateFriend: async (newFriend) => {
         const { uid } = firebase.auth().currentUser;
-        await firebase.firestore()
+        firebase.firestore()
           .collection(`users/${uid}/friends`)
           .add(newFriend);
         Actions.pop();
@@ -55,7 +55,7 @@ class WhoPlayed extends Component {
     Actions.LinkFriend({
       onPlayerSelected: async (foundFriend) => {
         const { uid } = firebase.auth().currentUser;
-        await firebase.firestore()
+        firebase.firestore()
           .collection(`users/${uid}/friends`)
           .add(foundFriend);
         Actions.pop();
