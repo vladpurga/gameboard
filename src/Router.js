@@ -62,6 +62,7 @@ async function completeTrackScore(store) {
   firebase.firestore()
     .collection('played-games')
     .add(playedGame);
+  Actions.home({ type: 'reset' });
 }
 
 const reducerCreate = (params) => {
