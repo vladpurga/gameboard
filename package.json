@@ -1,6 +1,6 @@
 {
   "name": "gameboard-app",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint src",
