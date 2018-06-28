@@ -72,12 +72,12 @@ async function completeTrackScore(store) {
 
 const reducerCreate = (params) => {
   const defaultReducer = new Reducer(params);
-  return (state, action) => {
+  return (state, action) => (
     //  TODO: note that logging in a reducer can cripple performance on the
     //  device!
     //  console.log('ACTION:', action);
-    return defaultReducer(state, action);
-  };
+    defaultReducer(state, action)
+  );
 };
 
 const createRouter = store => (
