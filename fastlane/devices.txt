@@ -1,5 +1,5 @@
 Device ID	Device Name
-30f671e9e7ae987480c004b417490318c5208b06	iPhone7 Dave
+3ed50d6a3584fbe4b81e9f6a3bf15cd715ae5654	Dave's iPhone
 fb30ff8e8b0aeb8a181a4d0fd9c1048d0f76b09c	iPhone Sarah
 df9aef680b1766e64a8fee53d72d3b93b5d7c27e	abhishekchak.9@gmail.com iPhone 7
 91080b3f82bafbc28b9cfe7fdd8ecd42e4dc6ea6	snehachopra1988@gmail.com iPhone X
