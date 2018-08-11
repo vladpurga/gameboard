@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  javascript:
     working_directory: ~/project
     docker:
       - image: circleci/node:8
@@ -17,6 +17,8 @@ jobs:
           path: ~/project/artifacts/tests/junit.xml
 
   android:
+    # We need to use 'machine' to get enough resources for the JVM.
+    machine: true
     working_directory: ~/project
     # Explicitly limit gradle heap size, otherwise docker might kill the
     # container leading to annoying '137' errors. See:
@@ -114,21 +116,21 @@ workflows:
   version: 2
   node-android-ios:
     jobs:
-      - build:
+      - javascript:
           # All branches, all tags.
           filters:
             tags:
               only: /.*/
       - ios:
           requires:
-            - build
+            - javascript
           # All branches, all tags.
           filters:
             tags:
               only: /.*/
-    # - android:
-        # requires:
-          # - build
+      - android:
+          requires:
+            - javascript
       - release-alpha:
           requires:
             # - android
