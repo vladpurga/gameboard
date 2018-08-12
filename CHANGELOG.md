@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/dwmkerr/gameboard/compare/v0.4.5...v0.5.0) (2018-08-12)
+
+
+### Features
+
+* **track-score:** finalise "who won" page. fixes [#72](https://github.com/dwmkerr/gameboard/issues/72) ([#73](https://github.com/dwmkerr/gameboard/issues/73)) ([3ce1e32](https://github.com/dwmkerr/gameboard/commit/3ce1e32))
+
+
+
 <a name="0.4.5"></a>
 ## [0.4.5](https://github.com/dwmkerr/gameboard/compare/v0.4.4...v0.4.5) (2018-08-05)
 
