@@ -66,7 +66,7 @@ class AddScores extends Component {
               style={{ backgroundColor: 'white', width: 32 }}
               keyboardType="numeric"
               placeholder="Score"
-              onChangeText={text => this.props.trackScoreSetPlayerScore(player.uid, text)}
+              onChangeText={text => this.props.trackScoreSetPlayerScore(player.uid, Number(text))}
             />
           </Item>
         </View>
@@ -90,7 +90,7 @@ class AddScores extends Component {
               style={{ backgroundColor: 'white', width: 32 }}
               keyboardType="numeric"
               placeholder="Turn Order"
-              onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, text)}
+              onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, Number(text))}
             />
           </Item>
         </View>
