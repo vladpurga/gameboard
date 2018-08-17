@@ -5,6 +5,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { Spinner, Text } from 'native-base';
+import loadingMessage from '../../lib/loading-message';
 
 class Launch extends Component {
   static componentName = 'Launch';
@@ -49,7 +50,7 @@ class Launch extends Component {
         }}
       >
         <Spinner color="black" />
-        <Text style={{ textAlign: 'center' }}>Unpacking meeples...</Text>
+        <Text style={{ textAlign: 'center' }}>{loadingMessage()}</Text>
       </View>
     </View>
   );

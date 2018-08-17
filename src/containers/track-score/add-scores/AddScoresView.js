@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import {
+  Body,
   Container,
-  H1,
+  Content,
   Input,
+  Item,
+  Left,
+  List,
+  ListItem,
+  Right,
+  Separator,
+  Text,
 } from 'native-base';
 import PropTypes from 'prop-types';
 
-import { Player, Spacer } from '@components/ui/';
+import ThumbnailLink from '@components/ui/ThumbnailLink';
 import rankings from '@lib/rankings';
 import * as TrackScoreActions from '@redux/track-score/actions';
+
+const styles = StyleSheet.create({
+  listItem: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  listMiddle: {
+    paddingLeft: 12,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+});
+
+//  Set a hex color, but add opacity. Useful for quickly checking layouts.
+const col = val => (`#${val}00`);
 
 class AddScores extends Component {
   static componentName = 'AddScore';
 
   static propTypes = {
-    game: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
     players: PropTypes.arrayOf(PropTypes.object).isRequired,
     trackScoreSetPlayerScore: PropTypes.func.isRequired,
     trackScoreSetPlayerOrder: PropTypes.func.isRequired,
@@ -31,51 +53,80 @@ class AddScores extends Component {
   componentWillReceiveProps() {
   }
 
-  renderPlayerScore = rankedPlayer => (
-    <Player key={rankedPlayer.uid} player={rankedPlayer} hideIcon>
-      <View style={{ flex: 0, width: 80 }}>
-        <Input
-          regular
-          keyboardType="numeric"
-          placeholder="Score"
-          onChangeText={text => this.props.trackScoreSetPlayerScore(rankedPlayer.uid, text)}
-        />
+  renderPlayerScore = player => (
+    <ListItem icon key={player.uid} style={{ height: 64, backgroundColor: col('ffff00') }}>
+      <View style={styles.listItem}>
+        <View style={{ flex: 0 }}>
+          <ThumbnailLink uri={player.imageUri} small />
+        </View>
+        <View style={styles.listMiddle}>
+          <Text style={{ textAlign: 'left' }}>{player.name}</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Item regular>
+            <Input
+              regular
+              style={{ backgroundColor: 'white', width: 32 }}
+              keyboardType="numeric"
+              placeholder="Score"
+              onChangeText={text => this.props.trackScoreSetPlayerScore(player.uid, text)}
+            />
+          </Item>
+        </View>
       </View>
-    </Player>
+    </ListItem>
   )
 
-  renderPlayerOrder = rankedPlayer => (
-    <Player key={rankedPlayer.uid} player={rankedPlayer} hideIcon>
-      <View style={{ flex: 0, width: 80 }}>
-        <Input
-          regular
-          keyboardType="numeric"
-          placeholder="Order"
-          onChangeText={
-            text => this.props.trackScoreSetPlayerOrder(rankedPlayer.uid, Number.parseInt(text, 10))
-          }
-        />
+  renderPlayerOrder = player => (
+    <ListItem icon key={player.uid} style={{ height: 64, backgroundColor: col('ffff00') }}>
+      <View style={styles.listItem}>
+        <View style={{ flex: 0 }}>
+          <ThumbnailLink uri={player.imageUri} small />
+        </View>
+        <View style={styles.listMiddle}>
+          <Text style={{ textAlign: 'left' }}>{player.name}</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Item regular>
+            <Input
+              regular
+              style={{ backgroundColor: 'white', width: 32 }}
+              keyboardType="numeric"
+              placeholder="Turn Order"
+              onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, text)}
+            />
+          </Item>
+        </View>
       </View>
-    </Player>
+    </ListItem>
   )
 
   render = () => {
     const {
-      game,
       players,
     } = this.props;
 
     const rankedPlayers = rankings.rankPlayers(players);
 
     return (
-      <Container style={{ flex: 1, padding: 20 }}>
+      <Container>
         <ScrollView>
-          <H1>Add Scores for {game.name}?</H1>
-          <Spacer size={20} />
-          {rankedPlayers.map(this.renderPlayerScore)}
-          <H1>Add Player Turn Order for {game.name}?</H1>
-          <Spacer size={20} />
-          {rankedPlayers.map(this.renderPlayerOrder)}
+          <Content>
+            <List>
+              <Separator bordered>
+                <Text>Scores</Text>
+              </Separator>
+              <ListItem><Text>(Optional) add player scores below:</Text></ListItem>
+              {rankedPlayers.map(this.renderPlayerScore)}
+            </List>
+            <List>
+              <Separator bordered>
+                <Text>Turn Order</Text>
+              </Separator>
+              <ListItem><Text>(Optional) add turn orders below:</Text></ListItem>
+              {rankedPlayers.map(this.renderPlayerOrder)}
+            </List>
+          </Content>
         </ScrollView>
       </Container>
     );
