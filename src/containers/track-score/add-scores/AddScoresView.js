@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import {
-  Body,
   Container,
   Content,
   Input,
   Item,
-  Left,
   List,
   ListItem,
-  Right,
   Separator,
   Text,
 } from 'native-base';
