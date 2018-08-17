@@ -201,7 +201,6 @@ class WhatGame extends Component {
               onChangeText={searchText => this.setState({ ...this.state, searchText })}
               value={this.state.searchText}
             />
-            <Icon name="ios-people" />
           </Item>
           <Button transparent onPress={() => this.search()}>
             <Text>Search</Text>
