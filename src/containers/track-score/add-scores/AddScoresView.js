@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import {
   Container,
   Content,
@@ -17,24 +17,6 @@ import BigListItem from '@components/BigListItem';
 import ThumbnailLink from '@components/ui/ThumbnailLink';
 import rankings from '@lib/rankings';
 import * as TrackScoreActions from '@redux/track-score/actions';
-
-const styles = StyleSheet.create({
-  listItem: {
-    flex: 1,
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  listMiddle: {
-    paddingLeft: 12,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-  },
-});
-
-//  Set a hex color, but add opacity. Useful for quickly checking layouts.
-const col = val => (`#${val}00`);
 
 class AddScores extends Component {
   static componentName = 'AddScore';
