@@ -13,6 +13,7 @@ import {
 } from 'native-base';
 import PropTypes from 'prop-types';
 
+import BigListItem from '@components/BigListItem';
 import ThumbnailLink from '@components/ui/ThumbnailLink';
 import rankings from '@lib/rankings';
 import * as TrackScoreActions from '@redux/track-score/actions';
@@ -50,53 +51,57 @@ class AddScores extends Component {
   componentWillReceiveProps() {
   }
 
-  renderPlayerScore = player => (
-    <ListItem icon key={player.uid} style={{ height: 64, backgroundColor: col('ffff00') }}>
-      <View style={styles.listItem}>
-        <View style={{ flex: 0 }}>
-          <ThumbnailLink uri={player.imageUri} small />
-        </View>
-        <View style={styles.listMiddle}>
-          <Text style={{ textAlign: 'left' }}>{player.name}</Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Item regular>
-            <Input
-              regular
-              style={{ backgroundColor: 'white', width: 32 }}
-              keyboardType="numeric"
-              placeholder="Score"
-              onChangeText={text => this.props.trackScoreSetPlayerScore(player.uid, Number(text))}
-            />
-          </Item>
-        </View>
-      </View>
-    </ListItem>
-  )
+  renderPlayerScore = (player) => {
+    const leftContent = (
+      <ThumbnailLink uri={player.imageUri} small />
+    );
+    const rightContent = (
+      <Item regular>
+        <Input
+          regular
+          style={{ backgroundColor: 'white', width: 32 }}
+          keyboardType="numeric"
+          placeholder="Score"
+          onChangeText={text => this.props.trackScoreSetPlayerScore(player.uid, Number(text))}
+        />
+      </Item>
+    );
+    return (
+      <BigListItem
+        key={player.uid}
+        leftContent={leftContent}
+        rightContent={rightContent}
+        rightStyle={{ flex: 1 }}
+        text={player.name}
+      />
+    );
+  }
 
-  renderPlayerOrder = player => (
-    <ListItem icon key={player.uid} style={{ height: 64, backgroundColor: col('ffff00') }}>
-      <View style={styles.listItem}>
-        <View style={{ flex: 0 }}>
-          <ThumbnailLink uri={player.imageUri} small />
-        </View>
-        <View style={styles.listMiddle}>
-          <Text style={{ textAlign: 'left' }}>{player.name}</Text>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Item regular>
-            <Input
-              regular
-              style={{ backgroundColor: 'white', width: 32 }}
-              keyboardType="numeric"
-              placeholder="Turn Order"
-              onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, Number(text))}
-            />
-          </Item>
-        </View>
-      </View>
-    </ListItem>
-  )
+  renderPlayerOrder = (player) => {
+    const leftContent = (
+      <ThumbnailLink uri={player.imageUri} small />
+    );
+    const rightContent = (
+      <Item regular>
+        <Input
+          regular
+          style={{ backgroundColor: 'white', width: 32 }}
+          keyboardType="numeric"
+          placeholder="Score"
+          onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, Number(text))}
+        />
+      </Item>
+    );
+    return (
+      <BigListItem
+        key={player.uid}
+        leftContent={leftContent}
+        rightContent={rightContent}
+        rightStyle={{ flex: 1 }}
+        text={player.name}
+      />
+    );
+  }
 
   render = () => {
     const {

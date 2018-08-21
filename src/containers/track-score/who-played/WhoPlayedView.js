@@ -3,7 +3,6 @@ import { ScrollView } from 'react-native';
 import firebase from 'react-native-firebase';
 import { Actions } from 'react-native-router-flux';
 import {
-  Body,
   Container,
   Content,
   Header,
@@ -13,13 +12,13 @@ import {
   Left,
   List,
   ListItem,
-  Right,
   Separator,
   Text,
 } from 'native-base';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ThumbnailLink from '@components/ui/ThumbnailLink';
+import BigListItem from '@components/BigListItem';
 import * as TrackScoreActions from '@redux/track-score/actions';
 
 class WhoPlayed extends Component {
@@ -75,7 +74,7 @@ class WhoPlayed extends Component {
   renderPlayer = (player, selected) => {
     const icon = selected
       ? <Icon style={{ color: 'green' }} type="MaterialCommunityIcons" name="checkbox-marked-circle" />
-      : <Icon type="MaterialCommunityIcons" name="circle-outline" />;
+      : <Icon style={{ color: '#cccccc' }} type="MaterialCommunityIcons" name="circle-outline" />;
 
     let action = selected
       ? () => this.props.trackScoreRemovePlayer(player.uid)
@@ -87,18 +86,16 @@ class WhoPlayed extends Component {
       action = null;
     }
 
+    const leftContent = (<ThumbnailLink uri={player.imageUri} small />);
     return (
-      <ListItem icon onPress={action} key={player.uid}>
-        <Left>
-          <ThumbnailLink uri={player.imageUri} small />
-        </Left>
-        <Body>
-          <Text>{player.name}</Text>
-        </Body>
-        <Right>
-          { icon}
-        </Right>
-      </ListItem>
+      <BigListItem
+        key={player.uid}
+        text={player.name}
+        leftContent={leftContent}
+        rightContent={icon}
+        onPress={action}
+        style={{ height: 54 }}
+      />
     );
   }
 
