@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
 import {
   Container,
@@ -9,17 +9,30 @@ import {
   Item,
   Input,
   Icon,
-  Left,
-  Body,
-  Right,
   Separator,
   List,
-  ListItem,
   Button,
   Text,
 } from 'native-base';
 import PropTypes from 'prop-types';
 import firebase from 'react-native-firebase';
+
+import ThumbnailLink from '@components/ui/ThumbnailLink';
+import BigListItem from '@components/BigListItem';
+
+import config from '../../../config';
+
+/**
+ * isFavouriteGame - given a set of favourite games, determines whether
+ * the given game id is a favourite.
+ *
+ * @param favouriteGames - a set of favourite games.
+ * @param gameId - the game id to check.
+ * @returns true if the game is a favourite, false otherwise.
+ */
+function isFavouriteGame(favouriteGames, gameId) {
+  return (favouriteGames || []).some(g => g.id === gameId);
+}
 
 const renderGame = (game) => {
   const {
@@ -29,29 +42,29 @@ const renderGame = (game) => {
     onFavourite,
     onSelect,
   } = game;
+  const leftContent = (
+    <View style={{ flexDirection: 'row', alignItems: 'stretch' }}>
+      <TouchableOpacity style={{ justifyContent: 'center', paddingRight: 12 }} onPress={onFavourite}>
+        { isFavourite
+            ? <Icon style={{ fontSize: 21, color: '#fcca6a' }} type="FontAwesome" name="star" />
+            : <Icon style={{ fontSize: 21, color: '#cccccc' }} type="FontAwesome" name="star-o" />
+        }
+      </TouchableOpacity>
+      <ThumbnailLink small uri={game.id ? `${config.apiRoot}/games/${game.id}/thumbnail` : null} />
+    </View>
+  );
+  const rightContent = (
+    <Icon style={{ fontSize: 21, color: '#cccccc' }} name="arrow-forward" />
+  );
   return (
-    <ListItem
+    <BigListItem
       key={id}
-      icon
-      button
+      text={name}
+      leftContent={leftContent}
+      rightContent={rightContent}
       onPress={onSelect}
-    >
-      <Left>
-        <Button onPress={onFavourite} transparent>
-          { isFavourite
-              ? <Icon name="md-star" />
-              : <Icon name="md-star-outline" />
-          }
-
-        </Button>
-      </Left>
-      <Body>
-        <Text>{name}</Text>
-      </Body>
-      <Right>
-        <Icon name="arrow-forward" />
-      </Right>
-    </ListItem>
+      style={{ height: 54 }}
+    />
   );
 };
 
@@ -76,7 +89,6 @@ class WhatGame extends Component {
   };
 
   search = async () => {
-    console.log(`Search: ${this.state.searchText}`);
     this.setState({ ...this.state, loading: true });
 
     //  Hit the search API.
@@ -139,7 +151,7 @@ class WhatGame extends Component {
         {recent.map(game => renderGame({
           id: game.id,
           name: game.name,
-          isFavourite: true,
+          isFavourite: game.isFavourite,
           onFavourite: () => this.toggleFavourite(game),
           onSelect: () => this.props.onSelectGame(game),
         })) }
@@ -165,7 +177,7 @@ class WhatGame extends Component {
     );
   }
 
-  renderResults = (results, loading) => {
+  renderResults = (favouriteGames, results, loading) => {
     if (!results && !loading) return null;
     return (
       <View>
@@ -176,6 +188,7 @@ class WhatGame extends Component {
         { results && results.map(game => renderGame({
           id: game.id,
           name: game.name,
+          isFavourite: isFavouriteGame(favouriteGames, game.id),
           onFavourite: () => this.toggleFavourite(game),
           onSelect: () => this.props.onSelectGame(game),
         })) }
@@ -209,7 +222,7 @@ class WhatGame extends Component {
         <ScrollView>
           <Content>
             <List>
-              { this.renderResults(results, loading) }
+              { this.renderResults(favouriteGames, results, loading) }
               { this.renderFavourites(favouriteGames) }
               { this.renderRecent(recentGames) }
             </List>
@@ -222,19 +235,25 @@ class WhatGame extends Component {
 }
 
 function mapStateToProps(state) {
-  //  Get the recent games.
+  //  Get the recent games. While we're at it, check if they are favourites.
+  const { favouriteGames } = state.user;
   const recentGameIds = [];
   const recentGames = [];
   state.history.playedGames.forEach((playedGame) => {
     const { id, name } = playedGame.game;
     if (recentGameIds.indexOf(id) !== -1 || id === undefined) return;
+    //  We don't need to show recent games if they are already faves.
+    if (isFavouriteGame(favouriteGames, id)) return;
     recentGameIds.push(id);
-    recentGames.push({ id, name });
+    recentGames.push({
+      id,
+      name,
+    });
   });
 
   return {
-    favouriteGames: state.user.favouriteGames,
-    recentGames,
+    favouriteGames: favouriteGames.sort((g1, g2) => (g1.name.localeCompare(g2.name))),
+    recentGames: recentGames.sort((g1, g2) => (g1.name.localeCompare(g2.name))),
   };
 }
 

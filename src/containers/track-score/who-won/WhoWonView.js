@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import {
-  Body,
   Container,
   Content,
   Icon,
-  Left,
   List,
   ListItem,
-  Right,
   Separator,
   Text,
 } from 'native-base';
 import PropTypes from 'prop-types';
 
+import BigListItem from '@components/BigListItem';
 import ThumbnailLink from '@components/ui/ThumbnailLink';
 import rankings from '@lib/rankings';
 import * as TrackScoreActions from '@redux/track-score/actions';
@@ -56,15 +54,10 @@ class WhoWon extends Component {
     }
   }
 
-  renderPlayer = (player, nextAvailableRank) => (
-    <ListItem icon key={player.uid}>
-      <Left>
-        <ThumbnailLink uri={player.imageUri} small />
-      </Left>
-      <Body>
-        <Text>{player.name}</Text>
-      </Body>
-      <Right>
+  renderPlayer = (player, nextAvailableRank) => {
+    const leftContent = (<ThumbnailLink uri={player.imageUri} small />);
+    const rightContent = (
+      <View>
         { player.rank !== null &&
         <TouchableOpacity
           transparent
@@ -81,9 +74,18 @@ class WhoWon extends Component {
           <Icon style={{ fontSize: 24, color: 'black' }} name="arrow-up-bold-circle-outline" type="MaterialCommunityIcons" />
         </TouchableOpacity>
         }
-      </Right>
-    </ListItem>
-  );
+      </View>
+    );
+    return (
+      <BigListItem
+        key={player.uid}
+        text={player.name}
+        leftContent={leftContent}
+        rightContent={rightContent}
+        style={{ height: 54 }}
+      />
+    );
+  }
 
   renderPlayersOrHint(players, nextAvailableRank) {
     if (players && players.length > 0) {
