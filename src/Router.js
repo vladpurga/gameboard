@@ -17,10 +17,10 @@ import HistoryPlayedGame from '@containers/history/HistoryPlayedGame';
 import Home from '@containers/home/HomeContainer';
 import GameStats from '@containers/game-stats/GameStatsContainer';
 
-import ChooseGame from '@containers/track-score/choose-game/ChooseGameView';
-import WhoPlayed from '@containers/track-score/who-played/WhoPlayedView';
-import WhoWon from '@containers/track-score/who-won/WhoWonView';
-import AddScores from '@containers/track-score/add-scores/AddScoresView';
+import ChooseGame from '@containers/track-score/ChooseGameView';
+import WhoPlayed from '@containers/track-score/WhoPlayedView';
+import WhoWon from '@containers/track-score/WhoWonView';
+import AddScores from '@containers/track-score/AddScoresView';
 import LinkFriend from '@containers/link-friend/LinkFriend';
 import CreateFriend from '@containers/create-friend/CreateFriend';
 

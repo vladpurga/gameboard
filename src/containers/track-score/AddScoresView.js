@@ -34,6 +34,7 @@ class AddScores extends Component {
   }
 
   renderPlayerScore = (player) => {
+    const { trackScoreSetPlayerScore } = this.props;
     const leftContent = (
       <ThumbnailLink uri={player.imageUri} small />
     );
@@ -44,7 +45,7 @@ class AddScores extends Component {
           style={{ backgroundColor: 'white', width: 32 }}
           keyboardType="numeric"
           placeholder="Score"
-          onChangeText={text => this.props.trackScoreSetPlayerScore(player.uid, Number(text))}
+          onChangeText={text => trackScoreSetPlayerScore(player.uid, Number(text))}
         />
       </Item>
     );
@@ -60,6 +61,7 @@ class AddScores extends Component {
   }
 
   renderPlayerOrder = (player) => {
+    const { trackScoreSetPlayerOrder } = this.props;
     const leftContent = (
       <ThumbnailLink uri={player.imageUri} small />
     );
@@ -70,7 +72,7 @@ class AddScores extends Component {
           style={{ backgroundColor: 'white', width: 32 }}
           keyboardType="numeric"
           placeholder="Order"
-          onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, Number(text))}
+          onChangeText={text => trackScoreSetPlayerOrder(player.uid, Number(text))}
         />
       </Item>
     );

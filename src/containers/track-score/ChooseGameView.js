@@ -20,7 +20,7 @@ import firebase from 'react-native-firebase';
 import ThumbnailLink from '@components/ui/ThumbnailLink';
 import BigListItem from '@components/BigListItem';
 
-import config from '../../../config';
+import config from '../../config';
 
 /**
  * isFavouriteGame - given a set of favourite games, determines whether

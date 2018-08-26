@@ -94,14 +94,15 @@ class LinkFriend extends Component {
 
 
   renderSearchResults = () => {
-    if (!this.state.results) return null;
+    const { results } = this.state;
+    if (!results) return null;
 
     return (
       <View>
         <Separator bordered>
           <Text>Search Results</Text>
         </Separator>
-        { this.state.results.map(this.renderPlayer) }
+        { results.map(this.renderPlayer) }
       </View>
     );
   }

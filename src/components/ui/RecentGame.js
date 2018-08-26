@@ -17,9 +17,24 @@ import config from '../../config';
 function renderWinners(players) {
   const winners = players.filter(p => p.rank === 1).map(p => p.name);
   switch (winners.length) {
-    case 0: return (<Text note>No Winner!</Text>);
-    case 1: return (<Text note><Text note style={{ color: 'black', fontWeight: 'bold' }}>{winners[0]}</Text> won</Text>);
-    default: return (<Text note>{winners.Join(', ')} won</Text>);
+    case 0:
+      return (
+        <Text note>No Winner!</Text>
+      );
+    case 1:
+      return (
+        <Text note>
+          <Text note style={{ color: 'black', fontWeight: 'bold' }}>{winners[0]}</Text>
+          <Text note style={{ color: 'black' }}> won</Text>
+        </Text>
+      );
+    default:
+      return (
+        <Text note>
+          <Text note style={{ color: 'black', fontWeight: 'bold' }}>{winners.join(', ')}</Text>
+          <Text note style={{ color: 'black' }}> won</Text>
+        </Text>
+      );
   }
 }
 
@@ -27,7 +42,7 @@ function renderStarter(players) {
   const starters = players.filter(p => p.order === 1).map(p => p.name);
   switch (starters.length) {
     case 0: return null;
-    default: return (<Text note>{starters[0]} went first</Text>);
+    default: return (<Text note>{`${starters[0]} went first`}</Text>);
   }
 }
 
