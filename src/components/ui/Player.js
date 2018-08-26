@@ -1,6 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Body, Card, CardItem, Text, Thumbnail } from 'native-base';
+import {
+  Body,
+  Card,
+  CardItem,
+  Text,
+  Thumbnail,
+} from 'native-base';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -62,4 +68,3 @@ Player.defaultProps = {
 };
 
 export default Player;
-

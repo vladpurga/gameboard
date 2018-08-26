@@ -69,7 +69,7 @@ class AddScores extends Component {
           regular
           style={{ backgroundColor: 'white', width: 32 }}
           keyboardType="numeric"
-          placeholder="Score"
+          placeholder="Order"
           onChangeText={text => this.props.trackScoreSetPlayerOrder(player.uid, Number(text))}
         />
       </Item>

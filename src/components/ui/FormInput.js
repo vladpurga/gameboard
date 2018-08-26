@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Item, Label, Input } from 'native-base';
+import {
+  Icon,
+  Item,
+  Label,
+  Input,
+} from 'native-base';
 
 const FormInput = (props) => {
   const {
