@@ -20,7 +20,7 @@ import firebase from 'react-native-firebase';
 import ThumbnailLink from '@components/ui/ThumbnailLink';
 import BigListItem from '@components/BigListItem';
 
-import config from '../../../config';
+import config from '../../config';
 
 /**
  * isFavouriteGame - given a set of favourite games, determines whether
@@ -46,8 +46,8 @@ const renderGame = (game) => {
     <View style={{ flexDirection: 'row', alignItems: 'stretch' }}>
       <TouchableOpacity style={{ justifyContent: 'center', paddingRight: 12 }} onPress={onFavourite}>
         { isFavourite
-            ? <Icon style={{ fontSize: 21, color: '#fcca6a' }} type="FontAwesome" name="star" />
-            : <Icon style={{ fontSize: 21, color: '#cccccc' }} type="FontAwesome" name="star-o" />
+          ? <Icon style={{ fontSize: 21, color: '#fcca6a' }} type="FontAwesome" name="star" />
+          : <Icon style={{ fontSize: 21, color: '#cccccc' }} type="FontAwesome" name="star-o" />
         }
       </TouchableOpacity>
       <ThumbnailLink small uri={game.id ? `${config.apiRoot}/games/${game.id}/thumbnail` : null} />
@@ -89,7 +89,7 @@ class WhatGame extends Component {
   };
 
   search = async () => {
-    this.setState({ ...this.state, loading: true });
+    this.setState(previousState => ({ ...previousState, loading: true }));
 
     //  Hit the search API.
     const safeSearch = this.state.searchText.replace(' ', '+');
@@ -99,27 +99,31 @@ class WhatGame extends Component {
 
       //  If we don't have a valid status, set the error.
       if (status !== 200) {
-        this.setState({
-          ...this.state,
+        this.setState(previousState => ({
+          ...previousState,
           loading: false,
           error: true,
           results: null,
-        });
+        }));
         return;
       }
 
       //  We've got a response, add each result to the list.
       const data = await response.json();
       const results = data.map(d => d);
-      this.setState({ ...this.state, loading: false, results });
+      this.setState(previousState => ({
+        ...previousState,
+        loading: false,
+        results,
+      }));
     } catch (err) {
       //  TODO error toast.
-      this.setState({
-        ...this.state,
+      this.setState(previousState => ({
+        ...previousState,
         loading: false,
         error: true,
         results: null,
-      });
+      }));
     }
   }
 
@@ -211,7 +215,7 @@ class WhatGame extends Component {
           <Item>
             <Input
               placeholder="Search"
-              onChangeText={searchText => this.setState({ ...this.state, searchText })}
+              onChangeText={searchText => this.setState(s => ({ ...s, searchText }))}
               value={this.state.searchText}
             />
           </Item>

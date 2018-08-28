@@ -63,7 +63,7 @@ class WhoPlayed extends Component {
   }
 
   search = (searchText) => {
-    this.setState({ ...this.state, searchText });
+    this.setState(previousState => ({ ...previousState, searchText }));
   }
 
   filterFriend = (friend) => {

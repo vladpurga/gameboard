@@ -26,4 +26,3 @@ PlayerButton.defaultProps = {
 };
 
 export default PlayerButton;
-

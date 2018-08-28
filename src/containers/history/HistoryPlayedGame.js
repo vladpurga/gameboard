@@ -58,11 +58,11 @@ class HistoryPlayedGame extends Component {
       .set({
         createdAt: date,
       }, { merge: true });
-    this.setState({ ...this.state, showDatePicker: false });
+    this.setState(s => ({ ...s, showDatePicker: false }));
   }
 
   editDate = () => {
-    this.setState({ ...this.state, showDatePicker: true });
+    this.setState(s => ({ ...s, showDatePicker: true }));
   }
 
   editGame = (key) => {
@@ -189,7 +189,7 @@ class HistoryPlayedGame extends Component {
                 <Text>{p.score}</Text>
               </Right>
             </ListItem>
-            ))
+          ))
           }
         </List>
 
@@ -206,7 +206,7 @@ class HistoryPlayedGame extends Component {
           date={createdAt}
           isVisible={this.state.showDatePicker}
           onConfirm={this.onSetDate}
-          onCancel={() => { this.setState({ ...this.state, showDatePicker: false }); }}
+          onCancel={() => { this.setState(s => ({ ...s, showDatePicker: false })); }}
         />
       </Content>
     );

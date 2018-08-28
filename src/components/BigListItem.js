@@ -65,6 +65,4 @@ BigListItem.defaultProps = {
   rightStyle: null,
 };
 
-
 export default BigListItem;
-

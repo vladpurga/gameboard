@@ -20,8 +20,6 @@ export default function routerReducer(state = initialState, action) {
         scene: action.scene,
       };
 
-    // ...other actions
-
     default:
       return state;
   }

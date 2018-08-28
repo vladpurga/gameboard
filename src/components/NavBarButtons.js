@@ -49,7 +49,8 @@ const NavBarButton = (props) => {
         </TouchableOpacity>
       </View>
     );
-  } else if (position === 'right') {
+  }
+  if (position === 'right') {
     return (
       <View>
         <TouchableOpacity
@@ -57,15 +58,18 @@ const NavBarButton = (props) => {
           onPress={onPress}
         >
           { text && <Text style={styles.text}>{text}</Text> }
-          { showIcon && <Icon
-            style={[styles.icon, { fontSize: iconSize }]}
-            type={iconType}
-            name={iconName}
-          /> }
+          { showIcon && (
+            <Icon
+              style={[styles.icon, { fontSize: iconSize }]}
+              type={iconType}
+              name={iconName}
+            />
+          ) }
         </TouchableOpacity>
       </View>
     );
   }
+
   return null;
 };
 

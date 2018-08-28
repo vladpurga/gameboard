@@ -173,7 +173,7 @@ class Menu extends Component {
                 <Button small title="Log Out" onPress={this.logout} />
               </View>
             </View>
-          :
+            :
             <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVerticalSml]}>
               <Button small title="Log In" onPress={() => this.onPress(Actions.login)} />
             </View>

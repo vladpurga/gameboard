@@ -42,8 +42,9 @@ export default function gameStats(playerId, playedGames) {
     }
 
     //  Find the winner, if it's not us then we're going to track them as a beater.
-    const winner = game.players.reduce((acc, p) =>
-      (acc === null || p.rank > acc.rank ? p : acc), null);
+    const winner = game.players.reduce((acc, p) => (acc === null || p.rank > acc.rank ? p : acc),
+      null);
+
     if (winner.id !== playerId) {
       if (beaters[winner.id]) beaters[winner.id].push(winner);
       else beaters[winner.id] = [winner];

@@ -39,12 +39,12 @@ class LinkFriend extends Component {
 
   search = async () => {
     //  Start the loading spinner...
-    this.setState({
-      ...this.state,
+    this.setState(s => ({
+      ...s,
       loading: true,
       results: null,
       notFound: null,
-    });
+    }));
 
     //  Hit the search API.
     const { searchText } = this.state;
@@ -54,22 +54,22 @@ class LinkFriend extends Component {
 
       //  For a 404, we show not found.
       if (status === 404) {
-        this.setState({
-          ...this.state,
+        this.setState(s => ({
+          ...s,
           loading: false,
           results: null,
           notFound: true,
-        });
+        }));
       }
 
       //  If we don't have a valid status, set the error.
       if (status !== 200) {
-        this.setState({
-          ...this.state,
+        this.setState(s => ({
+          ...s,
           loading: false,
           error: true,
           results: null,
-        });
+        }));
         return;
       }
 
@@ -80,28 +80,29 @@ class LinkFriend extends Component {
         email: player.email,
         imageUri: player.photoURL,
       }];
-      this.setState({ ...this.state, loading: false, results });
+      this.setState(s => ({ ...s, loading: false, results }));
     } catch (err) {
       //  TODO proper error handling.
-      this.setState({
-        ...this.state,
+      this.setState(s => ({
+        ...s,
         loading: false,
         error: true,
         results: null,
-      });
+      }));
     }
   }
 
 
   renderSearchResults = () => {
-    if (!this.state.results) return null;
+    const { results } = this.state;
+    if (!results) return null;
 
     return (
       <View>
         <Separator bordered>
           <Text>Search Results</Text>
         </Separator>
-        { this.state.results.map(this.renderPlayer) }
+        { results.map(this.renderPlayer) }
       </View>
     );
   }
@@ -132,7 +133,7 @@ class LinkFriend extends Component {
           <Icon name="ios-search" />
           <Input
             placeholder="Search"
-            onChangeText={searchText => this.setState({ ...this.state, searchText })}
+            onChangeText={searchText => this.setState(s => ({ ...s, searchText }))}
             value={this.state.searchText}
           />
           <Icon name="ios-people" />
