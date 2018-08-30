@@ -1,8 +1,8 @@
 import firebase from 'react-native-firebase';
-import { ActionConst } from 'react-native-router-flux';
 import React from 'react';
 import {
   Actions,
+  ActionConst,
   Drawer,
   Reducer,
   Router,
