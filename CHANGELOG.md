@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/dwmkerr/gameboard/compare/v0.6.1...v0.7.0) (2018-08-30)
+
+
+### Bug Fixes
+
+* **package:** update react-native-google-analytics-bridge to version 6.0.0 ([e3ba32c](https://github.com/dwmkerr/gameboard/commit/e3ba32c))
+* **package:** update react-native-modal-datetime-picker to version 6.0.0 ([bc3375d](https://github.com/dwmkerr/gameboard/commit/bc3375d))
+* **package:** update react-native-tab-view to version 1.0.0 ([6b2c785](https://github.com/dwmkerr/gameboard/commit/6b2c785))
+* **package:** update react-native-vector-icons to version 5.0.0 ([97ddf2d](https://github.com/dwmkerr/gameboard/commit/97ddf2d))
+
+
+### Features
+
+* adds support for google analytics screen-names ([6653008](https://github.com/dwmkerr/gameboard/commit/6653008))
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/dwmkerr/gameboard/compare/v0.6.0...v0.6.1) (2018-08-28)
 
