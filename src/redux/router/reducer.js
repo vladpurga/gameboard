@@ -1,9 +1,3 @@
-/**
- * Router Reducer
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 import { ActionConst } from 'react-native-router-flux';
 
 // Set initial state

@@ -1,4 +1,5 @@
 import firebase from 'react-native-firebase';
+import { ActionConst } from 'react-native-router-flux';
 import React from 'react';
 import {
   Actions,
@@ -72,12 +73,26 @@ async function completeTrackScore(store) {
 
 const reducerCreate = (params) => {
   const defaultReducer = new Reducer(params);
-  return (state, action) => (
-    //  TODO: note that logging in a reducer can cripple performance on the
-    //  device!
-    //  console.log('ACTION:', action);
-    defaultReducer(state, action)
-  );
+  return (state, action) => {
+    switch (action.type) {
+      //  If we have a navigation event, track the screen view.
+      case ActionConst.FOCUS: {
+        const routeName = action.routeName || '(Unknown)';
+        const title = action.params ? action.params.title : '(Unknown)';
+        try {
+          // Send to Google Analytics
+          const screenName = `${routeName} - ${title}`;
+          firebase.analytics().setCurrentScreen(screenName, screenName);
+        } catch (err) {
+          console.log(err);
+        }
+        break;
+      }
+
+      default:
+    }
+    return defaultReducer(state, action);
+  };
 };
 
 const createRouter = store => (

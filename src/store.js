@@ -10,15 +10,11 @@ import { applyMiddleware, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-// Consts and Libs
-import Analytics from '@lib/analytics';
-
 // All redux reducers (rolled into one mega-reducer)
 import rootReducer from '@redux/index';
 
 // Load middleware
 let middleware = [
-  Analytics,
   thunk, // Allows action creators to return functions (not just plain objects)
 ];
 
